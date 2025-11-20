@@ -187,6 +187,23 @@
             opacity: 0.9;
         }
 
+        /* Styles pour la section repliable */
+        #types-actes-header {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            padding: 10px 15px;
+            margin: 0 -15px;
+        }
+
+        #types-actes-header:hover {
+            background: rgba(11, 132, 62, 0.1);
+            transform: translateY(-2px);
+        }
+
+        #types-actes-arrow {
+            transition: transform 0.3s ease;
+        }
+
         @media (max-width: 768px) {
             .menu-container {
                 padding: 2rem 1.5rem;
@@ -337,6 +354,288 @@
                 </div>
             </div>
 
+            <!-- Section Types d'Actes et Informations -->
+            <div class="mt-5">
+                <div class="text-center mb-4">
+                    <h3 class="fw-bold text-primary" style="cursor: pointer;" onclick="toggleTypesActes()" id="types-actes-header">
+                        <i class="fas fa-file-alt me-2"></i>Types d'Actes et Informations
+                        <i class="fas fa-chevron-down ms-2" id="types-actes-arrow"></i>
+                    </h3>
+                    <p class="text-muted">Découvrez les différents types d'actes disponibles et les documents requis</p>
+                </div>
+
+                <div id="types-actes-content">
+                    <!-- Navigation par onglets -->
+                    <div class="mb-4">
+                        <ul class="nav nav-pills justify-content-center" id="actes-tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="actes-civils-tab" data-bs-toggle="pill" data-bs-target="#actes-civils" type="button" role="tab">
+                                    <i class="fas fa-file-alt me-2"></i>Actes d'État Civil
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="certificats-tab" data-bs-toggle="pill" data-bs-target="#certificats" type="button" role="tab">
+                                    <i class="fas fa-certificate me-2"></i>Certificats
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="procedures-tab" data-bs-toggle="pill" data-bs-target="#procedures" type="button" role="tab">
+                                    <i class="fas fa-gavel me-2"></i>Procédures Spéciales
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-content" id="actes-tabContent">
+                        <!-- Onglet Actes d'État Civil -->
+                        <div class="tab-pane fade show active" id="actes-civils" role="tabpanel">
+                            <div class="row g-4">
+                                <!-- Extrait de naissance -->
+                                <div class="col-lg-6">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-header bg-primary text-white">
+                                            <h6 class="mb-0">
+                                                <i class="fas fa-baby me-2"></i>Extrait de naissance ou copie littérale
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6 class="text-primary">Documents requis :</h6>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fas fa-check text-success me-2"></i>Votre ancien extrait ou</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Votre pièce d'identité</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Votre numéro et l'année du registre</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Les frais de timbre</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Célébration de mariage -->
+                                <div class="col-lg-6">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-header bg-success text-white">
+                                            <h6 class="mb-0">
+                                                <i class="fas fa-heart me-2"></i>Célébration d'un mariage
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6 class="text-success">Documents requis :</h6>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fas fa-check text-success me-2"></i>Les extraits de naissance des conjoints</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Pièce d'identité (le cas échéant)</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>4 témoins avec leurs cartes d'identité</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Cahier de quartier si le mariage n'a pas été célébré à Khombole</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Déclaration de naissance -->
+                                <div class="col-lg-6">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-header bg-info text-white">
+                                            <h6 class="mb-0">
+                                                <i class="fas fa-baby-carriage me-2"></i>Déclaration de naissance
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="alert alert-warning">
+                                                <i class="fas fa-clock me-2"></i>
+                                                <strong>Délai :</strong> Dans les 12 mois suivant la naissance
+                                            </div>
+                                            <h6 class="text-info">Documents requis :</h6>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fas fa-check text-success me-2"></i>Certificat médical de naissance</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Pièces d'identité des parents</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Livret de famille (si existant)</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Cahier de quartier si l'enfant est né hors de Khombole</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Déclaration de décès -->
+                                <div class="col-lg-6">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-header bg-dark text-white">
+                                            <h6 class="mb-0">
+                                                <i class="fas fa-cross me-2"></i>Déclaration de décès
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6 class="text-dark">Procédure :</h6>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fas fa-check text-success me-2"></i>Présentez-vous à la mairie</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Apportez le certificat médical de décès</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Pièce d'identité du défunt</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Pièce d'identité du déclarant</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Onglet Certificats -->
+                        <div class="tab-pane fade" id="certificats" role="tabpanel">
+                            <div class="row g-4">
+
+                                <!-- Certificats de vie -->
+                                <div class="col-lg-6">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-header bg-warning text-dark">
+                                            <h6 class="mb-0">
+                                                <i class="fas fa-user-check me-2"></i>Certificats de vie
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <h6 class="text-warning fw-bold">Certificat de vie individuelle :</h6>
+                                                <ul class="list-unstyled small">
+                                                    <li><i class="fas fa-check text-success me-2"></i>Copie de l'extrait de naissance</li>
+                                                    <li><i class="fas fa-check text-success me-2"></i>Payer les frais</li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h6 class="text-warning fw-bold">Certificat de vie collective :</h6>
+                                                <ul class="list-unstyled small">
+                                                    <li><i class="fas fa-check text-success me-2"></i>Copie des extraits de naissance des concernés</li>
+                                                    <li><i class="fas fa-check text-success me-2"></i>Payer les frais</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Certificat de résidence -->
+                                <div class="col-lg-6">
+                                    <div class="card h-100 border-0 shadow-sm">
+                                        <div class="card-header bg-secondary text-white">
+                                            <h6 class="mb-0">
+                                                <i class="fas fa-home me-2"></i>Certificat de résidence
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <h6 class="text-secondary">Documents requis :</h6>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fas fa-check text-success me-2"></i>Carte d'identité ou extrait de naissance</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Certificat de domicile</li>
+                                                <li><i class="fas fa-check text-success me-2"></i>Payer les frais</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Onglet Procédures Spéciales -->
+                        <div class="tab-pane fade" id="procedures" role="tabpanel">
+                            <!-- Certificats de non-inscription -->
+                <div class="row g-4 mt-2">
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-danger text-white">
+                                <h6 class="mb-0">
+                                    <i class="fas fa-ban me-2"></i>Certificats de non-inscription
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h6 class="text-danger fw-bold">Non-inscription de naissance :</h6>
+                                        <ul class="list-unstyled small">
+                                            <li><i class="fas fa-check text-success me-2"></i>Carte d'identité des parents</li>
+                                            <li><i class="fas fa-check text-success me-2"></i>Filiation et date de naissance de l'enfant</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="text-danger fw-bold">Non-inscription de mariage :</h6>
+                                        <ul class="list-unstyled small">
+                                            <li><i class="fas fa-check text-success me-2"></i>Extraits de naissances des conjoints</li>
+                                            <li><i class="fas fa-check text-success me-2"></i>Date du mariage</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="text-danger fw-bold">Non-divorce/non-remariage :</h6>
+                                        <ul class="list-unstyled small">
+                                            <li><i class="fas fa-check text-success me-2"></i>Certificat du mariage</li>
+                                            <li><i class="fas fa-check text-success me-2"></i>Certificat de décès d'un des conjoints</li>
+                                            <li><i class="fas fa-check text-success me-2"></i>Carte d'identité des deux (2) témoins</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            
+                            <!-- Horaires et procédures spéciales -->
+                <div class="row g-4 mt-2">
+                    <div class="col-lg-6">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h6 class="mb-0">
+                                    <i class="fas fa-clock me-2"></i>Horaires de dépôt et de retrait
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="text-primary fw-bold">Dépôts de documents :</h6>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-sun text-warning me-2"></i>Matin : 08h00 – 13h00</li>
+                                            <li><i class="fas fa-moon text-info me-2"></i>Après-midi : 15h00 – 16h00</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="text-primary fw-bold">Retraits de documents :</h6>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fas fa-sun text-warning me-2"></i>Matinée : 10h30 – 14h00</li>
+                                            <li><i class="fas fa-moon text-info me-2"></i>Après-midi : 15h00 – 17h00</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Procédures spéciales -->
+                    <div class="col-lg-6">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-warning text-dark">
+                                <h6 class="mb-0">
+                                    <i class="fas fa-gavel me-2"></i>Procédures spéciales
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <h6 class="text-warning fw-bold">Reconstitution d'acte :</h6>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Photocopie carte d'identité</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>L'ancien acte</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Acte de détérioration</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Demande manuscrite au procureur</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h6 class="text-warning fw-bold">Annulation d'acte :</h6>
+                                    <ul class="list-unstyled small">
+                                        <li><i class="fas fa-check text-success me-2"></i>Photocopie carte d'identité du demandeur</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Photocopies carte d'identité des parents</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>L'acte concerné (type, numéro, date, lieu)</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Le motif d'annulation</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>La copie de l'acte concernée</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>2 témoins</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Informations de contact -->
             <div class="row mt-4">
                 <div class="col-md-6">
@@ -397,6 +696,52 @@
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
             });
+        });
+
+        // Fonction pour basculer l'affichage des types d'actes
+        function toggleTypesActes() {
+            const content = document.getElementById('types-actes-content');
+            const arrow = document.getElementById('types-actes-arrow');
+            
+            if (content.style.display === 'none') {
+                // Afficher le contenu
+                content.style.display = 'block';
+                arrow.classList.remove('fa-chevron-right');
+                arrow.classList.add('fa-chevron-down');
+                
+                // Animation d'apparition
+                content.style.opacity = '0';
+                content.style.transform = 'translateY(-20px)';
+                setTimeout(() => {
+                    content.style.transition = 'all 0.5s ease';
+                    content.style.opacity = '1';
+                    content.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                // Masquer le contenu
+                content.style.transition = 'all 0.3s ease';
+                content.style.opacity = '0';
+                content.style.transform = 'translateY(-20px)';
+                arrow.classList.remove('fa-chevron-down');
+                arrow.classList.add('fa-chevron-right');
+                
+                setTimeout(() => {
+                    content.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        // Initialiser l'état déplié par défaut
+        document.addEventListener('DOMContentLoaded', function() {
+            const content = document.getElementById('types-actes-content');
+            const arrow = document.getElementById('types-actes-arrow');
+            
+            // Commencer déplié (affiché)
+            content.style.display = 'block';
+            content.style.opacity = '1';
+            content.style.transform = 'translateY(0)';
+            arrow.classList.remove('fa-chevron-right');
+            arrow.classList.add('fa-chevron-down');
         });
     </script>
 </body>

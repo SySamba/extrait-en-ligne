@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -269,9 +270,89 @@
             background: white;
             padding: 0 5px;
         }
+        /* Menu de navigation simple */
+        .simple-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin-bottom: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(11, 132, 62, 0.3);
+        }
+
+        .nav-link.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-link {
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Menu de navigation simple -->
+    <nav class="simple-nav">
+        <div class="container">
+            <div class="nav-links">
+                <a href="menu.php" class="nav-link">
+                    <i class="fas fa-home me-1"></i>Accueil
+                </a>
+                <a href="demande_acte.php" class="nav-link active">
+                    <i class="fas fa-plus me-1"></i>Nouvelle Demande
+                </a>
+                <a href="suivi_demande.php" class="nav-link">
+                    <i class="fas fa-search me-1"></i>Suivi Demande
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Messages d'erreur -->
+    <?php if (isset($_SESSION['demande_error'])): ?>
+        <div class="container mt-3">
+            <div class="alert alert-danger alert-dismissible fade show">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <strong>Erreur :</strong> <?= htmlspecialchars($_SESSION['demande_error']) ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+        <?php unset($_SESSION['demande_error']); ?>
+    <?php endif; ?>
+
     <!-- Header Section -->
     <div class="header-section">
         <div class="container">
@@ -339,34 +420,90 @@
                 </div>
 
                 <div class="row g-3">
-                    <div class="col-md-8">
-                        <label for="type_acte" class="form-label required-field">Type d'acte</label>
-                        <select class="form-select" id="type_acte" name="type_acte" required>
-                            <option value="">Sélectionnez le type d'acte</option>
-                            <option value="extrait_naissance">Extrait d'acte de naissance</option>
-                            <option value="copie_litterale_naissance">Copie littérale d'acte de naissance</option>
-                            <option value="extrait_mariage">Extrait d'acte de mariage</option>
-                            <option value="certificat_residence">Certificat de résidence</option>
-                            <option value="certificat_vie_individuelle">Certificat de vie individuelle</option>
-                            <option value="certificat_vie_collective">Certificat de vie collective</option>
-                            <option value="certificat_deces">Certificat de décès</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Veuillez sélectionner un type d'acte.
+                    <div class="col-12">
+                        <label class="form-label required-field">Types d'actes demandés</label>
+                        <p class="text-muted small mb-3">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Vous pouvez sélectionner plusieurs types d'actes dans une même demande
+                        </p>
+                        
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="extrait_naissance" name="types_actes[]" value="extrait_naissance">
+                                    <label class="form-check-label" for="extrait_naissance">
+                                        <strong>Extrait d'acte de naissance</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="copie_litterale_naissance" name="types_actes[]" value="copie_litterale_naissance">
+                                    <label class="form-check-label" for="copie_litterale_naissance">
+                                        <strong>Copie littérale d'acte de naissance</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="extrait_mariage" name="types_actes[]" value="extrait_mariage">
+                                    <label class="form-check-label" for="extrait_mariage">
+                                        <strong>Extrait d'acte de mariage</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="certificat_residence" name="types_actes[]" value="certificat_residence">
+                                    <label class="form-check-label" for="certificat_residence">
+                                        <strong>Certificat de résidence</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="certificat_vie_individuelle" name="types_actes[]" value="certificat_vie_individuelle">
+                                    <label class="form-check-label" for="certificat_vie_individuelle">
+                                        <strong>Certificat de vie individuelle</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="certificat_vie_collective" name="types_actes[]" value="certificat_vie_collective">
+                                    <label class="form-check-label" for="certificat_vie_collective">
+                                        <strong>Certificat de vie collective</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="certificat_deces" name="types_actes[]" value="certificat_deces">
+                                    <label class="form-check-label" for="certificat_deces">
+                                        <strong>Certificat de décès</strong>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="nombre_exemplaires" class="form-label required-field">Nombre d'exemplaires</label>
-                        <select class="form-select" id="nombre_exemplaires" name="nombre_exemplaires" required>
-                            <option value="">Choisir</option>
-                            <option value="1" selected>1 exemplaire</option>
-                            <option value="2">2 exemplaires</option>
-                            <option value="3">3 exemplaires</option>
-                            <option value="4">4 exemplaires</option>
-                            <option value="5">5 exemplaires</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Veuillez sélectionner le nombre d'exemplaires.
+                        
+                        <div class="invalid-feedback d-block" id="types_actes_error" style="display: none !important;">
+                            Veuillez sélectionner au moins un type d'acte.
+                        </div>
+                        
+                        <!-- Section nombre d'exemplaires par type -->
+                        <div class="mt-4 p-3 bg-light rounded" id="exemplaires_section" style="display: none;">
+                            <h6 class="fw-bold text-primary mb-3">
+                                <i class="fas fa-copy me-2"></i>Nombre d'exemplaires par type d'acte
+                            </h6>
+                            <div id="exemplaires_container" class="row g-3">
+                                <!-- Les champs seront ajoutés dynamiquement ici -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -628,6 +765,117 @@
             const year = parseInt(e.target.value);
             if (year > currentYear) {
                 e.target.value = currentYear;
+            }
+        });
+
+        // Gestion des types d'actes multiples et nombre d'exemplaires
+        const typesActes = {
+            'extrait_naissance': { label: 'Extrait d\'acte de naissance' },
+            'copie_litterale_naissance': { label: 'Copie littérale d\'acte de naissance' },
+            'extrait_mariage': { label: 'Extrait d\'acte de mariage' },
+            'certificat_residence': { label: 'Certificat de résidence' },
+            'certificat_vie_individuelle': { label: 'Certificat de vie individuelle' },
+            'certificat_vie_collective': { label: 'Certificat de vie collective' },
+            'certificat_deces': { label: 'Certificat de décès' }
+        };
+
+        function gererExemplaires() {
+            const checkboxes = document.querySelectorAll('input[name="types_actes[]"]:checked');
+            const exemplairesSection = document.getElementById('exemplaires_section');
+            const exemplairesContainer = document.getElementById('exemplaires_container');
+            
+            if (checkboxes.length === 0) {
+                exemplairesSection.style.display = 'none';
+                exemplairesContainer.innerHTML = '';
+                return;
+            }
+            
+            let exemplairesHTML = '';
+            
+            checkboxes.forEach(checkbox => {
+                const type = checkbox.value;
+                const acte = typesActes[type];
+                
+                exemplairesHTML += `
+                    <div class="col-md-6">
+                        <label for="exemplaires_${type}" class="form-label">
+                            <strong>${acte.label}</strong>
+                        </label>
+                        <select class="form-select" id="exemplaires_${type}" name="exemplaires[${type}]" required>
+                            <option value="">Choisir le nombre</option>
+                            <option value="1">1 exemplaire</option>
+                            <option value="2">2 exemplaires</option>
+                            <option value="3">3 exemplaires</option>
+                            <option value="4">4 exemplaires</option>
+                            <option value="5">5 exemplaires</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Veuillez sélectionner le nombre d'exemplaires.
+                        </div>
+                    </div>
+                `;
+            });
+            
+            exemplairesContainer.innerHTML = exemplairesHTML;
+            exemplairesSection.style.display = 'block';
+            
+            // Faire défiler vers la section des exemplaires
+            setTimeout(() => {
+                exemplairesSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
+                });
+            }, 100);
+        }
+
+        // Écouter les changements sur les checkboxes
+        document.querySelectorAll('input[name="types_actes[]"]').forEach(checkbox => {
+            checkbox.addEventListener('change', gererExemplaires);
+        });
+
+        // Validation personnalisée pour les types d'actes et exemplaires
+        function validerTypesActes() {
+            const checkboxes = document.querySelectorAll('input[name="types_actes[]"]:checked');
+            const errorDiv = document.getElementById('types_actes_error');
+            
+            if (checkboxes.length === 0) {
+                errorDiv.style.display = 'block';
+                return false;
+            } else {
+                errorDiv.style.display = 'none';
+                
+                // Vérifier que chaque type d'acte sélectionné a un nombre d'exemplaires
+                let exemplairesValides = true;
+                checkboxes.forEach(checkbox => {
+                    const type = checkbox.value;
+                    const exemplairesSelect = document.getElementById(`exemplaires_${type}`);
+                    if (!exemplairesSelect || !exemplairesSelect.value) {
+                        exemplairesValides = false;
+                        if (exemplairesSelect) {
+                            exemplairesSelect.classList.add('is-invalid');
+                        }
+                    } else {
+                        if (exemplairesSelect) {
+                            exemplairesSelect.classList.remove('is-invalid');
+                        }
+                    }
+                });
+                
+                return exemplairesValides;
+            }
+        }
+
+        // Ajouter la validation personnalisée au formulaire
+        document.querySelector('form').addEventListener('submit', function(e) {
+            if (!validerTypesActes()) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Faire défiler vers la section des types d'actes
+                document.querySelector('.form-container').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     </script>

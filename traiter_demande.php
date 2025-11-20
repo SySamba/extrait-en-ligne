@@ -46,14 +46,24 @@ class DemandeActe {
         
         // Champs obligatoires
         $champsObligatoires = [
-            'type_acte', 'nombre_exemplaires', 'nom', 'prenoms', 'date_naissance', 'lieu_naissance',
+            'types_actes', 'exemplaires', 'nom', 'prenoms', 'date_naissance', 'lieu_naissance',
             'annee_registre', 'numero_registre', 'qualite_demandeur', 
             'adresse_actuelle', 'telephone', 'email', 'mode_delivrance', 'mode_paiement'
         ];
         
         foreach ($champsObligatoires as $champ) {
-            if (empty($donnees[$champ])) {
-                $erreurs[] = "Le champ '$champ' est obligatoire.";
+            if ($champ === 'types_actes') {
+                if (empty($donnees['types_actes']) || !is_array($donnees['types_actes'])) {
+                    $erreurs[] = "Vous devez sélectionner au moins un type d'acte.";
+                }
+            } elseif ($champ === 'exemplaires') {
+                if (empty($donnees['exemplaires']) || !is_array($donnees['exemplaires'])) {
+                    $erreurs[] = "Vous devez spécifier le nombre d'exemplaires pour chaque type d'acte.";
+                }
+            } else {
+                if (empty($donnees[$champ])) {
+                    $erreurs[] = "Le champ '$champ' est obligatoire.";
+                }
             }
         }
         
@@ -121,6 +131,10 @@ class DemandeActe {
             // Générer le numéro de demande
             $numeroDemande = $this->genererNumeroDemande();
             
+            // Préparer les types d'actes et exemplaires
+            $typesActes = implode(',', $donnees['types_actes']);
+            $exemplairesJson = json_encode($donnees['exemplaires']);
+            
             // Préparer les données pour l'insertion
             $sql = "INSERT INTO demandes_actes (
                 numero_demande, type_acte, nombre_exemplaires, nom, prenoms, date_naissance, lieu_naissance,
@@ -138,8 +152,8 @@ class DemandeActe {
             
             $parametres = [
                 ':numero_demande' => $numeroDemande,
-                ':type_acte' => $donnees['type_acte'],
-                ':nombre_exemplaires' => intval($donnees['nombre_exemplaires']),
+                ':type_acte' => $typesActes,
+                ':nombre_exemplaires' => $exemplairesJson,
                 ':nom' => strtoupper($donnees['nom']),
                 ':prenoms' => ucwords(strtolower($donnees['prenoms'])),
                 ':date_naissance' => $donnees['date_naissance'],
@@ -254,7 +268,10 @@ class DemandeActe {
 // Traitement de la demande
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        $demandeActe = new DemandeActe($config);
+        // Debug : afficher les données reçues
+        error_log("Données POST reçues : " . print_r($_POST, true));
+        
+        $demandeActe = new DemandeActe();
         
         // Enregistrer la demande
         $resultat = $demandeActe->enregistrerDemande($_POST);
@@ -270,7 +287,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['demande_success'] = [
                 'numero_demande' => $resultat['numero_demande'],
                 'nom_complet' => $demande['prenoms'] . ' ' . $demande['nom'],
-                'type_acte' => $demande['type_acte'],
+                'types_actes' => $donnees['types_actes'],
+                'exemplaires' => $donnees['exemplaires'],
                 'email' => $demande['email']
             ];
             

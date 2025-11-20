@@ -144,12 +144,36 @@ $statutsLabels = [
 ];
 
 $statutsColors = [
-    'en_attente' => 'warning',
-    'en_traitement' => 'info',
-    'pret' => 'success',
-    'delivre' => 'primary',
-    'rejete' => 'danger'
+    'en_attente' => 'danger',      // Rouge pour En attente
+    'en_traitement' => 'warning',  // Orange pour En traitement
+    'pret' => 'info',             // Bleu pour Prêt
+    'delivre' => 'success',       // Vert pour Délivré
+    'rejete' => 'dark'            // Gris foncé pour Rejeté
 ];
+
+// Calcul des statistiques par statut
+$statsParStatut = [];
+try {
+    $sqlStats = "SELECT statut, COUNT(*) as nombre FROM demandes_actes GROUP BY statut";
+    $stmtStats = $pdo->prepare($sqlStats);
+    $stmtStats->execute();
+    $resultStats = $stmtStats->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Initialiser tous les statuts à 0
+    foreach (array_keys($statutsLabels) as $statut) {
+        $statsParStatut[$statut] = 0;
+    }
+    
+    // Remplir avec les vraies valeurs
+    foreach ($resultStats as $stat) {
+        $statsParStatut[$stat['statut']] = $stat['nombre'];
+    }
+} catch (Exception $e) {
+    // En cas d'erreur, initialiser à 0
+    foreach (array_keys($statutsLabels) as $statut) {
+        $statsParStatut[$statut] = 0;
+    }
+}
 
 // Calcul pagination
 $totalPages = ceil($totalDemandes / $parPage);
@@ -214,18 +238,16 @@ $totalPages = ceil($totalDemandes / $parPage);
 
         .stats-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(6, 1fr);
             gap: 1rem;
             margin-bottom: 2rem;
         }
 
         .stat-card {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
-            padding: 2rem;
+            padding: 1.5rem 1rem;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(11, 132, 62, 0.3);
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -233,7 +255,61 @@ $totalPages = ceil($totalDemandes / $parPage);
 
         .stat-card:hover {
             transform: translateY(-5px);
+        }
+
+        /* Couleurs spécifiques pour chaque type de KPI */
+        .stat-total {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            box-shadow: 0 10px 30px rgba(11, 132, 62, 0.3);
+        }
+
+        .stat-total:hover {
             box-shadow: 0 15px 40px rgba(11, 132, 62, 0.4);
+        }
+
+        .stat-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            box-shadow: 0 10px 30px rgba(220, 53, 69, 0.3);
+        }
+
+        .stat-danger:hover {
+            box-shadow: 0 15px 40px rgba(220, 53, 69, 0.4);
+        }
+
+        .stat-warning {
+            background: linear-gradient(135deg, #ffc107, #e0a800);
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
+        }
+
+        .stat-warning:hover {
+            box-shadow: 0 15px 40px rgba(255, 193, 7, 0.4);
+        }
+
+        .stat-info {
+            background: linear-gradient(135deg, #17a2b8, #138496);
+            box-shadow: 0 10px 30px rgba(23, 162, 184, 0.3);
+        }
+
+        .stat-info:hover {
+            box-shadow: 0 15px 40px rgba(23, 162, 184, 0.4);
+        }
+
+        .stat-success {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+        }
+
+        .stat-success:hover {
+            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.4);
+        }
+
+        .stat-dark {
+            background: linear-gradient(135deg, #343a40, #23272b);
+            box-shadow: 0 10px 30px rgba(52, 58, 64, 0.3);
+        }
+
+        .stat-dark:hover {
+            box-shadow: 0 15px 40px rgba(52, 58, 64, 0.4);
         }
 
         .stat-card::before {
@@ -254,7 +330,7 @@ $totalPages = ceil($totalDemandes / $parPage);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -264,6 +340,18 @@ $totalPages = ceil($totalDemandes / $parPage);
             font-size: 1.2rem;
             opacity: 0.8;
             margin-right: 0.5rem;
+        }
+
+        .stat-percentage {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.95;
         }
 
         .table-container {
@@ -461,6 +549,220 @@ $totalPages = ceil($totalDemandes / $parPage);
                 display: none;
             }
         }
+
+        /* Styles pour la grille de cartes */
+        .demandes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .demande-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+        }
+
+        .demande-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .demande-card .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .demande-numero {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .demande-statut .status-badge {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .demande-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .demandeur-info {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .demandeur-nom {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .demandeur-email {
+            color: #6c757d;
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        .demande-details {
+            space-y: 1rem;
+        }
+
+        .detail-item {
+            margin-bottom: 1rem;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .detail-value {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        .detail-value .badge {
+            font-size: 0.8rem;
+        }
+
+        .demande-card .card-footer {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .actions-buttons {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        .actions-buttons .btn {
+            border-radius: 20px;
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+        }
+
+        /* Styles personnalisés pour les badges de statut */
+        .status-badge {
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Couleurs spécifiques pour chaque statut */
+        .bg-danger.status-badge {
+            background: linear-gradient(135deg, #dc3545, #c82333) !important;
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+        }
+
+        .bg-warning.status-badge {
+            background: linear-gradient(135deg, #ffc107, #e0a800) !important;
+            color: #212529 !important;
+            box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+        }
+
+        .bg-info.status-badge {
+            background: linear-gradient(135deg, #17a2b8, #138496) !important;
+            box-shadow: 0 2px 8px rgba(23, 162, 184, 0.3);
+        }
+
+        .bg-success.status-badge {
+            background: linear-gradient(135deg, #28a745, #1e7e34) !important;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .bg-dark.status-badge {
+            background: linear-gradient(135deg, #343a40, #23272b) !important;
+            box-shadow: 0 2px 8px rgba(52, 58, 64, 0.3);
+        }
+
+        /* Responsive pour les cartes */
+        @media (max-width: 1200px) {
+            .stats-cards {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+            
+            .stat-card {
+                padding: 1rem 0.75rem;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .stat-label {
+                font-size: 0.85rem;
+            }
+            
+            .stat-percentage {
+                font-size: 0.8rem;
+            }
+            
+            .demandes-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .demande-card .card-header {
+                padding: 0.75rem 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .demande-card .card-body {
+                padding: 1rem;
+            }
+            
+            .demande-card .card-footer {
+                padding: 0.75rem 1rem;
+            }
+            
+            .actions-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .demandes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .actions-buttons {
+                flex-direction: column;
+            }
+            
+            .actions-buttons .btn {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -499,13 +801,74 @@ $totalPages = ceil($totalDemandes / $parPage);
 
     <div class="container">
         <div class="main-container">
-            <!-- Statistiques -->
+            <!-- KPI - Indicateurs de Performance -->
             <div class="stats-cards">
-                <div class="stat-card">
+                <!-- Total des demandes -->
+                <div class="stat-card stat-total">
                     <div class="stat-number"><?= $totalDemandes ?></div>
-                    <div>
+                    <div class="stat-label">
                         <i class="fas fa-file-alt"></i>
                         Total des demandes
+                    </div>
+                </div>
+                
+                <!-- En attente -->
+                <div class="stat-card stat-danger">
+                    <div class="stat-number"><?= $statsParStatut['en_attente'] ?></div>
+                    <div class="stat-label">
+                        <i class="fas fa-clock"></i>
+                        En attente
+                    </div>
+                    <div class="stat-percentage">
+                        <?= $totalDemandes > 0 ? round(($statsParStatut['en_attente'] / $totalDemandes) * 100, 1) : 0 ?>%
+                    </div>
+                </div>
+                
+                <!-- En traitement -->
+                <div class="stat-card stat-warning">
+                    <div class="stat-number"><?= $statsParStatut['en_traitement'] ?></div>
+                    <div class="stat-label">
+                        <i class="fas fa-cogs"></i>
+                        En traitement
+                    </div>
+                    <div class="stat-percentage">
+                        <?= $totalDemandes > 0 ? round(($statsParStatut['en_traitement'] / $totalDemandes) * 100, 1) : 0 ?>%
+                    </div>
+                </div>
+                
+                <!-- Prêt -->
+                <div class="stat-card stat-info">
+                    <div class="stat-number"><?= $statsParStatut['pret'] ?></div>
+                    <div class="stat-label">
+                        <i class="fas fa-check-circle"></i>
+                        Prêt
+                    </div>
+                    <div class="stat-percentage">
+                        <?= $totalDemandes > 0 ? round(($statsParStatut['pret'] / $totalDemandes) * 100, 1) : 0 ?>%
+                    </div>
+                </div>
+                
+                <!-- Délivré -->
+                <div class="stat-card stat-success">
+                    <div class="stat-number"><?= $statsParStatut['delivre'] ?></div>
+                    <div class="stat-label">
+                        <i class="fas fa-check-double"></i>
+                        Délivré
+                    </div>
+                    <div class="stat-percentage">
+                        <?= $totalDemandes > 0 ? round(($statsParStatut['delivre'] / $totalDemandes) * 100, 1) : 0 ?>%
+                    </div>
+                </div>
+                
+                <!-- Rejeté -->
+                <div class="stat-card stat-dark">
+                    <div class="stat-number"><?= $statsParStatut['rejete'] ?></div>
+                    <div class="stat-label">
+                        <i class="fas fa-times-circle"></i>
+                        Rejeté
+                    </div>
+                    <div class="stat-percentage">
+                        <?= $totalDemandes > 0 ? round(($statsParStatut['rejete'] / $totalDemandes) * 100, 1) : 0 ?>%
                     </div>
                 </div>
             </div>
@@ -572,75 +935,103 @@ $totalPages = ceil($totalDemandes / $parPage);
                 </div>
             <?php endif; ?>
 
-            <!-- Tableau des demandes -->
+            <!-- Liste des demandes en cartes -->
             <?php if (!empty($demandes)): ?>
-                <div class="table-container">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Numéro</th>
-                                    <th>Demandeur</th>
-                                    <th>Type d'acte</th>
-                                    <th>Exemplaires</th>
-                                    <th>Date</th>
-                                    <th>Statut</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($demandes as $demande): ?>
-                                    <tr>
-                                        <td>
-                                            <strong class="text-primary"><?= htmlspecialchars($demande['numero_demande']) ?></strong>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <strong><?= htmlspecialchars($demande['prenoms'] . ' ' . $demande['nom']) ?></strong><br>
-                                                <small class="text-muted"><?= htmlspecialchars($demande['email']) ?></small>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="badge bg-light text-dark">
-                                                <?= htmlspecialchars($typesActes[$demande['type_acte']] ?? $demande['type_acte']) ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span class="badge bg-info">
-                                                <?= $demande['nombre_exemplaires'] ?> ex.
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <?= date('d/m/Y', strtotime($demande['date_soumission'])) ?><br>
-                                            <small class="text-muted"><?= date('H:i', strtotime($demande['date_soumission'])) ?></small>
-                                        </td>
-                                        <td>
-                                            <span class="badge bg-<?= $statutsColors[$demande['statut']] ?> status-badge">
-                                                <?= htmlspecialchars($statutsLabels[$demande['statut']] ?? $demande['statut']) ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <div class="btn-group" role="group">
-                                                <a href="detail_demande.php?numero=<?= urlencode($demande['numero_demande']) ?>&retour=liste" 
-                                                   class="btn btn-sm btn-outline-primary" title="Voir détails">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <button type="button" class="btn btn-sm btn-outline-success" 
-                                                        data-bs-toggle="modal" 
-                                                        data-bs-target="#modalStatut"
-                                                        data-demande-id="<?= $demande['id'] ?>"
-                                                        data-numero="<?= htmlspecialchars($demande['numero_demande']) ?>"
-                                                        data-statut-actuel="<?= htmlspecialchars($demande['statut']) ?>"
-                                                        title="Modifier statut">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="demandes-grid">
+                    <?php foreach ($demandes as $demande): ?>
+                        <div class="demande-card">
+                            <div class="card-header">
+                                <div class="demande-numero">
+                                    <i class="fas fa-hashtag me-1"></i>
+                                    <?= htmlspecialchars($demande['numero_demande']) ?>
+                                </div>
+                                <div class="demande-statut">
+                                    <span class="badge bg-<?= $statutsColors[$demande['statut']] ?> status-badge">
+                                        <?= htmlspecialchars($statutsLabels[$demande['statut']] ?? $demande['statut']) ?>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="demandeur-info">
+                                    <h6 class="demandeur-nom">
+                                        <i class="fas fa-user me-2"></i>
+                                        <?= htmlspecialchars($demande['prenoms'] . ' ' . $demande['nom']) ?>
+                                    </h6>
+                                    <p class="demandeur-email">
+                                        <i class="fas fa-envelope me-2"></i>
+                                        <?= htmlspecialchars($demande['email']) ?>
+                                    </p>
+                                </div>
+                                
+                                <div class="demande-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Type d'acte :</span>
+                                        <div class="detail-value">
+                                            <?php 
+                                            // Gérer les types multiples
+                                            $types = explode(',', $demande['type_acte']);
+                                            foreach ($types as $type): 
+                                                $type = trim($type);
+                                            ?>
+                                                <span class="badge bg-light text-dark me-1 mb-1">
+                                                    <?= htmlspecialchars($typesActes[$type] ?? $type) ?>
+                                                </span>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="detail-item">
+                                        <span class="detail-label">Exemplaires :</span>
+                                        <div class="detail-value">
+                                            <?php 
+                                            // Gérer les exemplaires multiples (JSON)
+                                            $exemplaires = json_decode($demande['nombre_exemplaires'], true);
+                                            if (is_array($exemplaires)): 
+                                                foreach ($exemplaires as $type => $nombre):
+                                            ?>
+                                                <span class="badge bg-info me-1 mb-1">
+                                                    <?= htmlspecialchars($typesActes[$type] ?? $type) ?>: <?= $nombre ?>
+                                                </span>
+                                            <?php 
+                                                endforeach;
+                                            else: 
+                                            ?>
+                                                <span class="badge bg-info">
+                                                    <?= htmlspecialchars($demande['nombre_exemplaires']) ?> ex.
+                                                </span>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="detail-item">
+                                        <span class="detail-label">Date de soumission :</span>
+                                        <div class="detail-value">
+                                            <i class="fas fa-calendar me-1"></i>
+                                            <?= date('d/m/Y à H:i', strtotime($demande['date_soumission'])) ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer">
+                                <div class="actions-buttons">
+                                    <a href="detail_demande.php?numero=<?= urlencode($demande['numero_demande']) ?>&retour=liste" 
+                                       class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-eye me-1"></i>Détails
+                                    </a>
+                                    <button type="button" class="btn btn-outline-success btn-sm" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#modalStatut"
+                                            data-demande-id="<?= $demande['id'] ?>"
+                                            data-numero="<?= htmlspecialchars($demande['numero_demande']) ?>"
+                                            data-statut-actuel="<?= htmlspecialchars($demande['statut']) ?>">
+                                        <i class="fas fa-edit me-1"></i>Modifier
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
 
                 <!-- Pagination -->
@@ -775,11 +1166,11 @@ $totalPages = ceil($totalDemandes / $parPage);
         // Gestion du modal de modification de statut
         const modalStatut = document.getElementById('modalStatut');
         const statutsColors = {
-            'en_attente': 'warning',
-            'en_traitement': 'info',
-            'pret': 'success',
-            'delivre': 'primary',
-            'rejete': 'danger'
+            'en_attente': 'danger',      // Rouge pour En attente
+            'en_traitement': 'warning',  // Orange pour En traitement
+            'pret': 'info',             // Bleu pour Prêt
+            'delivre': 'success',       // Vert pour Délivré
+            'rejete': 'dark'            // Gris foncé pour Rejeté
         };
         
         const statutsLabels = {

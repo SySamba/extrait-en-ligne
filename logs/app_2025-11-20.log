@@ -8,3 +8,166 @@
 [2025-11-20 13:24:30] [INFO] [::1] Application initialisée
 [2025-11-20 13:24:30] [INFO] [::1] Application initialisée
 [2025-11-20 13:24:44] [INFO] [::1] Application initialisée
+[2025-11-20 13:44:51] [INFO] [::1] Application initialisée
+[2025-11-20 13:44:51] [INFO] [::1] Déconnexion admin - Email: mariedekhombole@gmail.com
+[2025-11-20 13:44:51] [INFO] [::1] Application initialisée
+[2025-11-20 14:19:19] [INFO] [::1] Application initialisée
+[2025-11-20 14:19:25] [INFO] [::1] Application initialisée
+[2025-11-20 14:23:36] [INFO] [::1] Application initialisée
+[2025-11-20 16:07:24] [INFO] [::1] Application initialisée
+[2025-11-20 16:07:26] [INFO] [::1] Application initialisée
+[2025-11-20 16:07:26] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 16:07:26] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 16:07:26] [INFO] [::1] Application initialisée
+[2025-11-20 16:07:44] [INFO] [::1] Application initialisée
+[2025-11-20 16:07:50] [INFO] [::1] Application initialisée
+[2025-11-20 16:07:50] [INFO] [::1] Déconnexion admin - Email: mariedekhombole@gmail.com
+[2025-11-20 16:07:50] [INFO] [::1] Application initialisée
+[2025-11-20 16:10:35] [INFO] [::1] Application initialisée
+[2025-11-20 16:10:37] [INFO] [::1] Application initialisée
+[2025-11-20 16:10:37] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 16:10:37] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 16:10:37] [INFO] [::1] Application initialisée
+[2025-11-20 16:14:11] [INFO] [::1] Application initialisée
+[2025-11-20 16:14:11] [INFO] [::1] Déconnexion admin - Email: mariedekhombole@gmail.com
+[2025-11-20 16:14:11] [INFO] [::1] Application initialisée
+[2025-11-20 16:17:32] [INFO] [::1] Application initialisée
+[2025-11-20 16:18:41] [INFO] [::1] Application initialisée
+[2025-11-20 16:23:04] [INFO] [::1] Application initialisée
+[2025-11-20 16:23:25] [INFO] [::1] Application initialisée
+[2025-11-20 16:23:31] [INFO] [::1] Application initialisée
+[2025-11-20 16:24:04] [INFO] [::1] Application initialisée
+[2025-11-20 16:27:38] [INFO] [::1] Application initialisée
+[2025-11-20 16:27:42] [INFO] [::1] Application initialisée
+[2025-11-20 16:27:44] [INFO] [::1] Application initialisée
+[2025-11-20 16:27:44] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 16:27:44] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 16:27:44] [INFO] [::1] Application initialisée
+[2025-11-20 16:27:52] [INFO] [::1] Application initialisée
+[2025-11-20 16:27:52] [INFO] [::1] Déconnexion admin - Email: mariedekhombole@gmail.com
+[2025-11-20 16:27:52] [INFO] [::1] Application initialisée
+[2025-11-20 16:30:33] [INFO] [::1] Application initialisée
+[2025-11-20 16:32:44] [INFO] [::1] Application initialisée
+[2025-11-20 16:33:02] [INFO] [::1] Application initialisée
+[2025-11-20 16:50:11] [INFO] [::1] Application initialisée
+[2025-11-20 16:50:11] [ERROR] [::1] Erreur PHP: Undefined variable $config dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 257
+[2025-11-20 16:50:26] [INFO] [::1] Application initialisée
+[2025-11-20 16:50:46] [INFO] [::1] Application initialisée
+[2025-11-20 16:50:47] [INFO] [::1] Application initialisée
+[2025-11-20 16:50:47] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 16:50:47] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 16:50:47] [INFO] [::1] Application initialisée
+[2025-11-20 16:51:01] [INFO] [::1] Application initialisée
+[2025-11-20 16:51:06] [INFO] [::1] Application initialisée
+[2025-11-20 16:51:10] [INFO] [::1] Application initialisée
+[2025-11-20 16:51:10] [INFO] [::1] Déconnexion admin - Email: mariedekhombole@gmail.com
+[2025-11-20 16:51:10] [INFO] [::1] Application initialisée
+[2025-11-20 16:52:20] [INFO] [::1] Application initialisée
+[2025-11-20 16:52:20] [ERROR] [::1] Erreur PHP: Undefined variable $config dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 257
+[2025-11-20 16:52:33] [INFO] [::1] Application initialisée
+[2025-11-20 16:52:36] [INFO] [::1] Application initialisée
+[2025-11-20 16:52:36] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 16:52:36] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 16:52:36] [INFO] [::1] Application initialisée
+[2025-11-20 16:58:05] [INFO] [::1] Application initialisée
+[2025-11-20 16:58:05] [INFO] [::1] Déconnexion admin - Email: mariedekhombole@gmail.com
+[2025-11-20 16:58:05] [INFO] [::1] Application initialisée
+[2025-11-20 16:59:20] [INFO] [::1] Application initialisée
+[2025-11-20 17:00:07] [INFO] [::1] Application initialisée
+[2025-11-20 17:00:18] [INFO] [::1] Application initialisée
+[2025-11-20 17:00:32] [INFO] [::1] Application initialisée
+[2025-11-20 17:00:32] [INFO] [::1] Application initialisée
+[2025-11-20 17:00:40] [INFO] [::1] Application initialisée
+[2025-11-20 17:01:04] [INFO] [::1] Application initialisée
+[2025-11-20 17:01:05] [INFO] [::1] Application initialisée
+[2025-11-20 17:01:06] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 17:01:06] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 17:01:06] [INFO] [::1] Application initialisée
+[2025-11-20 17:01:15] [INFO] [::1] Application initialisée
+[2025-11-20 17:02:31] [INFO] [::1] Application initialisée
+[2025-11-20 17:02:34] [INFO] [::1] Application initialisée
+[2025-11-20 17:02:34] [INFO] [::1] Déconnexion admin - Email: mariedekhombole@gmail.com
+[2025-11-20 17:02:34] [INFO] [::1] Application initialisée
+[2025-11-20 17:05:46] [INFO] [::1] Application initialisée
+[2025-11-20 17:05:48] [INFO] [::1] Application initialisée
+[2025-11-20 17:05:48] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 17:05:48] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 17:05:48] [INFO] [::1] Application initialisée
+[2025-11-20 17:05:55] [INFO] [::1] Application initialisée
+[2025-11-20 17:06:05] [INFO] [::1] Application initialisée
+[2025-11-20 17:06:05] [INFO] [::1] Déconnexion admin - Email: mariedekhombole@gmail.com
+[2025-11-20 17:06:05] [INFO] [::1] Application initialisée
+[2025-11-20 17:07:08] [INFO] [::1] Application initialisée
+[2025-11-20 17:07:08] [ERROR] [::1] Erreur PHP: Undefined variable $donnees dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 280
+[2025-11-20 17:07:08] [ERROR] [::1] Erreur PHP: Trying to access array offset on value of type null dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 280
+[2025-11-20 17:07:08] [ERROR] [::1] Erreur PHP: Undefined variable $donnees dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 281
+[2025-11-20 17:07:08] [ERROR] [::1] Erreur PHP: Trying to access array offset on value of type null dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 281
+[2025-11-20 17:07:29] [INFO] [::1] Application initialisée
+[2025-11-20 17:07:31] [INFO] [::1] Application initialisée
+[2025-11-20 17:07:31] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 17:07:31] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 17:07:31] [INFO] [::1] Application initialisée
+[2025-11-20 17:08:46] [INFO] [::1] Application initialisée
+[2025-11-20 17:08:46] [INFO] [::1] Déconnexion admin - Email: mariedekhombole@gmail.com
+[2025-11-20 17:08:46] [INFO] [::1] Application initialisée
+[2025-11-20 17:12:16] [INFO] [::1] Application initialisée
+[2025-11-20 17:12:18] [INFO] [::1] Application initialisée
+[2025-11-20 17:12:18] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 17:12:18] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 17:12:18] [INFO] [::1] Application initialisée
+[2025-11-20 17:15:20] [INFO] [::1] Application initialisée
+[2025-11-20 17:15:20] [ERROR] [::1] Erreur PHP: session_start(): Ignoring session_start() because a session is already active dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 7
+[2025-11-20 17:15:20] [ERROR] [::1] Erreur PHP: Undefined variable $donnees dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 290
+[2025-11-20 17:15:20] [ERROR] [::1] Erreur PHP: Trying to access array offset on value of type null dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 290
+[2025-11-20 17:15:20] [ERROR] [::1] Erreur PHP: Undefined variable $donnees dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 291
+[2025-11-20 17:15:20] [ERROR] [::1] Erreur PHP: Trying to access array offset on value of type null dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 291
+[2025-11-20 17:15:31] [INFO] [::1] Application initialisée
+[2025-11-20 17:20:40] [INFO] [::1] Application initialisée
+[2025-11-20 17:20:40] [ERROR] [::1] Erreur PHP: Trying to access array offset on value of type bool dans C:\xampp\htdocs\mairie-khombole\update_database.php ligne 98
+[2025-11-20 17:20:40] [ERROR] [::1] Erreur PHP: Trying to access array offset on value of type bool dans C:\xampp\htdocs\mairie-khombole\update_database.php ligne 99
+[2025-11-20 17:20:40] [ERROR] [::1] Erreur PHP: Trying to access array offset on value of type bool dans C:\xampp\htdocs\mairie-khombole\update_database.php ligne 102
+[2025-11-20 17:20:52] [INFO] [::1] Application initialisée
+[2025-11-20 17:21:11] [INFO] [::1] Application initialisée
+[2025-11-20 17:24:03] [INFO] [::1] Application initialisée
+[2025-11-20 17:24:22] [INFO] [::1] Application initialisée
+[2025-11-20 17:26:46] [INFO] [::1] Application initialisée
+[2025-11-20 17:26:46] [INFO] [::1] Application initialisée
+[2025-11-20 17:26:46] [INFO] [::1] Application initialisée
+[2025-11-20 17:26:48] [INFO] [::1] Application initialisée
+[2025-11-20 17:26:48] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 17:26:48] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 17:26:48] [INFO] [::1] Application initialisée
+[2025-11-20 17:27:27] [INFO] [::1] Application initialisée
+[2025-11-20 17:27:27] [INFO] [::1] Déconnexion admin - Email: mariedekhombole@gmail.com
+[2025-11-20 17:27:27] [INFO] [::1] Application initialisée
+[2025-11-20 17:29:17] [INFO] [::1] Application initialisée
+[2025-11-20 17:29:18] [INFO] [::1] Application initialisée
+[2025-11-20 17:29:18] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 17:29:18] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 17:29:19] [INFO] [::1] Application initialisée
+[2025-11-20 17:31:16] [INFO] [::1] Application initialisée
+[2025-11-20 17:32:07] [INFO] [::1] Application initialisée
+[2025-11-20 17:32:51] [INFO] [::1] Application initialisée
+[2025-11-20 17:33:36] [INFO] [::1] Application initialisée
+[2025-11-20 17:34:05] [INFO] [::1] Application initialisée
+[2025-11-20 17:34:18] [INFO] [::1] Application initialisée
+[2025-11-20 17:34:25] [INFO] [::1] Application initialisée
+[2025-11-20 18:25:26] [INFO] [::1] Application initialisée
+[2025-11-20 18:25:40] [INFO] [::1] Application initialisée
+[2025-11-20 18:25:40] [INFO] [::1] Déconnexion admin - Email: mariedekhombole@gmail.com
+[2025-11-20 18:25:40] [INFO] [::1] Application initialisée
+[2025-11-20 18:30:57] [INFO] [::1] Application initialisée
+[2025-11-20 18:30:57] [ERROR] [::1] Erreur PHP: Undefined variable $donnees dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 290
+[2025-11-20 18:30:57] [ERROR] [::1] Erreur PHP: Trying to access array offset on value of type null dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 290
+[2025-11-20 18:30:57] [ERROR] [::1] Erreur PHP: Undefined variable $donnees dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 291
+[2025-11-20 18:30:57] [ERROR] [::1] Erreur PHP: Trying to access array offset on value of type null dans C:\xampp\htdocs\mairie-khombole\traiter_demande.php ligne 291
+[2025-11-20 18:31:15] [INFO] [::1] Application initialisée
+[2025-11-20 18:31:32] [INFO] [::1] Application initialisée
+[2025-11-20 18:31:34] [INFO] [::1] Application initialisée
+[2025-11-20 18:31:34] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 18:31:34] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 18:31:34] [INFO] [::1] Application initialisée
+[2025-11-20 18:34:25] [INFO] [::1] Application initialisée
+[2025-11-20 18:34:25] [INFO] [::1] Application initialisée
+[2025-11-20 18:35:13] [INFO] [::1] Application initialisée
+[2025-11-20 18:36:53] [INFO] [::1] Application initialisée

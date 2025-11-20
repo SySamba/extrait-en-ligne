@@ -76,7 +76,7 @@ if (isset($_POST['numero_registre']) && !empty($_POST['numero_registre'])) {
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .search-container, .result-container {
+        .search-container {
             background: white;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
@@ -111,69 +111,6 @@ if (isset($_POST['numero_registre']) && !empty($_POST['numero_registre'])) {
             box-shadow: 0 8px 25px rgba(11, 132, 62, 0.4);
         }
 
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #dee2e6;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -23px;
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: #dee2e6;
-            border: 3px solid white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .timeline-item.active::before {
-            background: var(--primary-color);
-        }
-
-        .timeline-item.completed::before {
-            background: #28a745;
-        }
-
-        .status-badge {
-            font-size: 0.9rem;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        .info-card {
-            background: var(--bg-light);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            border-left: 5px solid var(--primary-color);
-        }
-
-        .alert-custom {
-            border-radius: 15px;
-            border: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        /* Logo et en-tête */
         .logo-container {
             display: flex;
             align-items: center;
@@ -210,9 +147,77 @@ if (isset($_POST['numero_registre']) && !empty($_POST['numero_registre'])) {
             border-radius: 50%;
         }
 
+        /* Menu de navigation simple */
+        .simple-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin-bottom: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(11, 132, 62, 0.3);
+        }
+
+        .nav-link.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-link {
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Menu de navigation simple -->
+    <nav class="simple-nav">
+        <div class="container">
+            <div class="nav-links">
+                <a href="menu.php" class="nav-link">
+                    <i class="fas fa-home me-1"></i>Accueil
+                </a>
+                <a href="demande_acte.php" class="nav-link">
+                    <i class="fas fa-plus me-1"></i>Nouvelle Demande
+                </a>
+                <a href="suivi_demande.php" class="nav-link active">
+                    <i class="fas fa-search me-1"></i>Suivi Demande
+                </a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Header Section -->
     <div class="header-section">
         <div class="container">
@@ -260,22 +265,19 @@ if (isset($_POST['numero_registre']) && !empty($_POST['numero_registre'])) {
 
         <!-- Résultats -->
         <?php if ($erreur): ?>
-            <div class="alert alert-danger alert-custom">
+            <div class="alert alert-danger">
                 <i class="fas fa-exclamation-triangle me-2"></i>
                 <?= htmlspecialchars($erreur) ?>
             </div>
         <?php endif; ?>
 
-
         <!-- Lien vers nouvelle demande -->
-        <?php if (!$erreur): ?>
-            <div class="text-center">
-                <a href="demande_acte.php" class="btn btn-primary">
-                    <i class="fas fa-plus me-2"></i>
-                    Faire une nouvelle demande
-                </a>
-            </div>
-        <?php endif; ?>
+        <div class="text-center">
+            <a href="demande_acte.php" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>
+                Faire une nouvelle demande
+            </a>
+        </div>
     </div>
 
     <!-- Bootstrap 5 JS -->

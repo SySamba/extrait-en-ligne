@@ -377,8 +377,23 @@ $typesActes = [
                 </div>
                 
                 <div class="detail-row">
-                    <span class="detail-label">Type d'acte :</span>
-                    <span class="detail-value"><?= htmlspecialchars($typesActes[$demande['type_acte']] ?? $demande['type_acte']) ?></span>
+                    <span class="detail-label">Types d'actes demandés :</span>
+                    <div class="detail-value">
+                        <?php if (isset($demande['types_actes']) && is_array($demande['types_actes'])): ?>
+                            <?php foreach ($demande['types_actes'] as $type): ?>
+                                <?php 
+                                $nomType = $typesActes[$type] ?? $type;
+                                $nbExemplaires = $demande['exemplaires'][$type] ?? 1;
+                                ?>
+                                <div class="mb-1">
+                                    <strong><?= htmlspecialchars($nomType) ?></strong>
+                                    <span class="badge bg-primary ms-2"><?= $nbExemplaires ?> exemplaire<?= $nbExemplaires > 1 ? 's' : '' ?></span>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <span>Information non disponible</span>
+                        <?php endif; ?>
+                    </div>
                 </div>
                 
                 <div class="detail-row">
