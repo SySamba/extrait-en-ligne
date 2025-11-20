@@ -4,24 +4,14 @@
  * Mairie de Khombole
  */
 
-// Configuration de la base de données
-$config = [
-    'host' => 'localhost',
-    'dbname' => 'mairie_khombole',
-    'username' => 'root',
-    'password' => '',
-    'charset' => 'utf8mb4'
-];
+// Connexion à la base de données
+require_once 'db_connection.php';
 
 $erreur = null;
 
 if (isset($_POST['numero_registre']) && !empty($_POST['numero_registre'])) {
     try {
-        $dsn = "mysql:host={$config['host']};dbname={$config['dbname']};charset={$config['charset']}";
-        $pdo = new PDO($dsn, $config['username'], $config['password'], [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]);
+        $pdo = createPDOConnection();
         
         // Recherche par numéro de registre uniquement
         $numeroRegistre = $_POST['numero_registre'];

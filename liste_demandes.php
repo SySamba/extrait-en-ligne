@@ -5,20 +5,14 @@
  */
 
 // Vérifier l'authentification admin
-require_once 'admin_auth.php';
+require_once 'session_manager.php';
 verifierConnexionAdmin();
 
 // Logger l'accès à la page
 loggerActionAdmin('Accès à la liste des demandes');
 
-// Configuration de la base de données
-$config = [
-    'host' => 'localhost',
-    'dbname' => 'mairie_khombole',
-    'username' => 'root',
-    'password' => '',
-    'charset' => 'utf8mb4'
-];
+// Connexion à la base de données
+require_once 'db_connection.php';
 
 $demandes = [];
 $erreur = null;
@@ -36,11 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $erreur = 'Token de sécurité invalide.';
     } else if ($demandeId > 0 && !empty($nouveauStatut)) {
         try {
-            $dsn = "mysql:host={$config['host']};dbname={$config['dbname']};charset={$config['charset']}";
-            $pdo = new PDO($dsn, $config['username'], $config['password'], [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-            ]);
+            $pdo = createPDOConnection();
             
             // Récupérer l'ancien statut
             $sqlOld = "SELECT statut, numero_demande FROM demandes_actes WHERE id = ?";
@@ -92,11 +82,7 @@ $filtreType = $_GET['type'] ?? '';
 $recherche = $_GET['recherche'] ?? '';
 
 try {
-    $dsn = "mysql:host={$config['host']};dbname={$config['dbname']};charset={$config['charset']}";
-    $pdo = new PDO($dsn, $config['username'], $config['password'], [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
+    $pdo = createPDOConnection();
     
     // Construction de la requête avec filtres
     $whereConditions = [];

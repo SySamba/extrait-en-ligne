@@ -1,0 +1,10 @@
+[2025-11-20 13:24:10] [INFO] [::1] Application initialisée
+[2025-11-20 13:24:12] [INFO] [::1] Application initialisée
+[2025-11-20 13:24:12] [ERROR] [::1] Erreur lors de la vérification des identifiants: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mairie_khombole.admins' doesn't exist
+[2025-11-20 13:24:12] [INFO] [::1] Connexion admin réussie - Email: mariedekhombole@gmail.com
+[2025-11-20 13:24:12] [INFO] [::1] Application initialisée
+[2025-11-20 13:24:16] [INFO] [::1] Application initialisée
+[2025-11-20 13:24:24] [INFO] [::1] Application initialisée
+[2025-11-20 13:24:30] [INFO] [::1] Application initialisée
+[2025-11-20 13:24:30] [INFO] [::1] Application initialisée
+[2025-11-20 13:24:44] [INFO] [::1] Application initialisée

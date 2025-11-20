@@ -1,33 +1,50 @@
 <?php
-session_start();
+require_once 'session_manager.php';
+
+$sessionManager = getSessionManager();
 
 // Vérifier si déjà connecté
-if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
+if ($sessionManager->isAdminLoggedIn()) {
     header('Location: liste_demandes.php');
     exit;
 }
 
 $erreur = '';
+$success = '';
+
+// Gestion des messages d'URL
+if (isset($_GET['logout']) && $_GET['logout'] == '1') {
+    $success = 'Vous avez été déconnecté avec succès.';
+}
+
+if (isset($_GET['expired']) && $_GET['expired'] == '1') {
+    $erreur = 'Votre session a expiré. Veuillez vous reconnecter.';
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
     
-    // Identifiants admin
-    $admin_email = 'mariedekhombole@gmail.com';
-    $admin_password = 'Khombole2025@#';
-    
-    if ($email === $admin_email && $password === $admin_password) {
-        $_SESSION['admin_logged_in'] = true;
-        $_SESSION['admin_email'] = $email;
-        $_SESSION['login_time'] = time();
-        
-        // Redirection vers la page demandée ou liste par défaut
-        $redirect = $_GET['redirect'] ?? 'liste_demandes.php';
-        header('Location: ' . $redirect);
-        exit;
+    if (empty($email) || empty($password)) {
+        $erreur = 'Veuillez remplir tous les champs.';
     } else {
-        $erreur = 'Email ou mot de passe incorrect.';
+        try {
+            if ($sessionManager->loginAdmin($email, $password)) {
+                // Redirection vers la page demandée ou liste par défaut
+                $redirect = $_GET['redirect'] ?? 'liste_demandes.php';
+                
+                // Sécuriser la redirection
+                $allowedPages = ['liste_demandes.php', 'traiter_demande.php', 'detail_demande.php'];
+                if (!in_array($redirect, $allowedPages)) {
+                    $redirect = 'liste_demandes.php';
+                }
+                
+                header('Location: ' . $redirect);
+                exit;
+            }
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+        }
     }
 }
 ?>
@@ -294,11 +311,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="login-subtitle">Accès sécurisé à la gestion des demandes</p>
         </div>
 
-        <!-- Message d'erreur -->
+        <!-- Messages -->
         <?php if (!empty($erreur)): ?>
             <div class="alert alert-danger alert-custom">
                 <i class="fas fa-exclamation-triangle me-2"></i>
                 <?= htmlspecialchars($erreur) ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (!empty($success)): ?>
+            <div class="alert alert-success alert-custom">
+                <i class="fas fa-check-circle me-2"></i>
+                <?= htmlspecialchars($success) ?>
             </div>
         <?php endif; ?>
 
