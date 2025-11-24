@@ -17,15 +17,15 @@ define('APP_VERSION', '1.0.0');
 define('APP_URL', 'http://localhost/mairie-khombole/');
 
 // Configuration des emails
-define('MAIL_FROM', 'etat.civil@mairiedekhombole.sn');
+define('MAIL_FROM', 'contact@test.sencouche.com');
 define('MAIL_FROM_NAME', 'Mairie de Khombole - État Civil');
-define('MAIL_REPLY_TO', 'etat.civil@mairiedekhombole.sn');
+define('MAIL_REPLY_TO', 'contact@test.sencouche.com');
 
-// Configuration SMTP Gmail (Solution automatique)
-define('SMTP_HOST', 'smtp.gmail.com'); // Serveur SMTP Gmail
+// Configuration SMTP Hostinger (Production)
+define('SMTP_HOST', 'smtp.hostinger.com'); // Serveur SMTP Hostinger
 define('SMTP_PORT', 587); // Port SMTP pour TLS
-define('SMTP_USERNAME', 'mairiekhombole.service@gmail.com'); // Email de service
-define('SMTP_PASSWORD', 'khombole2025service'); // Mot de passe d'application
+define('SMTP_USERNAME', 'contact@test.sencouche.com'); // Email créé sur Hostinger
+define('SMTP_PASSWORD', 'Khombole2021@'); // Mot de passe Hostinger
 define('SMTP_ENCRYPTION', 'tls'); // TLS encryption
 
 // Configuration des paiements
