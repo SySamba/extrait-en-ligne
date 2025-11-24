@@ -595,7 +595,7 @@ $qualites = [
                     </div>
                     <div class="info-row">
                         <span class="info-label">E-mail :</span>
-                        <span class="info-value">mairiedekhombole@gmail.com</span>
+                        <span class="info-value">etat.civil@mairiedekhombole.sn</span>
                     </div>
                     <div class="info-row">
                         <span class="info-label">Horaires :</span>

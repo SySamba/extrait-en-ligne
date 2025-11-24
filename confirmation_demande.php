@@ -433,7 +433,7 @@ $typesActes = [
                     <div class="step-number">2</div>
                     <div>
                         <strong>Traitement de la demande</strong><br>
-                        <small class="text-muted">Nos services vont examiner votre demande sous 48-72 heures.</small>
+                        <small class="text-muted">Nos services vont examiner votre demande sous 24 heures.</small>
                     </div>
                 </div>
                 
@@ -461,7 +461,7 @@ $typesActes = [
                     Besoin d'aide ?
                 </h6>
                 <p class="mb-1"><strong>Téléphone :</strong> +221 33 624 52 13 63</p>
-                <p class="mb-1"><strong>E-mail :</strong> mairiedekhombole@gmail.com</p>
+                <p class="mb-1"><strong>E-mail :</strong>etat.civil@mairiedekhombole.sn</p>
                 <p class="mb-0"><strong>Horaires :</strong> Lundi - Vendredi : 8h00 - 17h00</p>
             </div>
 
