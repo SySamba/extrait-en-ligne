@@ -78,8 +78,8 @@ class DemandeActe {
         
         if (!empty($donnees['annee_registre'])) {
             $annee = intval($donnees['annee_registre']);
-            if ($annee < 1900 || $annee > date('Y')) {
-                $erreurs[] = "L'année du registre n'est pas valide.";
+            if ($annee < 1900 || $annee > 2025) {
+                $erreurs[] = "L'année du registre doit être comprise entre 1900 et 2025.";
             }
         }
         

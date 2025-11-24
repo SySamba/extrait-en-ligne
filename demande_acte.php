@@ -575,7 +575,7 @@
                     </div>
                     <div class="col-md-6" id="annee_registre_group">
                         <label for="annee_registre" class="form-label required-field">Année du registre</label>
-                        <input type="number" class="form-control" id="annee_registre" name="annee_registre" min="1900" max="2024" required>
+                        <input type="number" class="form-control" id="annee_registre" name="annee_registre" min="1900" max="2025" required>
                         <div class="invalid-feedback">
                             Veuillez saisir l'année du registre.
                         </div>
@@ -689,10 +689,10 @@
             </div>
 
             <div class="form-container">
-                <!-- Section 4: Consentements -->
+                <!-- Section 3: Consentements (suite) -->
                 <div class="section-header">
                     <i class="fas fa-shield-alt"></i>
-                    <h4 class="mb-0">4. Consentements et validation</h4>
+                    <h4 class="mb-0">Consentements et validation</h4>
                 </div>
 
                 <div class="checkbox-container">
@@ -789,10 +789,10 @@
 
         // Validation de l'année
         document.getElementById('annee_registre').addEventListener('input', function(e) {
-            const currentYear = new Date().getFullYear();
+            const maxYear = 2025; // Permettre jusqu'à 2025
             const year = parseInt(e.target.value);
-            if (year > currentYear) {
-                e.target.value = currentYear;
+            if (year > maxYear) {
+                e.target.value = maxYear;
             }
         });
 
@@ -895,6 +895,13 @@
             checkbox.addEventListener('change', function() {
                 gererExemplaires();
                 gererChampsOptionnels();
+                
+                // Masquer l'erreur dès qu'un type d'acte est sélectionné
+                const checkboxes = document.querySelectorAll('input[name="types_actes[]"]:checked');
+                const errorDiv = document.getElementById('types_actes_error');
+                if (checkboxes.length > 0) {
+                    errorDiv.style.display = 'none';
+                }
             });
         });
 
@@ -908,17 +915,21 @@
             
             if (checkboxes.length === 0) {
                 errorDiv.style.display = 'block';
+                errorDiv.textContent = 'Veuillez sélectionner au moins un type d\'acte.';
                 return false;
             } else {
                 errorDiv.style.display = 'none';
                 
                 // Vérifier que chaque type d'acte sélectionné a un nombre d'exemplaires
                 let exemplairesValides = true;
+                let messageErreur = '';
+                
                 checkboxes.forEach(checkbox => {
                     const type = checkbox.value;
                     const exemplairesSelect = document.getElementById(`exemplaires_${type}`);
                     if (!exemplairesSelect || !exemplairesSelect.value) {
                         exemplairesValides = false;
+                        messageErreur = 'Veuillez sélectionner le nombre d\'exemplaires pour chaque type d\'acte choisi.';
                         if (exemplairesSelect) {
                             exemplairesSelect.classList.add('is-invalid');
                         }
@@ -928,6 +939,11 @@
                         }
                     }
                 });
+                
+                if (!exemplairesValides) {
+                    errorDiv.style.display = 'block';
+                    errorDiv.textContent = messageErreur;
+                }
                 
                 return exemplairesValides;
             }
