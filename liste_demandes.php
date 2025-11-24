@@ -910,7 +910,22 @@ $totalPages = ceil($totalDemandes / $parPage);
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary w-100">
+                        <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                            <div id="search-indicator" class="text-muted mb-2" style="display: none;">
+                                <i class="fas fa-spinner fa-spin me-2"></i>
+                                <small>Recherche...</small>
+                            </div>
+                            <div id="search-info" class="text-success mb-2">
+                                <i class="fas fa-magic me-2"></i>
+                                <small>Recherche automatique</small>
+                            </div>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" id="clear-filters" title="Effacer tous les filtres">
+                                <i class="fas fa-eraser me-1"></i>
+                                <small>Effacer</small>
+                            </button>
+                        </div>
+                        <!-- Bouton caché pour la soumission manuelle si nécessaire -->
+                        <button type="submit" class="btn btn-primary w-100" style="display: none;" id="manual-submit">
                             <i class="fas fa-search me-1"></i>
                             Filtrer
                         </button>
@@ -1156,11 +1171,67 @@ $totalPages = ceil($totalDemandes / $parPage);
 
         // Auto-submit du formulaire de recherche avec délai
         let searchTimeout;
+        
+        // Fonction pour soumettre le formulaire avec indication visuelle
+        function submitFormWithLoader(form) {
+            // Afficher l'indicateur de recherche
+            const searchIndicator = document.getElementById('search-indicator');
+            const searchInfo = document.getElementById('search-info');
+            
+            if (searchIndicator && searchInfo) {
+                searchIndicator.style.display = 'block';
+                searchInfo.style.display = 'none';
+            }
+            
+            // Soumettre le formulaire
+            form.submit();
+        }
+        
+        // Fonction pour réinitialiser l'indicateur (au cas où la page ne se recharge pas)
+        function resetSearchIndicator() {
+            const searchIndicator = document.getElementById('search-indicator');
+            const searchInfo = document.getElementById('search-info');
+            
+            if (searchIndicator && searchInfo) {
+                searchIndicator.style.display = 'none';
+                searchInfo.style.display = 'block';
+            }
+        }
+        
+        // Recherche automatique pour le champ de texte
         document.querySelector('input[name="recherche"]').addEventListener('input', function() {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
-                this.form.submit();
-            }, 1000);
+                submitFormWithLoader(this.form);
+            }, 500); // Réduit de 1000ms à 500ms pour plus de réactivité
+        });
+        
+        // Recherche automatique pour les sélecteurs de statut et type
+        document.querySelector('select[name="statut"]').addEventListener('change', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                submitFormWithLoader(this.form);
+            }, 100); // Très rapide pour les sélecteurs
+        });
+        
+        document.querySelector('select[name="type"]').addEventListener('change', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                submitFormWithLoader(this.form);
+            }, 100); // Très rapide pour les sélecteurs
+        });
+        
+        // Bouton pour effacer tous les filtres
+        document.getElementById('clear-filters').addEventListener('click', function() {
+            const form = document.querySelector('form[method="GET"]');
+            
+            // Effacer tous les champs
+            form.querySelector('input[name="recherche"]').value = '';
+            form.querySelector('select[name="statut"]').value = '';
+            form.querySelector('select[name="type"]').value = '';
+            
+            // Soumettre le formulaire pour afficher tous les résultats
+            submitFormWithLoader(form);
         });
 
         // Gestion du modal de modification de statut
