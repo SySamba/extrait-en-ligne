@@ -21,7 +21,14 @@ $demandeTest = [
 echo "<h1>🧪 Test d'Envoi d'Email - Mairie de Khombole</h1>";
 echo "<p><strong>Configuration actuelle :</strong></p>";
 echo "<ul>";
-echo "<li><strong>Méthode d'envoi :</strong> Fonction mail() PHP native</li>";
+if (!empty(SMTP_HOST)) {
+    echo "<li><strong>Méthode d'envoi :</strong> SMTP via SimpleSMTP</li>";
+    echo "<li><strong>Serveur SMTP :</strong> " . SMTP_HOST . ":" . SMTP_PORT . "</li>";
+    echo "<li><strong>Encryption :</strong> " . SMTP_ENCRYPTION . "</li>";
+    echo "<li><strong>Username :</strong> " . SMTP_USERNAME . "</li>";
+} else {
+    echo "<li><strong>Méthode d'envoi :</strong> Fonction mail() PHP native</li>";
+}
 echo "<li><strong>Expéditeur :</strong> " . MAIL_FROM_NAME . " &lt;" . MAIL_FROM . "&gt;</li>";
 echo "<li><strong>Répondre à :</strong> " . MAIL_REPLY_TO . "</li>";
 echo "</ul>";

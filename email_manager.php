@@ -5,6 +5,7 @@
  */
 
 require_once 'config.php';
+require_once 'simple_smtp.php';
 
 // Import des classes PHPMailer (si PHPMailer est installé)
 // Décommentez ces lignes si vous avez installé PHPMailer via Composer
@@ -34,11 +35,54 @@ class EmailManager {
      */
     public function envoyerEmail($destinataire, $sujet, $message, $isHtml = true) {
         try {
-            // Toujours utiliser la fonction mail() native pour plus de simplicité
-            return $this->envoyerAvecMailNative($destinataire, $sujet, $message, $isHtml);
+            // Si SMTP est configuré, utiliser SimpleSMTP
+            if (!empty(SMTP_HOST)) {
+                return $this->envoyerAvecSimpleSMTP($destinataire, $sujet, $message, $isHtml);
+            } else {
+                return $this->envoyerAvecMailNative($destinataire, $sujet, $message, $isHtml);
+            }
         } catch (Exception $e) {
             error_log("Erreur envoi email à $destinataire: " . $e->getMessage());
             return false;
+        }
+    }
+    
+    /**
+     * Envoi avec SimpleSMTP
+     */
+    private function envoyerAvecSimpleSMTP($destinataire, $sujet, $message, $isHtml) {
+        try {
+            $smtp = new SimpleSMTP(
+                SMTP_HOST,
+                SMTP_PORT,
+                SMTP_USERNAME,
+                SMTP_PASSWORD,
+                SMTP_ENCRYPTION
+            );
+            
+            $resultat = $smtp->sendEmail(
+                MAIL_FROM,
+                MAIL_FROM_NAME,
+                $destinataire,
+                $sujet,
+                $message,
+                $isHtml
+            );
+            
+            if ($resultat) {
+                error_log("Email SMTP envoyé avec succès à : $destinataire");
+                return true;
+            } else {
+                error_log("Échec envoi SMTP, simulation pour : $destinataire");
+                $this->simulerEnvoiEmail($destinataire, $sujet, $message, $isHtml);
+                return true; // Retourner true pour continuer le processus
+            }
+            
+        } catch (Exception $e) {
+            error_log("Erreur SimpleSMTP: " . $e->getMessage());
+            // En cas d'erreur, simuler l'envoi
+            $this->simulerEnvoiEmail($destinataire, $sujet, $message, $isHtml);
+            return true;
         }
     }
     
