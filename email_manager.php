@@ -6,6 +6,7 @@
 
 require_once 'config.php';
 require_once 'simple_smtp.php';
+require_once 'email_service_auto.php';
 
 // Import des classes PHPMailer (si PHPMailer est installé)
 // Décommentez ces lignes si vous avez installé PHPMailer via Composer
@@ -31,16 +32,12 @@ class EmailManager {
     }
     
     /**
-     * Envoie un email
+     * Envoie un email avec service automatique
      */
     public function envoyerEmail($destinataire, $sujet, $message, $isHtml = true) {
         try {
-            // Si SMTP est configuré, utiliser SimpleSMTP
-            if (!empty(SMTP_HOST)) {
-                return $this->envoyerAvecSimpleSMTP($destinataire, $sujet, $message, $isHtml);
-            } else {
-                return $this->envoyerAvecMailNative($destinataire, $sujet, $message, $isHtml);
-            }
+            // Utiliser le service automatique qui gère tous les fallbacks
+            return EmailServiceAuto::envoyerEmail($destinataire, $sujet, $message, $isHtml);
         } catch (Exception $e) {
             error_log("Erreur envoi email à $destinataire: " . $e->getMessage());
             return false;
