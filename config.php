@@ -21,8 +21,8 @@ define('MAIL_FROM', 'etat.civil@mairiedekhombole.sn');
 define('MAIL_FROM_NAME', 'Mairie de Khombole - État Civil');
 define('MAIL_REPLY_TO', 'etat.civil@mairiedekhombole.sn');
 
-// Configuration SMTP avec etat.civil@mairiedekhombole.sn
-define('SMTP_HOST', 'mail.mairiedekhombole.sn'); // Serveur SMTP
+// Configuration SMTP Hostinger
+define('SMTP_HOST', 'smtp.hostinger.com'); // Serveur SMTP Hostinger
 define('SMTP_PORT', 587); // Port SMTP pour TLS
 define('SMTP_USERNAME', 'etat.civil@mairiedekhombole.sn');
 define('SMTP_PASSWORD', 'EC@Khombole*1925');
