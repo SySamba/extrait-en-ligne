@@ -546,13 +546,27 @@
                         </div>
                     </div>
                     <div class="col-md-6">
+                        <label for="nom_pere" class="form-label required-field">Nom du père</label>
+                        <input type="text" class="form-control" id="nom_pere" name="nom_pere" required>
+                        <div class="invalid-feedback">
+                            Veuillez saisir le nom du père.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="nom_mere" class="form-label required-field">Nom de la mère</label>
+                        <input type="text" class="form-control" id="nom_mere" name="nom_mere" required>
+                        <div class="invalid-feedback">
+                            Veuillez saisir le nom de la mère.
+                        </div>
+                    </div>
+                    <div class="col-md-6" id="annee_registre_group">
                         <label for="annee_registre" class="form-label required-field">Année du registre</label>
                         <input type="number" class="form-control" id="annee_registre" name="annee_registre" min="1900" max="2024" required>
                         <div class="invalid-feedback">
                             Veuillez saisir l'année du registre.
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="numero_registre_group">
                         <label for="numero_registre" class="form-label required-field">Numéro dans le registre</label>
                         <input type="text" class="form-control" id="numero_registre" name="numero_registre" required>
                         <div class="invalid-feedback">
@@ -828,9 +842,41 @@
             }, 100);
         }
 
+        // Fonction pour gérer les champs optionnels selon le type d'acte
+        function gererChampsOptionnels() {
+            const certificatResidence = document.getElementById('certificat_residence');
+            const anneeRegistreGroup = document.getElementById('annee_registre_group');
+            const numeroRegistreGroup = document.getElementById('numero_registre_group');
+            const anneeRegistreInput = document.getElementById('annee_registre');
+            const numeroRegistreInput = document.getElementById('numero_registre');
+            const anneeRegistreLabel = anneeRegistreGroup.querySelector('label');
+            const numeroRegistreLabel = numeroRegistreGroup.querySelector('label');
+            
+            if (certificatResidence && certificatResidence.checked) {
+                // Pour certificat de résidence, rendre les champs optionnels
+                anneeRegistreInput.removeAttribute('required');
+                numeroRegistreInput.removeAttribute('required');
+                anneeRegistreLabel.classList.remove('required-field');
+                numeroRegistreLabel.classList.remove('required-field');
+                anneeRegistreLabel.innerHTML = 'Année du registre <small class="text-muted">(optionnel)</small>';
+                numeroRegistreLabel.innerHTML = 'Numéro dans le registre <small class="text-muted">(optionnel)</small>';
+            } else {
+                // Pour les autres actes, rendre les champs obligatoires
+                anneeRegistreInput.setAttribute('required', 'required');
+                numeroRegistreInput.setAttribute('required', 'required');
+                anneeRegistreLabel.classList.add('required-field');
+                numeroRegistreLabel.classList.add('required-field');
+                anneeRegistreLabel.innerHTML = 'Année du registre';
+                numeroRegistreLabel.innerHTML = 'Numéro dans le registre';
+            }
+        }
+
         // Écouter les changements sur les checkboxes
         document.querySelectorAll('input[name="types_actes[]"]').forEach(checkbox => {
-            checkbox.addEventListener('change', gererExemplaires);
+            checkbox.addEventListener('change', function() {
+                gererExemplaires();
+                gererChampsOptionnels();
+            });
         });
 
         // Validation personnalisée pour les types d'actes et exemplaires
