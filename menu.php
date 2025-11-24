@@ -306,7 +306,7 @@
                             <?php
                             // Connexion rapide pour les stats
                             try {
-                                $pdo = new PDO("mysql:host=localhost;dbname=mairie_khombole;charset=utf8mb4", "root", "", [
+                                $pdo = new PDO("mysql:host=localhost;dbname=u588247422_mairebd;charset=utf8mb4", "u588247422_userbd", "Khombole2021", [
                                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
                                 ]);
                                 $stmt = $pdo->query("SELECT COUNT(*) as total FROM demandes_actes");
@@ -646,7 +646,7 @@
                                 Contact
                             </h6>
                             <p class="mb-1"><strong>Téléphone :</strong> +221 33 624 52 13 63</p>
-                            <p class="mb-1"><strong>Email :</strong> mairiedekhombole@gmail.com</p>
+                            <p class="mb-1"><strong>Email :</strong> etat.civil@mairiedekhombole.sn</p>
                             <p class="mb-0"><strong>Horaires :</strong> Lun-Ven 8h-17h</p>
                         </div>
                     </div>
