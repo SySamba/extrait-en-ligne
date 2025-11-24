@@ -59,8 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $demande) {
                     $message = "Demande acceptée et mise en traitement.";
                     loggerActionAdmin("Demande acceptée", "ID: $demandeId");
                     
+                    // Récupérer les données mises à jour
+                    $stmt = $pdo->prepare("SELECT * FROM demandes_actes WHERE id = ?");
+                    $stmt->execute([$demandeId]);
+                    $demandeMAJ = $stmt->fetch();
+                    
                     // Envoyer email de validation
-                    $emailEnvoye = $emailManager->envoyerValidationDemande($demande, $commentaire);
+                    $emailEnvoye = $emailManager->envoyerValidationDemande($demandeMAJ, $commentaire);
                     if ($emailEnvoye) {
                         error_log("Email de validation envoyé pour demande ID: $demandeId");
                     } else {
@@ -74,8 +79,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $demande) {
                     $message = "Demande terminée et prête pour retrait.";
                     loggerActionAdmin("Demande terminée", "ID: $demandeId");
                     
+                    // Récupérer les données mises à jour
+                    $stmt = $pdo->prepare("SELECT * FROM demandes_actes WHERE id = ?");
+                    $stmt->execute([$demandeId]);
+                    $demandeMAJ = $stmt->fetch();
+                    
                     // Envoyer email de demande prête
-                    $emailEnvoye = $emailManager->envoyerDemandePrete($demande, $commentaire);
+                    $emailEnvoye = $emailManager->envoyerDemandePrete($demandeMAJ, $commentaire);
                     if ($emailEnvoye) {
                         error_log("Email de demande prête envoyé pour demande ID: $demandeId");
                     } else {
@@ -99,8 +109,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $demande) {
                         $message = "Demande rejetée.";
                         loggerActionAdmin("Demande rejetée", "ID: $demandeId - Motif: $commentaire");
                         
+                        // Récupérer les données mises à jour
+                        $stmt = $pdo->prepare("SELECT * FROM demandes_actes WHERE id = ?");
+                        $stmt->execute([$demandeId]);
+                        $demandeMAJ = $stmt->fetch();
+                        
                         // Envoyer email de rejet
-                        $emailEnvoye = $emailManager->envoyerRejetDemande($demande, $commentaire);
+                        $emailEnvoye = $emailManager->envoyerRejetDemande($demandeMAJ, $commentaire);
                         if ($emailEnvoye) {
                             error_log("Email de rejet envoyé pour demande ID: $demandeId");
                         } else {
