@@ -262,8 +262,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['demande_success'] = [
                 'numero_demande' => $resultat['numero_demande'],
                 'nom_complet' => $demande['prenoms'] . ' ' . $demande['nom'],
-                'types_actes' => $donnees['types_actes'],
-                'exemplaires' => $donnees['exemplaires'],
+                'types_actes' => $_POST['types_actes'],
+                'exemplaires' => $_POST['exemplaires'],
                 'email' => $demande['email']
             ];
             

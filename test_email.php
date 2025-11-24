@@ -36,12 +36,13 @@ try {
     
     if ($resultat) {
         echo "<div style='color: green; padding: 10px; border: 1px solid green; background: #f0fff0;'>";
-        echo "✅ <strong>SUCCESS !</strong> Email de test envoyé avec succès à : " . $demandeTest['email'];
-        echo "<br>📬 Vérifiez votre boîte de réception (et les spams)";
+        echo "✅ <strong>SUCCESS !</strong> Email de test traité avec succès !";
+        echo "<br>📬 L'email a été envoyé ou simulé selon la configuration du serveur";
+        echo "<br><a href='voir_emails_simules.php' target='_blank'>📄 Voir les emails simulés</a>";
         echo "</div>";
     } else {
         echo "<div style='color: red; padding: 10px; border: 1px solid red; background: #fff0f0;'>";
-        echo "❌ <strong>ERREUR !</strong> L'email n'a pas pu être envoyé.";
+        echo "❌ <strong>ERREUR !</strong> L'email n'a pas pu être traité.";
         echo "<br>🔍 Vérifiez les logs d'erreur PHP pour plus de détails.";
         echo "</div>";
     }

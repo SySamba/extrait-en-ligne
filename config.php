@@ -6,9 +6,9 @@
 
 // Configuration de la base de données
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'mairie_khombole');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_NAME', 'u588247422_mairebd');
+define('DB_USER', 'u588247422_userbd');
+define('DB_PASS', 'Khombole2021');
 define('DB_CHARSET', 'utf8mb4');
 
 // Configuration de l'application

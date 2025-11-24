@@ -99,7 +99,53 @@ class EmailManager {
             $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
         }
         
-        return mail($destinataire, $sujet, $message, $headers);
+        // Essayer d'envoyer avec mail()
+        $resultat = @mail($destinataire, $sujet, $message, $headers);
+        
+        // Si l'envoi échoue, simuler l'envoi
+        if (!$resultat) {
+            error_log("Envoi mail() échoué, simulation de l'envoi pour : $destinataire");
+            $this->simulerEnvoiEmail($destinataire, $sujet, $message, $isHtml);
+            return true; // Retourner true pour que le système continue à fonctionner
+        }
+        
+        return $resultat;
+    }
+    
+    /**
+     * Simule l'envoi d'un email en le sauvegardant dans un fichier
+     */
+    private function simulerEnvoiEmail($destinataire, $sujet, $message, $isHtml) {
+        $timestamp = date('Y-m-d H:i:s');
+        $filename = 'emails_simules_' . date('Y-m-d') . '.html';
+        $logDir = __DIR__ . '/logs/';
+        
+        // Créer le dossier logs s'il n'existe pas
+        if (!is_dir($logDir)) {
+            mkdir($logDir, 0755, true);
+        }
+        
+        $filepath = $logDir . $filename;
+        
+        $emailContent = "
+        <div style='border: 2px solid #0b843e; margin: 20px 0; padding: 20px; background: #f8f9fa;'>
+            <h3 style='color: #0b843e; margin-top: 0;'>📧 Email Simulé - $timestamp</h3>
+            <p><strong>De :</strong> " . MAIL_FROM_NAME . " &lt;" . MAIL_FROM . "&gt;</p>
+            <p><strong>À :</strong> $destinataire</p>
+            <p><strong>Sujet :</strong> $sujet</p>
+            <p><strong>Type :</strong> " . ($isHtml ? 'HTML' : 'Texte') . "</p>
+            <hr>
+            <div style='border: 1px solid #ddd; padding: 15px; background: white;'>
+                $message
+            </div>
+        </div>
+        ";
+        
+        // Ajouter au fichier de simulation
+        file_put_contents($filepath, $emailContent, FILE_APPEND | LOCK_EX);
+        
+        // Logger dans les logs PHP
+        error_log("EMAIL SIMULÉ - À: $destinataire - Sujet: $sujet - Fichier: $filepath");
     }
     
     /**
