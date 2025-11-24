@@ -29,6 +29,9 @@ if (isset($_GET['id'])) {
         
         if (!$demande) {
             $erreur = "Demande non trouvée.";
+        } else {
+            // Construire le nom complet
+            $demande['nom_complet'] = trim($demande['prenoms'] . ' ' . $demande['nom']);
         }
     } catch (Exception $e) {
         $erreur = "Erreur lors de la récupération de la demande.";
@@ -284,10 +287,18 @@ $statutsColors = getStatutsColors();
                                 <div class="col-md-6">
                                     <p><strong>Type d'acte :</strong> <?= htmlspecialchars($typesActes[$demande['type_acte']]['label'] ?? $demande['type_acte']) ?></p>
                                     <p><strong>Demandeur :</strong> <?= htmlspecialchars($demande['nom_complet']) ?></p>
-                                    <p><strong>Email :</strong> <?= htmlspecialchars($demande['email']) ?></p>
-                                    <p><strong>Téléphone :</strong> <?= htmlspecialchars($demande['telephone']) ?></p>
+                                    <p><strong>Date de naissance :</strong> <?= date('d/m/Y', strtotime($demande['date_naissance'])) ?></p>
+                                    <p><strong>Lieu de naissance :</strong> <?= htmlspecialchars($demande['lieu_naissance']) ?></p>
+                                    <?php if (!empty($demande['prenom_pere']) || !empty($demande['nom_pere'])): ?>
+                                    <p><strong>Père :</strong> <?= htmlspecialchars(trim(($demande['prenom_pere'] ?? '') . ' ' . ($demande['nom_pere'] ?? ''))) ?></p>
+                                    <?php endif; ?>
+                                    <?php if (!empty($demande['prenom_mere']) || !empty($demande['nom_mere'])): ?>
+                                    <p><strong>Mère :</strong> <?= htmlspecialchars(trim(($demande['prenom_mere'] ?? '') . ' ' . ($demande['nom_mere'] ?? ''))) ?></p>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="col-md-6">
+                                    <p><strong>Email :</strong> <?= htmlspecialchars($demande['email']) ?></p>
+                                    <p><strong>Téléphone :</strong> <?= htmlspecialchars($demande['telephone']) ?></p>
                                     <p><strong>Date de soumission :</strong> <?= date('d/m/Y H:i', strtotime($demande['date_soumission'])) ?></p>
                                     <p><strong>Statut actuel :</strong> 
                                         <span class="status-badge bg-<?= $statutsColors[$demande['statut']] ?> text-white">
@@ -295,6 +306,9 @@ $statutsColors = getStatutsColors();
                                         </span>
                                     </p>
                                     <p><strong>Montant :</strong> <?= number_format($demande['montant'], 0, ',', ' ') ?> FCFA</p>
+                                    <?php if (!empty($demande['annee_registre']) || !empty($demande['numero_registre'])): ?>
+                                    <p><strong>Registre :</strong> <?= htmlspecialchars($demande['annee_registre']) ?> - N° <?= htmlspecialchars($demande['numero_registre']) ?></p>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             

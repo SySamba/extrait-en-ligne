@@ -394,6 +394,18 @@ $qualites = [
                         <span class="info-label">Lieu de naissance :</span>
                         <span class="info-value"><?= htmlspecialchars($demande['lieu_naissance']) ?></span>
                     </div>
+                    <?php if (!empty($demande['prenom_pere']) || !empty($demande['nom_pere'])): ?>
+                    <div class="info-row">
+                        <span class="info-label">Père :</span>
+                        <span class="info-value"><?= htmlspecialchars(trim(($demande['prenom_pere'] ?? '') . ' ' . ($demande['nom_pere'] ?? ''))) ?></span>
+                    </div>
+                    <?php endif; ?>
+                    <?php if (!empty($demande['prenom_mere']) || !empty($demande['nom_mere'])): ?>
+                    <div class="info-row">
+                        <span class="info-label">Mère :</span>
+                        <span class="info-value"><?= htmlspecialchars(trim(($demande['prenom_mere'] ?? '') . ' ' . ($demande['nom_mere'] ?? ''))) ?></span>
+                    </div>
+                    <?php endif; ?>
                     <div class="info-row">
                         <span class="info-label">Année du registre :</span>
                         <span class="info-value"><?= htmlspecialchars($demande['annee_registre']) ?></span>
