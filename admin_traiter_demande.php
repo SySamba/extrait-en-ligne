@@ -41,9 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $demande) {
     $action = $_POST['action'] ?? '';
     $commentaire = trim($_POST['commentaire'] ?? '');
     
+    error_log("DEBUG: Traitement POST - Action: $action, Demande ID: " . ($demande['id'] ?? 'AUCUN'));
+    
     // Vérifier le token CSRF
     if (!verifierTokenCSRF($_POST['csrf_token'] ?? '')) {
         $erreur = "Token de sécurité invalide.";
+        error_log("DEBUG: Token CSRF invalide");
     } else {
         try {
             $pdo = getDBConnection();
@@ -52,8 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $demande) {
             require_once 'email_manager.php';
             $emailManager = new EmailManager();
             
+            error_log("DEBUG: Début traitement action: $action pour demande ID: $demandeId");
+            
             switch ($action) {
                 case 'accepter':
+                    error_log("DEBUG: Cas 'accepter' - Début");
                     $stmt = $pdo->prepare("UPDATE demandes_actes SET statut = 'en_traitement', commentaire_admin = ?, date_traitement = NOW() WHERE id = ?");
                     $stmt->execute([$commentaire, $demandeId]);
                     $message = "Demande acceptée et mise en traitement.";
@@ -63,17 +69,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $demande) {
                     $stmt = $pdo->prepare("SELECT * FROM demandes_actes WHERE id = ?");
                     $stmt->execute([$demandeId]);
                     $demandeMAJ = $stmt->fetch();
+                    error_log("DEBUG: Demande récupérée - Email: " . ($demandeMAJ['email'] ?? 'AUCUN'));
                     
                     // Envoyer email de validation
+                    error_log("DEBUG: Tentative envoi email de validation");
                     $emailEnvoye = $emailManager->envoyerValidationDemande($demandeMAJ, $commentaire);
                     if ($emailEnvoye) {
-                        error_log("Email de validation envoyé pour demande ID: $demandeId");
+                        error_log("DEBUG: ✅ Email de validation envoyé pour demande ID: $demandeId");
                     } else {
-                        error_log("Erreur envoi email de validation pour demande ID: $demandeId");
+                        error_log("DEBUG: ❌ Erreur envoi email de validation pour demande ID: $demandeId");
                     }
                     break;
                     
                 case 'terminer':
+                    error_log("DEBUG: Cas 'terminer' - Début");
                     $stmt = $pdo->prepare("UPDATE demandes_actes SET statut = 'pret', commentaire_admin = ?, date_traitement = NOW() WHERE id = ?");
                     $stmt->execute([$commentaire, $demandeId]);
                     $message = "Demande terminée et prête pour retrait.";
@@ -83,13 +92,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $demande) {
                     $stmt = $pdo->prepare("SELECT * FROM demandes_actes WHERE id = ?");
                     $stmt->execute([$demandeId]);
                     $demandeMAJ = $stmt->fetch();
+                    error_log("DEBUG: Demande récupérée - Email: " . ($demandeMAJ['email'] ?? 'AUCUN'));
                     
                     // Envoyer email de demande prête
+                    error_log("DEBUG: Tentative envoi email demande prête");
                     $emailEnvoye = $emailManager->envoyerDemandePrete($demandeMAJ, $commentaire);
                     if ($emailEnvoye) {
-                        error_log("Email de demande prête envoyé pour demande ID: $demandeId");
+                        error_log("DEBUG: ✅ Email de demande prête envoyé pour demande ID: $demandeId");
                     } else {
-                        error_log("Erreur envoi email de demande prête pour demande ID: $demandeId");
+                        error_log("DEBUG: ❌ Erreur envoi email de demande prête pour demande ID: $demandeId");
                     }
                     break;
                     
