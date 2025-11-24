@@ -540,7 +540,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="lieu_naissance" class="form-label required-field">Lieu de naissance</label>
-                        <input type="text" class="form-control" id="lieu_naissance" name="lieu_naissance" required>
+                        <input type="text" class="form-control" id="lieu_naissance" name="lieu_naissance" value="Khombole" required>
                         <div class="invalid-feedback">
                             Veuillez saisir votre lieu de naissance.
                         </div>
