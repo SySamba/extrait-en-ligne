@@ -546,10 +546,24 @@
                         </div>
                     </div>
                     <div class="col-md-6">
+                        <label for="prenom_pere" class="form-label required-field">Prénom du père</label>
+                        <input type="text" class="form-control" id="prenom_pere" name="prenom_pere" required>
+                        <div class="invalid-feedback">
+                            Veuillez saisir le prénom du père.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
                         <label for="nom_pere" class="form-label required-field">Nom du père</label>
                         <input type="text" class="form-control" id="nom_pere" name="nom_pere" required>
                         <div class="invalid-feedback">
                             Veuillez saisir le nom du père.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="prenom_mere" class="form-label required-field">Prénom de la mère</label>
+                        <input type="text" class="form-control" id="prenom_mere" name="prenom_mere" required>
+                        <div class="invalid-feedback">
+                            Veuillez saisir le prénom de la mère.
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -842,9 +856,10 @@
             }, 100);
         }
 
-        // Fonction pour gérer les champs optionnels selon le type d'acte
+        // Fonction pour gérer les champs optionnels selon le type d'acte et lieu de naissance
         function gererChampsOptionnels() {
             const certificatResidence = document.getElementById('certificat_residence');
+            const lieuNaissance = document.getElementById('lieu_naissance');
             const anneeRegistreGroup = document.getElementById('annee_registre_group');
             const numeroRegistreGroup = document.getElementById('numero_registre_group');
             const anneeRegistreInput = document.getElementById('annee_registre');
@@ -852,16 +867,20 @@
             const anneeRegistreLabel = anneeRegistreGroup.querySelector('label');
             const numeroRegistreLabel = numeroRegistreGroup.querySelector('label');
             
-            if (certificatResidence && certificatResidence.checked) {
-                // Pour certificat de résidence, rendre les champs optionnels
+            // Vérifier si c'est un certificat de résidence ET si la personne n'habite pas à Khombole
+            const estCertificatResidence = certificatResidence && certificatResidence.checked;
+            const nHabitePasKhombole = lieuNaissance && lieuNaissance.value.toLowerCase() !== 'khombole';
+            
+            if (estCertificatResidence && nHabitePasKhombole) {
+                // Pour certificat de résidence de non-résidents de Khombole, rendre les champs optionnels
                 anneeRegistreInput.removeAttribute('required');
                 numeroRegistreInput.removeAttribute('required');
                 anneeRegistreLabel.classList.remove('required-field');
                 numeroRegistreLabel.classList.remove('required-field');
-                anneeRegistreLabel.innerHTML = 'Année du registre <small class="text-muted">(optionnel)</small>';
-                numeroRegistreLabel.innerHTML = 'Numéro dans le registre <small class="text-muted">(optionnel)</small>';
+                anneeRegistreLabel.innerHTML = 'Année du registre <small class="text-muted">(optionnel - non-résident de Khombole)</small>';
+                numeroRegistreLabel.innerHTML = 'Numéro dans le registre <small class="text-muted">(optionnel - non-résident de Khombole)</small>';
             } else {
-                // Pour les autres actes, rendre les champs obligatoires
+                // Pour tous les autres cas, rendre les champs obligatoires
                 anneeRegistreInput.setAttribute('required', 'required');
                 numeroRegistreInput.setAttribute('required', 'required');
                 anneeRegistreLabel.classList.add('required-field');
@@ -871,13 +890,16 @@
             }
         }
 
-        // Écouter les changements sur les checkboxes
+        // Écouter les changements sur les checkboxes et le lieu de naissance
         document.querySelectorAll('input[name="types_actes[]"]').forEach(checkbox => {
             checkbox.addEventListener('change', function() {
                 gererExemplaires();
                 gererChampsOptionnels();
             });
         });
+
+        // Écouter les changements sur le lieu de naissance
+        document.getElementById('lieu_naissance').addEventListener('input', gererChampsOptionnels);
 
         // Validation personnalisée pour les types d'actes et exemplaires
         function validerTypesActes() {

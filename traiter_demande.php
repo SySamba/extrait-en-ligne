@@ -138,12 +138,12 @@ class DemandeActe {
             // Préparer les données pour l'insertion
             $sql = "INSERT INTO demandes_actes (
                 numero_demande, type_acte, nombre_exemplaires, nom, prenoms, date_naissance, lieu_naissance,
-                nom_pere, nom_mere, annee_registre, numero_registre, qualite_demandeur, adresse_actuelle,
+                prenom_pere, nom_pere, prenom_mere, nom_mere, annee_registre, numero_registre, qualite_demandeur, adresse_actuelle,
                 telephone, email, mode_delivrance, mode_paiement, consentement_donnees,
                 acceptation_clause, ip_soumission, user_agent
             ) VALUES (
                 :numero_demande, :type_acte, :nombre_exemplaires, :nom, :prenoms, :date_naissance, :lieu_naissance,
-                :nom_pere, :nom_mere, :annee_registre, :numero_registre, :qualite_demandeur, :adresse_actuelle,
+                :prenom_pere, :nom_pere, :prenom_mere, :nom_mere, :annee_registre, :numero_registre, :qualite_demandeur, :adresse_actuelle,
                 :telephone, :email, :mode_delivrance, :mode_paiement, :consentement_donnees,
                 :acceptation_clause, :ip_soumission, :user_agent
             )";
@@ -158,7 +158,9 @@ class DemandeActe {
                 ':prenoms' => ucwords(strtolower($donnees['prenoms'])),
                 ':date_naissance' => $donnees['date_naissance'],
                 ':lieu_naissance' => ucwords(strtolower($donnees['lieu_naissance'])),
+                ':prenom_pere' => !empty($donnees['prenom_pere']) ? ucwords(strtolower($donnees['prenom_pere'])) : null,
                 ':nom_pere' => !empty($donnees['nom_pere']) ? ucwords(strtolower($donnees['nom_pere'])) : null,
+                ':prenom_mere' => !empty($donnees['prenom_mere']) ? ucwords(strtolower($donnees['prenom_mere'])) : null,
                 ':nom_mere' => !empty($donnees['nom_mere']) ? ucwords(strtolower($donnees['nom_mere'])) : null,
                 ':annee_registre' => !empty($donnees['annee_registre']) ? $donnees['annee_registre'] : null,
                 ':numero_registre' => !empty($donnees['numero_registre']) ? $donnees['numero_registre'] : null,

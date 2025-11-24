@@ -22,26 +22,44 @@ try {
     $stmt = $pdo->query("DESCRIBE demandes_actes");
     $colonnes = $stmt->fetchAll(PDO::FETCH_COLUMN);
     
+    $prenomPereExiste = in_array('prenom_pere', $colonnes);
     $nomPereExiste = in_array('nom_pere', $colonnes);
+    $prenomMereExiste = in_array('prenom_mere', $colonnes);
     $nomMereExiste = in_array('nom_mere', $colonnes);
     
     echo "<ul>";
+    echo "<li><strong>prenom_pere :</strong> " . ($prenomPereExiste ? "✅ Existe déjà" : "❌ N'existe pas") . "</li>";
     echo "<li><strong>nom_pere :</strong> " . ($nomPereExiste ? "✅ Existe déjà" : "❌ N'existe pas") . "</li>";
+    echo "<li><strong>prenom_mere :</strong> " . ($prenomMereExiste ? "✅ Existe déjà" : "❌ N'existe pas") . "</li>";
     echo "<li><strong>nom_mere :</strong> " . ($nomMereExiste ? "✅ Existe déjà" : "❌ N'existe pas") . "</li>";
     echo "</ul>";
     
     $modifications = [];
     
+    // Ajouter prenom_pere si nécessaire
+    if (!$prenomPereExiste) {
+        $pdo->exec("ALTER TABLE demandes_actes ADD COLUMN prenom_pere VARCHAR(100) AFTER lieu_naissance");
+        $modifications[] = "Colonne 'prenom_pere' ajoutée";
+        echo "<p>✅ <strong>Colonne 'prenom_pere' ajoutée avec succès</strong></p>";
+    }
+    
     // Ajouter nom_pere si nécessaire
     if (!$nomPereExiste) {
-        $pdo->exec("ALTER TABLE demandes_actes ADD COLUMN nom_pere VARCHAR(100) AFTER lieu_naissance");
+        $pdo->exec("ALTER TABLE demandes_actes ADD COLUMN nom_pere VARCHAR(100) AFTER prenom_pere");
         $modifications[] = "Colonne 'nom_pere' ajoutée";
         echo "<p>✅ <strong>Colonne 'nom_pere' ajoutée avec succès</strong></p>";
     }
     
+    // Ajouter prenom_mere si nécessaire
+    if (!$prenomMereExiste) {
+        $pdo->exec("ALTER TABLE demandes_actes ADD COLUMN prenom_mere VARCHAR(100) AFTER nom_pere");
+        $modifications[] = "Colonne 'prenom_mere' ajoutée";
+        echo "<p>✅ <strong>Colonne 'prenom_mere' ajoutée avec succès</strong></p>";
+    }
+    
     // Ajouter nom_mere si nécessaire
     if (!$nomMereExiste) {
-        $pdo->exec("ALTER TABLE demandes_actes ADD COLUMN nom_mere VARCHAR(100) AFTER nom_pere");
+        $pdo->exec("ALTER TABLE demandes_actes ADD COLUMN nom_mere VARCHAR(100) AFTER prenom_mere");
         $modifications[] = "Colonne 'nom_mere' ajoutée";
         echo "<p>✅ <strong>Colonne 'nom_mere' ajoutée avec succès</strong></p>";
     }
