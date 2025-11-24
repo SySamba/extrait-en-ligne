@@ -856,10 +856,11 @@
             }, 100);
         }
 
-        // Fonction pour gérer les champs optionnels selon le type d'acte et lieu de naissance
+        // Fonction pour gérer les champs optionnels selon le lieu de naissance
         function gererChampsOptionnels() {
-            const certificatResidence = document.getElementById('certificat_residence');
             const lieuNaissance = document.getElementById('lieu_naissance');
+            
+            // Éléments du registre
             const anneeRegistreGroup = document.getElementById('annee_registre_group');
             const numeroRegistreGroup = document.getElementById('numero_registre_group');
             const anneeRegistreInput = document.getElementById('annee_registre');
@@ -867,26 +868,68 @@
             const anneeRegistreLabel = anneeRegistreGroup.querySelector('label');
             const numeroRegistreLabel = numeroRegistreGroup.querySelector('label');
             
-            // Vérifier si c'est un certificat de résidence ET si la personne n'habite pas à Khombole
-            const estCertificatResidence = certificatResidence && certificatResidence.checked;
-            const nHabitePasKhombole = lieuNaissance && lieuNaissance.value.toLowerCase() !== 'khombole';
+            // Éléments des parents
+            const prenomPereInput = document.getElementById('prenom_pere');
+            const nomPereInput = document.getElementById('nom_pere');
+            const prenomMereInput = document.getElementById('prenom_mere');
+            const nomMereInput = document.getElementById('nom_mere');
+            const prenomPereLabel = document.querySelector('label[for="prenom_pere"]');
+            const nomPereLabel = document.querySelector('label[for="nom_pere"]');
+            const prenomMereLabel = document.querySelector('label[for="prenom_mere"]');
+            const nomMereLabel = document.querySelector('label[for="nom_mere"]');
             
-            if (estCertificatResidence && nHabitePasKhombole) {
-                // Pour certificat de résidence de non-résidents de Khombole, rendre les champs optionnels
-                anneeRegistreInput.removeAttribute('required');
-                numeroRegistreInput.removeAttribute('required');
-                anneeRegistreLabel.classList.remove('required-field');
-                numeroRegistreLabel.classList.remove('required-field');
-                anneeRegistreLabel.innerHTML = 'Année du registre <small class="text-muted">(optionnel - non-résident de Khombole)</small>';
-                numeroRegistreLabel.innerHTML = 'Numéro dans le registre <small class="text-muted">(optionnel - non-résident de Khombole)</small>';
-            } else {
-                // Pour tous les autres cas, rendre les champs obligatoires
+            // Vérifier si la personne habite à Khombole
+            const habiteKhombole = lieuNaissance && lieuNaissance.value.toLowerCase() === 'khombole';
+            
+            if (habiteKhombole) {
+                // Pour les résidents de Khombole : champs parents optionnels, registre obligatoire
+                
+                // Rendre les champs parents optionnels
+                prenomPereInput.removeAttribute('required');
+                nomPereInput.removeAttribute('required');
+                prenomMereInput.removeAttribute('required');
+                nomMereInput.removeAttribute('required');
+                prenomPereLabel.classList.remove('required-field');
+                nomPereLabel.classList.remove('required-field');
+                prenomMereLabel.classList.remove('required-field');
+                nomMereLabel.classList.remove('required-field');
+                prenomPereLabel.innerHTML = 'Prénom du père <small class="text-muted">(optionnel - résident de Khombole)</small>';
+                nomPereLabel.innerHTML = 'Nom du père <small class="text-muted">(optionnel - résident de Khombole)</small>';
+                prenomMereLabel.innerHTML = 'Prénom de la mère <small class="text-muted">(optionnel - résident de Khombole)</small>';
+                nomMereLabel.innerHTML = 'Nom de la mère <small class="text-muted">(optionnel - résident de Khombole)</small>';
+                
+                // Rendre les champs registre obligatoires
                 anneeRegistreInput.setAttribute('required', 'required');
                 numeroRegistreInput.setAttribute('required', 'required');
                 anneeRegistreLabel.classList.add('required-field');
                 numeroRegistreLabel.classList.add('required-field');
                 anneeRegistreLabel.innerHTML = 'Année du registre';
                 numeroRegistreLabel.innerHTML = 'Numéro dans le registre';
+                
+            } else {
+                // Pour les non-résidents de Khombole : champs parents obligatoires, registre optionnel
+                
+                // Rendre les champs parents obligatoires
+                prenomPereInput.setAttribute('required', 'required');
+                nomPereInput.setAttribute('required', 'required');
+                prenomMereInput.setAttribute('required', 'required');
+                nomMereInput.setAttribute('required', 'required');
+                prenomPereLabel.classList.add('required-field');
+                nomPereLabel.classList.add('required-field');
+                prenomMereLabel.classList.add('required-field');
+                nomMereLabel.classList.add('required-field');
+                prenomPereLabel.innerHTML = 'Prénom du père';
+                nomPereLabel.innerHTML = 'Nom du père';
+                prenomMereLabel.innerHTML = 'Prénom de la mère';
+                nomMereLabel.innerHTML = 'Nom de la mère';
+                
+                // Rendre les champs registre optionnels
+                anneeRegistreInput.removeAttribute('required');
+                numeroRegistreInput.removeAttribute('required');
+                anneeRegistreLabel.classList.remove('required-field');
+                numeroRegistreLabel.classList.remove('required-field');
+                anneeRegistreLabel.innerHTML = 'Année du registre <small class="text-muted">(optionnel - non-résident de Khombole)</small>';
+                numeroRegistreLabel.innerHTML = 'Numéro dans le registre <small class="text-muted">(optionnel - non-résident de Khombole)</small>';
             }
         }
 
@@ -907,6 +950,9 @@
 
         // Écouter les changements sur le lieu de naissance
         document.getElementById('lieu_naissance').addEventListener('input', gererChampsOptionnels);
+        
+        // Initialiser les champs au chargement de la page
+        gererChampsOptionnels();
 
         // Validation personnalisée pour les types d'actes et exemplaires
         function validerTypesActes() {

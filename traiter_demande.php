@@ -44,12 +44,28 @@ class DemandeActe {
     private function validerDonnees($donnees) {
         $erreurs = [];
         
-        // Champs obligatoires
+        // Champs toujours obligatoires
         $champsObligatoires = [
             'types_actes', 'exemplaires', 'nom', 'prenoms', 'date_naissance', 'lieu_naissance',
-            'annee_registre', 'numero_registre', 'qualite_demandeur', 
-            'adresse_actuelle', 'telephone', 'email', 'mode_delivrance', 'mode_paiement'
+            'qualite_demandeur', 'adresse_actuelle', 'telephone', 'email', 'mode_delivrance', 'mode_paiement'
         ];
+        
+        // Vérifier si la personne habite à Khombole
+        $habiteKhombole = !empty($donnees['lieu_naissance']) && 
+                         strtolower(trim($donnees['lieu_naissance'])) === 'khombole';
+        
+        // Champs conditionnellement obligatoires selon le lieu de naissance
+        if ($habiteKhombole) {
+            // Pour les résidents de Khombole : registre obligatoire, parents optionnels
+            $champsObligatoires[] = 'annee_registre';
+            $champsObligatoires[] = 'numero_registre';
+        } else {
+            // Pour les non-résidents de Khombole : parents obligatoires, registre optionnel
+            $champsObligatoires[] = 'prenom_pere';
+            $champsObligatoires[] = 'nom_pere';
+            $champsObligatoires[] = 'prenom_mere';
+            $champsObligatoires[] = 'nom_mere';
+        }
         
         foreach ($champsObligatoires as $champ) {
             if ($champ === 'types_actes') {
@@ -62,7 +78,8 @@ class DemandeActe {
                 }
             } else {
                 if (empty($donnees[$champ])) {
-                    $erreurs[] = "Le champ '$champ' est obligatoire.";
+                    $nomChamp = $this->getNomChampFrancais($champ);
+                    $erreurs[] = "Le champ '$nomChamp' est obligatoire.";
                 }
             }
         }
@@ -93,6 +110,32 @@ class DemandeActe {
         }
         
         return $erreurs;
+    }
+    
+    /**
+     * Traduit les noms de champs en français
+     */
+    private function getNomChampFrancais($champ) {
+        $traductions = [
+            'nom' => 'Nom',
+            'prenoms' => 'Prénoms',
+            'date_naissance' => 'Date de naissance',
+            'lieu_naissance' => 'Lieu de naissance',
+            'prenom_pere' => 'Prénom du père',
+            'nom_pere' => 'Nom du père',
+            'prenom_mere' => 'Prénom de la mère',
+            'nom_mere' => 'Nom de la mère',
+            'annee_registre' => 'Année du registre',
+            'numero_registre' => 'Numéro dans le registre',
+            'qualite_demandeur' => 'Qualité du demandeur',
+            'adresse_actuelle' => 'Adresse actuelle',
+            'telephone' => 'Téléphone',
+            'email' => 'Adresse e-mail',
+            'mode_delivrance' => 'Mode de délivrance',
+            'mode_paiement' => 'Mode de paiement'
+        ];
+        
+        return $traductions[$champ] ?? $champ;
     }
     
     /**
