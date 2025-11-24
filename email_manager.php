@@ -240,7 +240,7 @@ class EmailManager {
         
         // Enregistrer le suivi
         $this->enregistrerSuiviEmail(
-            $demande['id'], 
+            $demande['id'] ?? null, 
             $demande['email'], 
             $sujet, 
             'confirmation', 
@@ -272,7 +272,7 @@ class EmailManager {
         
         // Enregistrer le suivi
         $this->enregistrerSuiviEmail(
-            $demande['id'], 
+            $demande['id'] ?? null, 
             $demande['email'], 
             $sujet, 
             'validation', 
@@ -305,7 +305,7 @@ class EmailManager {
         
         // Enregistrer le suivi
         $this->enregistrerSuiviEmail(
-            $demande['id'], 
+            $demande['id'] ?? null, 
             $demande['email'], 
             $sujet, 
             'pret', 
@@ -338,7 +338,7 @@ class EmailManager {
         
         // Enregistrer le suivi
         $this->enregistrerSuiviEmail(
-            $demande['id'], 
+            $demande['id'] ?? null, 
             $demande['email'], 
             $sujet, 
             'rejet', 
