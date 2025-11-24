@@ -48,12 +48,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $demande) {
         try {
             $pdo = getDBConnection();
             
+            // Inclure le gestionnaire d'emails
+            require_once 'email_manager.php';
+            $emailManager = new EmailManager();
+            
             switch ($action) {
                 case 'accepter':
                     $stmt = $pdo->prepare("UPDATE demandes_actes SET statut = 'en_traitement', commentaire_admin = ?, date_traitement = NOW() WHERE id = ?");
                     $stmt->execute([$commentaire, $demandeId]);
                     $message = "Demande acceptée et mise en traitement.";
                     loggerActionAdmin("Demande acceptée", "ID: $demandeId");
+                    
+                    // Envoyer email de validation
+                    $emailEnvoye = $emailManager->envoyerValidationDemande($demande, $commentaire);
+                    if ($emailEnvoye) {
+                        error_log("Email de validation envoyé pour demande ID: $demandeId");
+                    } else {
+                        error_log("Erreur envoi email de validation pour demande ID: $demandeId");
+                    }
                     break;
                     
                 case 'terminer':
@@ -61,6 +73,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $demande) {
                     $stmt->execute([$commentaire, $demandeId]);
                     $message = "Demande terminée et prête pour retrait.";
                     loggerActionAdmin("Demande terminée", "ID: $demandeId");
+                    
+                    // Envoyer email de demande prête
+                    $emailEnvoye = $emailManager->envoyerDemandePrete($demande, $commentaire);
+                    if ($emailEnvoye) {
+                        error_log("Email de demande prête envoyé pour demande ID: $demandeId");
+                    } else {
+                        error_log("Erreur envoi email de demande prête pour demande ID: $demandeId");
+                    }
                     break;
                     
                 case 'livrer':
@@ -78,6 +98,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $demande) {
                         $stmt->execute([$commentaire, $demandeId]);
                         $message = "Demande rejetée.";
                         loggerActionAdmin("Demande rejetée", "ID: $demandeId - Motif: $commentaire");
+                        
+                        // Envoyer email de rejet
+                        $emailEnvoye = $emailManager->envoyerRejetDemande($demande, $commentaire);
+                        if ($emailEnvoye) {
+                            error_log("Email de rejet envoyé pour demande ID: $demandeId");
+                        } else {
+                            error_log("Erreur envoi email de rejet pour demande ID: $demandeId");
+                        }
                     }
                     break;
                     

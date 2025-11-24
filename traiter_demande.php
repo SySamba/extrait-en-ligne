@@ -222,46 +222,21 @@ class DemandeActe {
     }
     
     /**
-     * Envoie un email de confirmation (simulation)
+     * Envoie un email de confirmation de réception
      */
     public function envoyerEmailConfirmation($demande) {
-        // Simulation d'envoi d'email
-        // Dans un environnement réel, utiliser PHPMailer ou une API d'email
+        require_once 'email_manager.php';
         
-        $typesActes = [
-            'extrait_naissance' => 'Extrait d\'acte de naissance',
-            'copie_litterale_naissance' => 'Copie littérale d\'acte de naissance',
-            'extrait_mariage' => 'Extrait d\'acte de mariage',
-            'certificat_residence' => 'Certificat de résidence',
-            'certificat_vie_individuelle' => 'Certificat de vie individuelle',
-            'certificat_vie_collective' => 'Certificat de vie collective',
-            'certificat_deces' => 'Certificat de décès'
-        ];
+        $emailManager = new EmailManager();
+        $resultat = $emailManager->envoyerConfirmationDemande($demande);
         
-        $sujet = "Confirmation de votre demande d'acte - " . $demande['numero_demande'];
+        if ($resultat) {
+            error_log("EMAIL CONFIRMÉ ENVOYÉ À : {$demande['email']} - Demande : {$demande['numero_demande']}");
+        } else {
+            error_log("ERREUR ENVOI EMAIL À : {$demande['email']} - Demande : {$demande['numero_demande']}");
+        }
         
-        $message = "
-        Bonjour {$demande['prenoms']} {$demande['nom']},
-        
-        Votre demande d'acte d'état civil a été enregistrée avec succès.
-        
-        Détails de votre demande :
-        - Numéro de demande : {$demande['numero_demande']}
-        - Type d'acte : " . ($typesActes[$demande['type_acte']] ?? $demande['type_acte']) . "
-        - Date de soumission : " . date('d/m/Y à H:i', strtotime($demande['date_soumission'])) . "
-        - Statut : En attente de traitement
-        
-        Votre demande sera traitée dans les plus brefs délais.
-        Vous recevrez une notification dès que votre acte sera prêt.
-        
-        Cordialement,
-        La Mairie de Khombole
-        ";
-        
-        // Log de l'email (en production, remplacer par un vrai envoi)
-        error_log("EMAIL ENVOYÉ À : {$demande['email']} - SUJET : $sujet");
-        
-        return true;
+        return $resultat;
     }
 }
 
