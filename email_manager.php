@@ -34,11 +34,8 @@ class EmailManager {
      */
     public function envoyerEmail($destinataire, $sujet, $message, $isHtml = true) {
         try {
-            if ($this->usePhpMailer) {
-                return $this->envoyerAvecPhpMailer($destinataire, $sujet, $message, $isHtml);
-            } else {
-                return $this->envoyerAvecMailNative($destinataire, $sujet, $message, $isHtml);
-            }
+            // Toujours utiliser la fonction mail() native pour plus de simplicité
+            return $this->envoyerAvecMailNative($destinataire, $sujet, $message, $isHtml);
         } catch (Exception $e) {
             error_log("Erreur envoi email à $destinataire: " . $e->getMessage());
             return false;

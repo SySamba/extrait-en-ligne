@@ -17,16 +17,16 @@ define('APP_VERSION', '1.0.0');
 define('APP_URL', 'http://localhost/mairie-khombole/');
 
 // Configuration des emails
-define('MAIL_FROM', 'sambasy837@gmail.com');
+define('MAIL_FROM', 'etat.civil@mairiedekhombole.sn');
 define('MAIL_FROM_NAME', 'Mairie de Khombole - État Civil');
-define('MAIL_REPLY_TO', 'sambasy837@gmail.com');
+define('MAIL_REPLY_TO', 'etat.civil@mairiedekhombole.sn');
 
-// Configuration SMTP Gmail
-define('SMTP_HOST', 'smtp.gmail.com'); // Serveur SMTP Gmail
-define('SMTP_PORT', 587); // Port SMTP pour TLS
-define('SMTP_USERNAME', 'sambasy837@gmail.com');
-define('SMTP_PASSWORD', 'Khombole2025@#');
-define('SMTP_ENCRYPTION', 'tls'); // TLS pour Gmail
+// Configuration SMTP (désactivée - utilisation de mail() native)
+define('SMTP_HOST', ''); // Vide pour utiliser mail() native
+define('SMTP_PORT', 25);
+define('SMTP_USERNAME', '');
+define('SMTP_PASSWORD', '');
+define('SMTP_ENCRYPTION', ''); // Pas d'encryption
 
 // Configuration des paiements
 define('WAVE_NUMBER', '781210618');

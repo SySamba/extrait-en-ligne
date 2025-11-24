@@ -21,11 +21,9 @@ $demandeTest = [
 echo "<h1>🧪 Test d'Envoi d'Email - Mairie de Khombole</h1>";
 echo "<p><strong>Configuration actuelle :</strong></p>";
 echo "<ul>";
-echo "<li><strong>Serveur SMTP :</strong> " . SMTP_HOST . "</li>";
-echo "<li><strong>Port :</strong> " . SMTP_PORT . "</li>";
-echo "<li><strong>Username :</strong> " . SMTP_USERNAME . "</li>";
-echo "<li><strong>Encryption :</strong> " . SMTP_ENCRYPTION . "</li>";
+echo "<li><strong>Méthode d'envoi :</strong> Fonction mail() PHP native</li>";
 echo "<li><strong>Expéditeur :</strong> " . MAIL_FROM_NAME . " &lt;" . MAIL_FROM . "&gt;</li>";
+echo "<li><strong>Répondre à :</strong> " . MAIL_REPLY_TO . "</li>";
 echo "</ul>";
 
 echo "<hr>";
@@ -56,13 +54,18 @@ try {
 
 echo "<hr>";
 echo "<h3>🔧 Dépannage</h3>";
-echo "<p>Si l'email ne fonctionne pas :</p>";
+echo "<p>Si l'email ne fonctionne pas avec mail() native :</p>";
 echo "<ol>";
-echo "<li><strong>Gmail :</strong> Assurez-vous d'avoir activé l'authentification à 2 facteurs et utilisé un mot de passe d'application</li>";
-echo "<li><strong>Firewall :</strong> Vérifiez que le port 587 n'est pas bloqué</li>";
+echo "<li><strong>Serveur local :</strong> XAMPP/WAMP n'ont pas de serveur mail configuré par défaut</li>";
+echo "<li><strong>Sendmail :</strong> Configurez sendmail dans php.ini</li>";
 echo "<li><strong>Logs :</strong> Consultez les logs d'erreur PHP</li>";
-echo "<li><strong>Extensions :</strong> Vérifiez que l'extension OpenSSL est activée</li>";
+echo "<li><strong>Alternative :</strong> Les emails seront loggés dans les fichiers de log même s'ils ne sont pas envoyés</li>";
 echo "</ol>";
+
+echo "<div style='background: #fff3cd; border: 1px solid #ffeaa7; padding: 10px; margin: 10px 0;'>";
+echo "<strong>ℹ️ Note :</strong> En environnement de développement local (XAMPP), les emails peuvent ne pas être envoyés réellement, ";
+echo "mais le système fonctionne et les emails seront envoyés en production avec un serveur mail configuré.";
+echo "</div>";
 
 echo "<p><a href='demande_acte.php'>← Retour au formulaire de demande</a></p>";
 ?>
