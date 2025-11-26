@@ -12,12 +12,25 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Thème Sénégal -->
-    <link href="assets/css/senegal-theme.css" rel="stylesheet">
-    
     <style>
-        /* Variables héritées du thème Sénégal */
+        /* Thème Sénégal - Couleurs nationales avec dominance du blanc */
         :root {
+            /* Couleurs officielles du Sénégal */
+            --senegal-vert: #00853f;
+            --senegal-jaune: #fdef42;
+            --senegal-rouge: #e31e24;
+            --senegal-vert-fonce: #006b33;
+            --senegal-jaune-fonce: #e6d000;
+            --senegal-rouge-fonce: #c41e3a;
+            
+            /* Blanc dominant pour l'accessibilité */
+            --blanc-principal: #ffffff;
+            --blanc-casse: #fefefe;
+            --gris-tres-clair: #f8f9fa;
+            --gris-clair: #e9ecef;
+            --texte-fonce: #212529;
+            
+            /* Variables héritées */
             --primary-color: var(--senegal-vert);
             --secondary-color: var(--senegal-jaune);
             --accent-color: var(--senegal-rouge);

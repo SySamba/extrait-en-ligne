@@ -28,12 +28,25 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Thème Sénégal -->
-    <link href="assets/css/senegal-theme.css" rel="stylesheet">
-    
     <style>
-        /* Variables héritées du thème Sénégal */
+        /* Thème Sénégal - Couleurs nationales avec dominance du blanc */
         :root {
+            /* Couleurs officielles du Sénégal */
+            --senegal-vert: #00853f;
+            --senegal-jaune: #fdef42;
+            --senegal-rouge: #e31e24;
+            --senegal-vert-fonce: #006b33;
+            --senegal-jaune-fonce: #e6d000;
+            --senegal-rouge-fonce: #c41e3a;
+            
+            /* Blanc dominant pour l'accessibilité */
+            --blanc-principal: #ffffff;
+            --blanc-casse: #fefefe;
+            --gris-tres-clair: #f8f9fa;
+            --gris-clair: #e9ecef;
+            --texte-fonce: #212529;
+            
+            /* Variables héritées */
             --primary-color: var(--senegal-vert);
             --secondary-color: var(--senegal-jaune);
             --accent-color: var(--senegal-rouge);
@@ -49,6 +62,136 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             background-color: var(--blanc-principal);
             padding-top: 76px; /* Hauteur de la navbar fixe */
             color: var(--texte-fonce);
+        }
+        
+        /* Styles pour l'accessibilité */
+        *:focus-visible {
+            outline: 3px solid var(--senegal-jaune-fonce);
+            outline-offset: 2px;
+        }
+        
+        .btn-primary {
+            background-color: var(--senegal-vert);
+            border-color: var(--senegal-vert);
+            color: var(--blanc-principal);
+            font-weight: 600;
+            border-radius: 25px;
+            padding: 0.75rem 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--senegal-vert-fonce);
+            border-color: var(--senegal-vert-fonce);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 133, 63, 0.3);
+        }
+        
+        .btn-success {
+            background-color: var(--senegal-vert);
+            border-color: var(--senegal-vert);
+        }
+        
+        .btn-warning {
+            background-color: var(--senegal-jaune-fonce);
+            border-color: var(--senegal-jaune-fonce);
+            color: var(--texte-fonce);
+        }
+        
+        .btn-danger {
+            background-color: var(--senegal-rouge);
+            border-color: var(--senegal-rouge);
+        }
+        
+        .form-control {
+            border: 2px solid var(--gris-clair);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--senegal-vert);
+            box-shadow: 0 0 0 0.2rem rgba(0, 133, 63, 0.25);
+        }
+        
+        .alert-success {
+            background-color: rgba(0, 133, 63, 0.1);
+            border-color: var(--senegal-vert);
+            color: var(--senegal-vert-fonce);
+        }
+        
+        .alert-warning {
+            background-color: rgba(230, 208, 0, 0.1);
+            border-color: var(--senegal-jaune-fonce);
+            color: #8b6914;
+        }
+        
+        .alert-danger {
+            background-color: rgba(227, 30, 36, 0.1);
+            border-color: var(--senegal-rouge);
+            color: var(--senegal-rouge-fonce);
+        }
+        
+        .table {
+            background-color: var(--blanc-principal);
+        }
+        
+        .table-striped > tbody > tr:nth-of-type(odd) > td {
+            background-color: rgba(0, 133, 63, 0.05);
+        }
+        
+        .table th {
+            background-color: var(--senegal-vert);
+            color: var(--blanc-principal);
+            border: none;
+            font-weight: 600;
+        }
+        
+        .badge.bg-success {
+            background-color: var(--senegal-vert) !important;
+        }
+        
+        .badge.bg-warning {
+            background-color: var(--senegal-jaune-fonce) !important;
+            color: var(--texte-fonce) !important;
+        }
+        
+        .badge.bg-danger {
+            background-color: var(--senegal-rouge) !important;
+        }
+        
+        .card {
+            background-color: var(--blanc-principal);
+            border: 1px solid var(--gris-clair);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header.bg-primary {
+            background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-vert-fonce)) !important;
+            color: var(--blanc-principal);
+        }
+        
+        .card-header.bg-success {
+            background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-vert-fonce)) !important;
+            color: var(--blanc-principal);
+        }
+        
+        .card-header.bg-warning {
+            background: linear-gradient(135deg, var(--senegal-jaune), var(--senegal-jaune-fonce)) !important;
+            color: var(--texte-fonce);
+        }
+        
+        .card-header.bg-danger {
+            background: linear-gradient(135deg, var(--senegal-rouge), var(--senegal-rouge-fonce)) !important;
+            color: var(--blanc-principal);
         }
 
         .admin-navbar {
