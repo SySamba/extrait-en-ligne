@@ -62,12 +62,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Thème Sénégal -->
+    <link href="assets/css/senegal-theme.css" rel="stylesheet">
+    
     <style>
+        /* Variables héritées du thème Sénégal */
         :root {
-            --primary-color: #0b843e;
-            --secondary-color: #f4e93d;
-            --accent-color: #1e3a8a;
-            --text-dark: #2c3e50;
+            --primary-color: var(--senegal-vert);
+            --secondary-color: var(--senegal-jaune);
+            --accent-color: var(--senegal-rouge);
+            --text-dark: var(--texte-fonce);
         }
 
         * {
@@ -75,16 +79,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--blanc-principal);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            color: var(--texte-fonce);
         }
 
         .login-container {
-            background: white;
+            background: var(--blanc-principal);
+            border: 3px solid transparent;
+            border-image: linear-gradient(135deg, var(--senegal-vert), var(--senegal-jaune), var(--senegal-rouge)) 1;
             border-radius: 25px;
             box-shadow: 0 25px 50px rgba(0,0,0,0.2);
             padding: 3rem;
