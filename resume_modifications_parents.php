@@ -205,8 +205,10 @@ echo "<i class='fas fa-list me-2'></i>Interface Admin";
 echo "</a>";
 echo "</div>";
 
-// Ajouter Bootstrap pour le style
+// Ajouter Bootstrap et le thème Sénégal
 echo "<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>";
 echo "<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'>";
-echo "<style>body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background: #f8f9fa; }</style>";
+echo "<link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap' rel='stylesheet'>";
+echo "<link href='assets/css/senegal-theme.css' rel='stylesheet'>";
+echo "<style>body { font-family: 'Poppins', sans-serif; padding: 20px; background: var(--blanc-principal); color: var(--texte-fonce); }</style>";
 ?>

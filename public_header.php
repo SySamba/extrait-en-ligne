@@ -20,13 +20,17 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Thème Sénégal -->
+    <link href="assets/css/senegal-theme.css" rel="stylesheet">
+    
     <style>
+        /* Variables héritées du thème Sénégal */
         :root {
-            --primary-color: #0b843e;
-            --secondary-color: #f4e93d;
-            --accent-color: #1e3a8a;
-            --text-dark: #2c3e50;
-            --bg-light: #f8f9fa;
+            --primary-color: var(--senegal-vert);
+            --secondary-color: var(--senegal-jaune);
+            --accent-color: var(--senegal-rouge);
+            --text-dark: var(--texte-fonce);
+            --bg-light: var(--blanc-principal);
         }
 
         * {
@@ -34,14 +38,23 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         }
 
         body {
-            background-color: var(--bg-light);
+            background-color: var(--blanc-principal);
             padding-top: 76px; /* Hauteur de la navbar fixe */
+            color: var(--texte-fonce);
         }
 
         .public-navbar {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            /* Drapeau sénégalais en dégradé */
+            background: linear-gradient(135deg, 
+                var(--senegal-vert) 0%, 
+                var(--senegal-vert) 33%, 
+                var(--senegal-jaune) 33%, 
+                var(--senegal-jaune) 66%, 
+                var(--senegal-rouge) 66%, 
+                var(--senegal-rouge) 100%);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             padding: 0.5rem 0;
+            border-bottom: 3px solid var(--blanc-principal);
         }
 
         .navbar-brand {

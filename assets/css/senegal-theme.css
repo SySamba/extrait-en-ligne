@@ -1,0 +1,485 @@
+/**
+ * Thème Sénégal - Couleurs nationales avec dominance du blanc
+ * Vert, Jaune, Rouge avec accessibilité optimisée
+ * Mairie de Khombole
+ */
+
+:root {
+    /* Couleurs officielles du Sénégal */
+    --senegal-vert: #00853f;      /* Vert du drapeau sénégalais */
+    --senegal-jaune: #fdef42;     /* Jaune du drapeau sénégalais */
+    --senegal-rouge: #e31e24;     /* Rouge du drapeau sénégalais */
+    
+    /* Variations pour l'accessibilité */
+    --senegal-vert-fonce: #006b33;
+    --senegal-vert-clair: #4da971;
+    --senegal-jaune-fonce: #e6d000;
+    --senegal-rouge-fonce: #c41e3a;
+    
+    /* Blanc dominant pour l'accessibilité */
+    --blanc-principal: #ffffff;
+    --blanc-casse: #fefefe;
+    --gris-tres-clair: #f8f9fa;
+    --gris-clair: #e9ecef;
+    --gris-moyen: #6c757d;
+    --texte-fonce: #212529;
+    
+    /* Couleurs d'état avec contraste élevé */
+    --succes: var(--senegal-vert);
+    --attention: var(--senegal-jaune-fonce);
+    --erreur: var(--senegal-rouge);
+    --info: #0dcaf0;
+}
+
+/* Reset et base */
+* {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--blanc-principal);
+    color: var(--texte-fonce);
+    line-height: 1.6;
+}
+
+/* Navigation principale - Drapeau sénégalais en dégradé */
+.public-navbar, .admin-navbar {
+    background: linear-gradient(135deg, 
+        var(--senegal-vert) 0%, 
+        var(--senegal-vert) 33%, 
+        var(--senegal-jaune) 33%, 
+        var(--senegal-jaune) 66%, 
+        var(--senegal-rouge) 66%, 
+        var(--senegal-rouge) 100%);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid var(--blanc-principal);
+}
+
+.navbar-brand {
+    color: var(--blanc-principal) !important;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-nav .nav-link {
+    color: var(--blanc-principal) !important;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 25px;
+    margin: 0 0.25rem;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: var(--blanc-principal);
+    color: var(--senegal-vert) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-nav .nav-link.active {
+    background-color: var(--blanc-principal);
+    color: var(--senegal-vert) !important;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Boutons principaux */
+.btn-primary {
+    background-color: var(--senegal-vert);
+    border-color: var(--senegal-vert);
+    color: var(--blanc-principal);
+    font-weight: 600;
+    border-radius: 25px;
+    padding: 0.75rem 2rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--senegal-vert-fonce);
+    border-color: var(--senegal-vert-fonce);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 133, 63, 0.3);
+}
+
+.btn-success {
+    background-color: var(--senegal-vert);
+    border-color: var(--senegal-vert);
+}
+
+.btn-warning {
+    background-color: var(--senegal-jaune-fonce);
+    border-color: var(--senegal-jaune-fonce);
+    color: var(--texte-fonce);
+}
+
+.btn-danger {
+    background-color: var(--senegal-rouge);
+    border-color: var(--senegal-rouge);
+}
+
+/* Bouton admin avec couleurs sénégalaises */
+.btn-admin-access {
+    background: linear-gradient(135deg, var(--senegal-jaune), var(--senegal-jaune-fonce));
+    color: var(--texte-fonce);
+    border: 2px solid var(--blanc-principal);
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    text-shadow: none;
+}
+
+.btn-admin-access:hover {
+    background: var(--blanc-principal);
+    color: var(--senegal-vert);
+    border-color: var(--senegal-vert);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Cartes et conteneurs */
+.card {
+    background-color: var(--blanc-principal);
+    border: 1px solid var(--gris-clair);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: var(--gris-tres-clair);
+    border-bottom: 2px solid var(--senegal-vert);
+    border-radius: 15px 15px 0 0 !important;
+    font-weight: 600;
+}
+
+.card-header.bg-primary {
+    background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-vert-clair)) !important;
+    color: var(--blanc-principal);
+}
+
+.card-header.bg-success {
+    background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-vert-fonce)) !important;
+    color: var(--blanc-principal);
+}
+
+.card-header.bg-warning {
+    background: linear-gradient(135deg, var(--senegal-jaune), var(--senegal-jaune-fonce)) !important;
+    color: var(--texte-fonce);
+}
+
+.card-header.bg-danger {
+    background: linear-gradient(135deg, var(--senegal-rouge), var(--senegal-rouge-fonce)) !important;
+    color: var(--blanc-principal);
+}
+
+/* Menu principal - Style sénégalais */
+.menu-container {
+    background: var(--blanc-principal);
+    border: 3px solid transparent;
+    border-image: linear-gradient(135deg, var(--senegal-vert), var(--senegal-jaune), var(--senegal-rouge)) 1;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+}
+
+.menu-card {
+    background: var(--blanc-principal);
+    border: 2px solid var(--gris-clair);
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-jaune), var(--senegal-rouge));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--senegal-vert);
+    box-shadow: 0 15px 35px rgba(0, 133, 63, 0.15);
+}
+
+.menu-card:hover::before {
+    transform: scaleX(1);
+}
+
+.menu-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-vert-clair));
+    border: 3px solid var(--blanc-principal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: var(--blanc-principal);
+    box-shadow: 0 8px 20px rgba(0, 133, 63, 0.3);
+}
+
+/* Header section avec drapeau */
+.header-section {
+    background: linear-gradient(135deg, 
+        var(--senegal-vert) 0%, 
+        var(--senegal-vert) 33%, 
+        var(--senegal-jaune) 33%, 
+        var(--senegal-jaune) 66%, 
+        var(--senegal-rouge) 66%, 
+        var(--senegal-rouge) 100%);
+    color: var(--blanc-principal);
+    padding: 4rem 0;
+    position: relative;
+}
+
+.header-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: var(--blanc-principal);
+}
+
+.logo-circle {
+    background: var(--blanc-principal);
+    border: 4px solid var(--blanc-principal);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Statistiques avec couleurs sénégalaises */
+.stats-section {
+    background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-vert-fonce));
+    color: var(--blanc-principal);
+    border: 3px solid var(--senegal-jaune);
+    border-radius: 20px;
+    padding: 2.5rem;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+/* Alertes avec accessibilité */
+.alert {
+    border-radius: 15px;
+    border-width: 2px;
+    font-weight: 500;
+}
+
+.alert-success {
+    background-color: rgba(0, 133, 63, 0.1);
+    border-color: var(--senegal-vert);
+    color: var(--senegal-vert-fonce);
+}
+
+.alert-warning {
+    background-color: rgba(230, 208, 0, 0.1);
+    border-color: var(--senegal-jaune-fonce);
+    color: #8b6914;
+}
+
+.alert-danger {
+    background-color: rgba(227, 30, 36, 0.1);
+    border-color: var(--senegal-rouge);
+    color: var(--senegal-rouge-fonce);
+}
+
+.alert-info {
+    background-color: rgba(13, 202, 240, 0.1);
+    border-color: var(--info);
+    color: #055160;
+}
+
+/* Breadcrumb */
+.breadcrumb-nav {
+    background-color: var(--blanc-principal);
+    border-bottom: 3px solid var(--gris-clair);
+}
+
+.breadcrumb-item a {
+    color: var(--senegal-vert);
+    font-weight: 500;
+}
+
+.breadcrumb-item.active {
+    color: var(--senegal-rouge);
+    font-weight: 600;
+}
+
+/* Formulaires */
+.form-control {
+    border: 2px solid var(--gris-clair);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--senegal-vert);
+    box-shadow: 0 0 0 0.2rem rgba(0, 133, 63, 0.25);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--texte-fonce);
+}
+
+/* Dropdown menus */
+.dropdown-menu {
+    background-color: var(--blanc-principal);
+    border: 2px solid var(--gris-clair);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: var(--texte-fonce);
+    padding: 0.75rem 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: var(--senegal-vert);
+    color: var(--blanc-principal);
+}
+
+/* Tables */
+.table {
+    background-color: var(--blanc-principal);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > td {
+    background-color: rgba(0, 133, 63, 0.05);
+}
+
+.table th {
+    background-color: var(--senegal-vert);
+    color: var(--blanc-principal);
+    border: none;
+    font-weight: 600;
+}
+
+/* Badges */
+.badge {
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.badge.bg-success {
+    background-color: var(--senegal-vert) !important;
+}
+
+.badge.bg-warning {
+    background-color: var(--senegal-jaune-fonce) !important;
+    color: var(--texte-fonce) !important;
+}
+
+.badge.bg-danger {
+    background-color: var(--senegal-rouge) !important;
+}
+
+/* Accessibilité - Contraste élevé pour le blanc */
+@media (prefers-contrast: high) {
+    :root {
+        --senegal-vert: #004d26;
+        --senegal-jaune-fonce: #b8a000;
+        --senegal-rouge: #990000;
+    }
+}
+
+/* Mode sombre désactivé - Priorité au blanc */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--blanc-principal) !important;
+        color: var(--texte-fonce) !important;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu-container {
+        padding: 2rem 1.5rem;
+        margin: 0 10px;
+    }
+    
+    .header-section {
+        padding: 2.5rem 0;
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 0.5rem 1rem !important;
+        margin: 0.25rem 0;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Focus visible pour l'accessibilité */
+*:focus-visible {
+    outline: 3px solid var(--senegal-jaune-fonce);
+    outline-offset: 2px;
+}
+
+/* Amélioration du contraste pour les liens */
+a {
+    color: var(--senegal-vert);
+}
+
+a:hover {
+    color: var(--senegal-vert-fonce);
+}
+
+/* Styles spéciaux pour les éléments importants */
+.senegal-border {
+    border: 3px solid transparent;
+    border-image: linear-gradient(135deg, var(--senegal-vert), var(--senegal-jaune), var(--senegal-rouge)) 1;
+}
+
+.senegal-gradient-text {
+    background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-rouge));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}

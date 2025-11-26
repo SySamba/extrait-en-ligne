@@ -12,12 +12,16 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Thème Sénégal -->
+    <link href="assets/css/senegal-theme.css" rel="stylesheet">
+    
     <style>
+        /* Variables héritées du thème Sénégal */
         :root {
-            --primary-color: #0b843e;
-            --secondary-color: #f4e93d;
-            --accent-color: #1e3a8a;
-            --text-dark: #2c3e50;
+            --primary-color: var(--senegal-vert);
+            --secondary-color: var(--senegal-jaune);
+            --accent-color: var(--senegal-rouge);
+            --text-dark: var(--texte-fonce);
         }
 
         * {
@@ -25,18 +29,37 @@
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: var(--blanc-principal);
             min-height: 100vh;
             padding: 20px 0;
+            color: var(--texte-fonce);
         }
 
         .header-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            /* Drapeau sénégalais en dégradé */
+            background: linear-gradient(135deg, 
+                var(--senegal-vert) 0%, 
+                var(--senegal-vert) 33%, 
+                var(--senegal-jaune) 33%, 
+                var(--senegal-jaune) 66%, 
+                var(--senegal-rouge) 66%, 
+                var(--senegal-rouge) 100%);
             color: white;
-            padding: 3rem 0;
+            padding: 4rem 0;
             margin-bottom: 3rem;
             border-radius: 0 0 30px 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .header-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: var(--blanc-principal);
         }
 
         .logo-container {
@@ -76,7 +99,9 @@
         }
 
         .menu-container {
-            background: white;
+            background: var(--blanc-principal);
+            border: 3px solid transparent;
+            border-image: linear-gradient(135deg, var(--senegal-vert), var(--senegal-jaune), var(--senegal-rouge)) 1;
             border-radius: 25px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             padding: 3rem;
