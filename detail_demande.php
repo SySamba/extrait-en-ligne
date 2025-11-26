@@ -89,12 +89,25 @@ $qualites = [
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Thème Sénégal -->
-    <link href="assets/css/senegal-theme.css" rel="stylesheet">
-    
     <style>
-        /* Variables héritées du thème Sénégal */
+        /* Thème Sénégal - Couleurs nationales avec dominance du blanc */
         :root {
+            /* Couleurs officielles du Sénégal */
+            --senegal-vert: #00853f;
+            --senegal-jaune: #fdef42;
+            --senegal-rouge: #e31e24;
+            --senegal-vert-fonce: #006b33;
+            --senegal-jaune-fonce: #e6d000;
+            --senegal-rouge-fonce: #c41e3a;
+            
+            /* Blanc dominant pour l'accessibilité */
+            --blanc-principal: #ffffff;
+            --blanc-casse: #fefefe;
+            --gris-tres-clair: #f8f9fa;
+            --gris-clair: #e9ecef;
+            --texte-fonce: #212529;
+            
+            /* Variables héritées */
             --primary-color: var(--senegal-vert);
             --secondary-color: var(--senegal-jaune);
             --accent-color: var(--senegal-rouge);
@@ -111,6 +124,29 @@ $qualites = [
             min-height: 100vh;
             padding: 20px 0;
             color: var(--texte-fonce);
+        }
+        
+        /* Styles pour l'accessibilité */
+        *:focus-visible {
+            outline: 3px solid var(--senegal-jaune-fonce);
+            outline-offset: 2px;
+        }
+        
+        .btn-primary {
+            background-color: var(--senegal-vert);
+            border-color: var(--senegal-vert);
+            color: var(--blanc-principal);
+            font-weight: 600;
+            border-radius: 25px;
+            padding: 0.75rem 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--senegal-vert-fonce);
+            border-color: var(--senegal-vert-fonce);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 133, 63, 0.3);
         }
 
         .header-section {
