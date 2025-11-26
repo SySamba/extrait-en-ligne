@@ -252,8 +252,56 @@ $totalPages = ceil($totalDemandes / $parPage);
             bottom: 0;
             left: 0;
             right: 0;
-            height: 5px;
+            height: 10px;
             background: var(--blanc-principal);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 2rem;
+            flex-shrink: 0;
+        }
+        
+        .logo-circle {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .logo-circle {
+                width: 80px;
+                height: 80px;
+            }
         }
 
         .main-container {
@@ -804,35 +852,36 @@ $totalPages = ceil($totalDemandes / $parPage);
     </style>
 </head>
 <body>
-    <!-- Header Section -->
+    <!-- Header Section comme menu.php -->
     <div class="header-section">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                    <!-- Logo de la mairie -->
-                    <div class="logo-container me-4">
-                        <div class="logo-circle">
-                            <img src="logo.jpg" alt="Logo Mairie de Khombole" class="logo-img">
-                        </div>
-                    </div>
-                    <div>
-                        <h1 class="mb-0 fw-bold">ADMINISTRATION - DEMANDES D'ACTES</h1>
-                        <p class="mb-0 opacity-75">Mairie de Khombole - République du Sénégal</p>
-                    </div>
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <img src="logo.jpg" alt="Logo Mairie de Khombole" class="logo-img">
                 </div>
-                <div class="admin-section">
-                    <div class="dropdown">
-                        <button class="btn btn-light dropdown-toggle admin-btn" type="button" data-bs-toggle="dropdown">
-                            <i class="fas fa-user-shield me-2"></i>
-                            <span class="admin-email"><?= htmlspecialchars($_SESSION['admin_email']) ?></span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="admin_logout.php">
-                                <i class="fas fa-sign-out-alt me-2"></i>Déconnexion
-                            </a></li>
-                        </ul>
-                    </div>
+                <div class="text-center">
+                    <h1 class="mb-0 fw-bold display-4">MAIRIE DE KHOMBOLE</h1>
+                    <p class="mb-0 fs-4">République du Sénégal</p>
+                    <p class="mb-0 fs-6 opacity-75">Administration - Gestion des Demandes</p>
                 </div>
+            </div>
+            
+            <!-- Flèche de retour à l'accueil -->
+            <div class="text-center mt-3">
+                <a href="menu.php" class="btn btn-light btn-lg" style="border-radius: 50px; padding: 0.75rem 2rem;">
+                    <i class="fas fa-arrow-left me-2"></i>Retour à l'Accueil
+                </a>
+            </div>
+            
+            <!-- Info admin en petit -->
+            <div class="text-center mt-2">
+                <small class="text-white-50">
+                    <i class="fas fa-user-shield me-1"></i>
+                    Connecté : <?= htmlspecialchars($_SESSION['admin_email']) ?>
+                    | <a href="admin_logout.php" class="text-white-50 text-decoration-none">
+                        <i class="fas fa-sign-out-alt me-1"></i>Déconnexion
+                    </a>
+                </small>
             </div>
         </div>
     </div>
