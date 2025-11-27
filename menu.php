@@ -494,13 +494,13 @@
                                                 <i class="fas fa-baby me-2"></i>Extrait de naissance ou copie littérale
                                             </h6>
                                         </div>
-                                        <div class="card-body">
-                                            <h6 style="color: var(--senegal-vert) !important; font-weight: 600;">Documents requis :</h6>
-                                            <ul class="list-unstyled">
-                                                <li><i class="fas fa-check text-success me-2"></i>Votre ancien extrait ou</li>
-                                                <li><i class="fas fa-check text-success me-2"></i>Votre pièce d'identité</li>
-                                                <li><i class="fas fa-check text-success me-2"></i>Votre numéro et l'année du registre</li>
-                                                <li><i class="fas fa-check text-success me-2"></i>Les frais de timbre</li>
+                                        <div class="card-body" style="background: var(--senegal-vert); color: white !important;">
+                                            <h6 style="color: white !important; font-weight: 600;">Documents requis :</h6>
+                                            <ul class="list-unstyled" style="color: white !important;">
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Votre ancien extrait ou</li>
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Votre pièce d'identité</li>
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Votre numéro et l'année du registre</li>
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Les frais de timbre</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -514,13 +514,13 @@
                                                 <i class="fas fa-heart me-2"></i>Célébration d'un mariage
                                             </h6>
                                         </div>
-                                        <div class="card-body" style="background: var(--senegal-jaune); color: white !important;">
-                                            <h6 style="color: white !important; font-weight: 600;">Documents requis :</h6>
-                                            <ul class="list-unstyled" style="color: white !important;">
-                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Les extraits de naissance des conjoints</li>
-                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Pièce d'identité (le cas échéant)</li>
-                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>4 témoins avec leurs cartes d'identité</li>
-                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Cahier de quartier si le mariage n'a pas été célébré à Khombole</li>
+                                        <div class="card-body" style="background: white; color: black !important;">
+                                            <h6 style="color: black !important; font-weight: 600;">Documents requis :</h6>
+                                            <ul class="list-unstyled" style="color: black !important;">
+                                                <li style="color: black !important;"><i class="fas fa-check text-success me-2"></i>Les extraits de naissance des conjoints</li>
+                                                <li style="color: black !important;"><i class="fas fa-check text-success me-2"></i>Pièce d'identité (le cas échéant)</li>
+                                                <li style="color: black !important;"><i class="fas fa-check text-success me-2"></i>4 témoins avec leurs cartes d'identité</li>
+                                                <li style="color: black !important;"><i class="fas fa-check text-success me-2"></i>Cahier de quartier si le mariage n'a pas été célébré à Khombole</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -534,17 +534,17 @@
                                                 <i class="fas fa-baby-carriage me-2"></i>Déclaration de naissance
                                             </h6>
                                         </div>
-                                        <div class="card-body">
-                                            <div class="alert alert-warning">
-                                                <i class="fas fa-clock me-2"></i>
-                                                <strong>Délai :</strong> Dans les 12 mois suivant la naissance
+                                        <div class="card-body" style="background: var(--senegal-rouge); color: white !important;">
+                                            <div class="alert" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white !important;">
+                                                <i class="fas fa-clock me-2" style="color: white !important;"></i>
+                                                <strong style="color: white !important;">Délai :</strong> <span style="color: white !important;">Dans les 12 mois suivant la naissance</span>
                                             </div>
-                                            <h6 style="color: var(--senegal-rouge) !important; font-weight: 600;">Documents requis :</h6>
-                                            <ul class="list-unstyled">
-                                                <li><i class="fas fa-check text-success me-2"></i>Certificat médical de naissance</li>
-                                                <li><i class="fas fa-check text-success me-2"></i>Pièces d'identité des parents</li>
-                                                <li><i class="fas fa-check text-success me-2"></i>Livret de famille (si existant)</li>
-                                                <li><i class="fas fa-check text-success me-2"></i>Cahier de quartier si l'enfant est né hors de Khombole</li>
+                                            <h6 style="color: white !important; font-weight: 600;">Documents requis :</h6>
+                                            <ul class="list-unstyled" style="color: white !important;">
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Certificat médical de naissance</li>
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Pièces d'identité des parents</li>
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Livret de famille (si existant)</li>
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Cahier de quartier si l'enfant est né hors de Khombole</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -579,24 +579,24 @@
                                 <!-- Certificats de vie -->
                                 <div class="col-lg-6">
                                     <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-header bg-warning text-dark">
+                                        <div class="card-header" style="background: var(--senegal-rouge) !important; color: white !important;">
                                             <h6 class="mb-0">
                                                 <i class="fas fa-user-check me-2"></i>Certificats de vie
                                             </h6>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="card-body" style="background: var(--senegal-rouge); color: white !important;">
                                             <div class="mb-3">
-                                                <h6 class="text-warning fw-bold">Certificat de vie individuelle :</h6>
-                                                <ul class="list-unstyled small">
-                                                    <li><i class="fas fa-check text-success me-2"></i>Copie de l'extrait de naissance</li>
-                                                    <li><i class="fas fa-check text-success me-2"></i>Payer les frais</li>
+                                                <h6 style="color: white !important; font-weight: 600;">Certificat de vie individuelle :</h6>
+                                                <ul class="list-unstyled small" style="color: white !important;">
+                                                    <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Copie de l'extrait de naissance</li>
+                                                    <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Payer les frais</li>
                                                 </ul>
                                             </div>
                                             <div>
-                                                <h6 class="text-warning fw-bold">Certificat de vie collective :</h6>
-                                                <ul class="list-unstyled small">
-                                                    <li><i class="fas fa-check text-success me-2"></i>Copie des extraits de naissance des concernés</li>
-                                                    <li><i class="fas fa-check text-success me-2"></i>Payer les frais</li>
+                                                <h6 style="color: white !important; font-weight: 600;">Certificat de vie collective :</h6>
+                                                <ul class="list-unstyled small" style="color: white !important;">
+                                                    <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Copie des extraits de naissance des concernés</li>
+                                                    <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Payer les frais</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -606,17 +606,17 @@
                                 <!-- Certificat de résidence -->
                                 <div class="col-lg-6">
                                     <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-header bg-secondary text-white">
+                                        <div class="card-header" style="background: var(--senegal-jaune) !important; color: white !important;">
                                             <h6 class="mb-0">
                                                 <i class="fas fa-home me-2"></i>Certificat de résidence
                                             </h6>
                                         </div>
-                                        <div class="card-body">
-                                            <h6 class="text-secondary">Documents requis :</h6>
-                                            <ul class="list-unstyled">
-                                                <li><i class="fas fa-check text-success me-2"></i>Carte d'identité ou extrait de naissance</li>
-                                                <li><i class="fas fa-check text-success me-2"></i>Certificat de domicile</li>
-                                                <li><i class="fas fa-check text-success me-2"></i>Payer les frais</li>
+                                        <div class="card-body" style="background: var(--senegal-jaune); color: white !important;">
+                                            <h6 style="color: white !important; font-weight: 600;">Documents requis :</h6>
+                                            <ul class="list-unstyled" style="color: white !important;">
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Carte d'identité ou extrait de naissance</li>
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Certificat de domicile</li>
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Payer les frais</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -630,33 +630,33 @@
                 <div class="row g-4 mt-2">
                     <div class="col-12">
                         <div class="card border-0 shadow-sm">
-                            <div class="card-header bg-danger text-white">
+                            <div class="card-header" style="background: var(--senegal-rouge) !important; color: white !important;">
                                 <h6 class="mb-0">
                                     <i class="fas fa-ban me-2"></i>Certificats de non-inscription
                                 </h6>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" style="background: var(--senegal-rouge); color: white !important;">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <h6 class="text-danger fw-bold">Non-inscription de naissance :</h6>
-                                        <ul class="list-unstyled small">
-                                            <li><i class="fas fa-check text-success me-2"></i>Carte d'identité des parents</li>
-                                            <li><i class="fas fa-check text-success me-2"></i>Filiation et date de naissance de l'enfant</li>
+                                        <h6 style="color: white !important; font-weight: 600;">Non-inscription de naissance :</h6>
+                                        <ul class="list-unstyled small" style="color: white !important;">
+                                            <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Carte d'identité des parents</li>
+                                            <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Filiation et date de naissance de l'enfant</li>
                                         </ul>
                                     </div>
                                     <div class="col-md-4">
-                                        <h6 class="text-danger fw-bold">Non-inscription de mariage :</h6>
-                                        <ul class="list-unstyled small">
-                                            <li><i class="fas fa-check text-success me-2"></i>Extraits de naissances des conjoints</li>
-                                            <li><i class="fas fa-check text-success me-2"></i>Date du mariage</li>
+                                        <h6 style="color: white !important; font-weight: 600;">Non-inscription de mariage :</h6>
+                                        <ul class="list-unstyled small" style="color: white !important;">
+                                            <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Extraits de naissances des conjoints</li>
+                                            <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Date du mariage</li>
                                         </ul>
                                     </div>
                                     <div class="col-md-4">
-                                        <h6 class="text-danger fw-bold">Non-divorce/non-remariage :</h6>
-                                        <ul class="list-unstyled small">
-                                            <li><i class="fas fa-check text-success me-2"></i>Certificat du mariage</li>
-                                            <li><i class="fas fa-check text-success me-2"></i>Certificat de décès d'un des conjoints</li>
-                                            <li><i class="fas fa-check text-success me-2"></i>Carte d'identité des deux (2) témoins</li>
+                                        <h6 style="color: white !important; font-weight: 600;">Non-divorce/non-remariage :</h6>
+                                        <ul class="list-unstyled small" style="color: white !important;">
+                                            <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Certificat du mariage</li>
+                                            <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Certificat de décès d'un des conjoints</li>
+                                            <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Carte d'identité des deux (2) témoins</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -673,20 +673,20 @@
                                     <i class="fas fa-clock me-2"></i>Horaires de dépôt et de retrait
                                 </h6>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" style="background: var(--senegal-vert); color: white !important;">
                                 <div class="row">
                                     <div class="col-6">
-                                        <h6 class="fw-bold" style="color: var(--senegal-vert) !important;">Dépôts de documents :</h6>
-                                        <ul class="list-unstyled">
-                                            <li><i class="fas fa-sun text-warning me-2"></i>Matin : 08h00 – 13h00</li>
-                                            <li><i class="fas fa-moon text-info me-2"></i>Après-midi : 15h00 – 16h00</li>
+                                        <h6 class="fw-bold" style="color: white !important;">Dépôts de documents :</h6>
+                                        <ul class="list-unstyled" style="color: white !important;">
+                                            <li style="color: white !important;"><i class="fas fa-sun me-2" style="color: white !important;"></i>Matin : 08h00 – 13h00</li>
+                                            <li style="color: white !important;"><i class="fas fa-moon me-2" style="color: white !important;"></i>Après-midi : 15h00 – 16h00</li>
                                         </ul>
                                     </div>
                                     <div class="col-6">
-                                        <h6 class="fw-bold" style="color: var(--senegal-vert) !important;">Retraits de documents :</h6>
-                                        <ul class="list-unstyled">
-                                            <li><i class="fas fa-sun text-warning me-2"></i>Matinée : 10h30 – 14h00</li>
-                                            <li><i class="fas fa-moon text-info me-2"></i>Après-midi : 15h00 – 17h00</li>
+                                        <h6 class="fw-bold" style="color: white !important;">Retraits de documents :</h6>
+                                        <ul class="list-unstyled" style="color: white !important;">
+                                            <li style="color: white !important;"><i class="fas fa-sun me-2" style="color: white !important;"></i>Matinée : 10h30 – 14h00</li>
+                                            <li style="color: white !important;"><i class="fas fa-moon me-2" style="color: white !important;"></i>Après-midi : 15h00 – 17h00</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -697,30 +697,30 @@
                     <!-- Procédures spéciales -->
                     <div class="col-lg-6">
                         <div class="card border-0 shadow-sm">
-                            <div class="card-header bg-warning text-dark">
+                            <div class="card-header" style="background: var(--senegal-jaune) !important; color: white !important;">
                                 <h6 class="mb-0">
                                     <i class="fas fa-gavel me-2"></i>Procédures spéciales
                                 </h6>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" style="background: var(--senegal-jaune); color: white !important;">
                                 <div class="mb-3">
-                                    <h6 class="text-warning fw-bold">Reconstitution d'acte :</h6>
-                                    <ul class="list-unstyled small">
-                                        <li><i class="fas fa-check text-success me-2"></i>Photocopie carte d'identité</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>L'ancien acte</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Acte de détérioration</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Demande manuscrite au procureur</li>
+                                    <h6 style="color: white !important; font-weight: 600;">Reconstitution d'acte :</h6>
+                                    <ul class="list-unstyled small" style="color: white !important;">
+                                        <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Photocopie carte d'identité</li>
+                                        <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>L'ancien acte</li>
+                                        <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Acte de détérioration</li>
+                                        <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Demande manuscrite au procureur</li>
                                     </ul>
                                 </div>
                                 <div>
-                                    <h6 class="text-warning fw-bold">Annulation d'acte :</h6>
-                                    <ul class="list-unstyled small">
-                                        <li><i class="fas fa-check text-success me-2"></i>Photocopie carte d'identité du demandeur</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Photocopies carte d'identité des parents</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>L'acte concerné (type, numéro, date, lieu)</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Le motif d'annulation</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>La copie de l'acte concernée</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>2 témoins</li>
+                                    <h6 style="color: white !important; font-weight: 600;">Annulation d'acte :</h6>
+                                    <ul class="list-unstyled small" style="color: white !important;">
+                                        <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Photocopie carte d'identité du demandeur</li>
+                                        <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Photocopies carte d'identité des parents</li>
+                                        <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>L'acte concerné (type, numéro, date, lieu)</li>
+                                        <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Le motif d'annulation</li>
+                                        <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>La copie de l'acte concernée</li>
+                                        <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>2 témoins</li>
                                     </ul>
                                 </div>
                             </div>
