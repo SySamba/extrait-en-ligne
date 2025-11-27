@@ -194,7 +194,6 @@
         .menu-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -202,7 +201,28 @@
             margin: 0 auto 1.5rem;
             font-size: 2rem;
             color: white;
-            box-shadow: 0 10px 25px rgba(11, 132, 62, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        /* Couleurs spécifiques pour chaque icône */
+        .menu-icon.demande {
+            background: var(--senegal-vert);
+            box-shadow: 0 10px 25px rgba(45, 90, 61, 0.3);
+        }
+        
+        .menu-icon.recherche {
+            background: var(--senegal-jaune);
+            color: #000000;
+            box-shadow: 0 10px 25px rgba(244, 224, 77, 0.3);
+        }
+        
+        .menu-icon.admin {
+            background: var(--senegal-rouge);
+            box-shadow: 0 10px 25px rgba(200, 67, 78, 0.3);
+        }
+        
+        .menu-icon:hover {
+            transform: scale(1.1);
         }
 
         .menu-title {
@@ -339,8 +359,8 @@
             <div class="menu-grid">
                 <!-- Faire une demande -->
                 <a href="demande_acte.php" class="menu-card">
-                    <div class="menu-icon">
-                        <i class="fas fa-file-plus"></i>
+                    <div class="menu-icon demande">
+                        <i class="fas fa-file-medical"></i>
                     </div>
                     <h4 class="menu-title">Faire une Demande</h4>
                     <p class="menu-description">
@@ -350,8 +370,8 @@
 
                 <!-- Suivre une demande -->
                 <a href="suivi_demande.php" class="menu-card">
-                    <div class="menu-icon">
-                        <i class="fas fa-search"></i>
+                    <div class="menu-icon recherche">
+                        <i class="fas fa-search-plus"></i>
                     </div>
                     <h4 class="menu-title">Suivre une Demande</h4>
                     <p class="menu-description">
@@ -361,8 +381,8 @@
 
                 <!-- Administration -->
                 <a href="admin_login.php" class="menu-card">
-                    <div class="menu-icon">
-                        <i class="fas fa-user-shield"></i>
+                    <div class="menu-icon admin">
+                        <i class="fas fa-cogs"></i>
                     </div>
                     <h4 class="menu-title">Administration</h4>
                     <p class="menu-description">
