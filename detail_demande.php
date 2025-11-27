@@ -344,11 +344,14 @@ $qualites = [
 
         .highlight-badge {
             background: var(--senegal-vert);
-            color: white;
+            color: white !important;
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
+            font-weight: 700 !important;
+            display: inline-block;
+            margin: 0.2rem 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         /* Logo et en-tête */

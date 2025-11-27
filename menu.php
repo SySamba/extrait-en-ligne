@@ -373,8 +373,8 @@
 
             <!-- Section statistiques -->
             <div class="stats-section">
-                <h4 class="fw-bold mb-0" style="color: #000000 !important;">Statistiques du Service</h4>
-                <p class="mb-0" style="color: #000000 !important;">Données en temps réel</p>
+                <h4 class="fw-bold mb-0" style="color: white !important; font-weight: 700 !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Statistiques du Service</h4>
+                <p class="mb-0" style="color: white !important; font-weight: 600 !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Données en temps réel</p>
                 
                 <div class="stats-grid">
                     <div class="stat-item">
