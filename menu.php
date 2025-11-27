@@ -490,8 +490,8 @@
                                 <div class="col-lg-6">
                                     <div class="card h-100 border-0 shadow-sm">
                                         <div class="card-header" style="background: var(--senegal-vert) !important; color: white !important;">
-                                            <h6 class="mb-0">
-                                                <i class="fas fa-baby me-2"></i>Extrait de naissance ou copie littérale
+                                            <h6 class="mb-0" style="color: white !important; font-weight: 700 !important;">
+                                                <i class="fas fa-baby me-2" style="color: white !important;"></i>Extrait de naissance ou copie littérale
                                             </h6>
                                         </div>
                                         <div class="card-body" style="background: var(--senegal-vert); color: white !important;">
