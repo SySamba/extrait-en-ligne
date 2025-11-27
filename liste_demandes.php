@@ -903,9 +903,12 @@ $pageTitle = 'Liste des Demandes';
     <div class="row">
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded">
-                <div>
-                    <h2 class="mb-0 text-primary"><i class="fas fa-list me-2"></i>Liste des Demandes</h2>
-                    <small class="text-muted">Administration - Mairie de Khombole</small>
+                <div class="d-flex align-items-center">
+                    <img src="logo.jpg" alt="Logo Mairie de Khombole" width="50" height="50" class="rounded-circle me-3">
+                    <div>
+                        <h2 class="mb-0 text-primary"><i class="fas fa-list me-2"></i>Liste des Demandes</h2>
+                        <small class="text-muted">Administration - Mairie de Khombole</small>
+                    </div>
                 </div>
                 <div>
                     <a href="menu.php" class="btn btn-outline-primary me-2">
@@ -1070,67 +1073,6 @@ $pageTitle = 'Liste des Demandes';
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             <?php endif; ?>
-
-
-            <!-- Filtres et recherche -->
-            <div class="filters-section">
-                <h5 class="fw-bold text-primary mb-3">
-                    <i class="fas fa-filter me-2"></i>
-                    Filtres et recherche
-                </h5>
-                
-                <form method="GET" class="row g-3">
-                    <div class="col-md-4">
-                        <div class="search-box">
-                            <i class="fas fa-search"></i>
-                            <input type="text" class="form-control" name="recherche" 
-                                   placeholder="Rechercher par nom, prénom ou numéro de registre..." 
-                                   value="<?= htmlspecialchars($recherche) ?>">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <select class="form-select" name="statut">
-                            <option value="">Tous les statuts</option>
-                            <?php foreach ($statutsLabels as $statut => $label): ?>
-                                <option value="<?= $statut ?>" <?= $filtreStatut === $statut ? 'selected' : '' ?>>
-                                    <?= htmlspecialchars($label) ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <select class="form-select" name="type">
-                            <option value="">Tous les types</option>
-                            <?php foreach ($typesActes as $type => $label): ?>
-                                <option value="<?= $type ?>" <?= $filtreType === $type ? 'selected' : '' ?>>
-                                    <?= htmlspecialchars($label) ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="d-flex flex-column align-items-center justify-content-center h-100">
-                            <div id="search-indicator" class="text-muted mb-2" style="display: none;">
-                                <i class="fas fa-spinner fa-spin me-2"></i>
-                                <small>Recherche...</small>
-                            </div>
-                            <div id="search-info" class="text-success mb-2">
-                                <i class="fas fa-magic me-2"></i>
-                                <small>Recherche automatique</small>
-                            </div>
-                            <button type="button" class="btn btn-outline-secondary btn-sm" id="clear-filters" title="Effacer tous les filtres">
-                                <i class="fas fa-eraser me-1"></i>
-                                Effacer
-                            </button>
-                        </div>
-                        <!-- Bouton caché pour la soumission manuelle si nécessaire -->
-                        <button type="submit" class="btn btn-primary w-100" style="display: none;" id="manual-submit">
-                            <i class="fas fa-search me-1"></i>
-                            Filtrer
-                        </button>
-                    </div>
-                </form>
-            </div>
 
             <!-- Liste des demandes en cartes -->
             <?php if (!empty($demandes)): ?>
