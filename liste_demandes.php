@@ -190,12 +190,77 @@ require_once 'admin_header.php';
 
         .main-container {
             background: var(--blanc-principal);
-            border: 3px solid transparent;
-            border-image: linear-gradient(135deg, var(--senegal-vert), var(--senegal-jaune), var(--senegal-rouge)) 1;
+            border: 3px solid var(--senegal-vert);
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             padding: 2rem;
             margin-bottom: 2rem;
+        }
+        
+        /* Styles pour le header comme les autres pages */
+        .header-section {
+            /* Drapeau sénégalais en dégradé avec couleurs adoucies */
+            background: linear-gradient(135deg, 
+                var(--senegal-vert) 0%, 
+                var(--senegal-vert) 33%, 
+                var(--senegal-jaune) 33%, 
+                var(--senegal-jaune) 66%, 
+                var(--senegal-rouge) 66%, 
+                var(--senegal-rouge) 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 2rem;
+            flex-shrink: 0;
+        }
+        
+        .logo-circle {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .logo-circle {
+                width: 80px;
+                height: 80px;
+            }
         }
 
         .filters-section {
@@ -227,36 +292,40 @@ require_once 'admin_header.php';
             transform: translateY(-5px);
         }
 
-        /* Couleurs spécifiques pour chaque type de KPI */
+        /* Couleurs spécifiques pour chaque type de KPI - couleurs unies */
         .stat-total {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            box-shadow: 0 10px 30px rgba(11, 132, 62, 0.3);
+            background: var(--senegal-vert);
+            color: white;
+            box-shadow: 0 10px 30px rgba(45, 90, 61, 0.3);
         }
 
         .stat-total:hover {
-            box-shadow: 0 15px 40px rgba(11, 132, 62, 0.4);
+            box-shadow: 0 15px 40px rgba(45, 90, 61, 0.4);
         }
 
         .stat-danger {
-            background: linear-gradient(135deg, #dc3545, #c82333);
-            box-shadow: 0 10px 30px rgba(220, 53, 69, 0.3);
+            background: var(--senegal-rouge);
+            color: white;
+            box-shadow: 0 10px 30px rgba(200, 67, 78, 0.3);
         }
 
         .stat-danger:hover {
-            box-shadow: 0 15px 40px rgba(220, 53, 69, 0.4);
+            box-shadow: 0 15px 40px rgba(200, 67, 78, 0.4);
         }
 
         .stat-warning {
-            background: linear-gradient(135deg, #ffc107, #e0a800);
-            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
+            background: var(--senegal-jaune);
+            color: #000000;
+            box-shadow: 0 10px 30px rgba(244, 224, 77, 0.3);
         }
 
         .stat-warning:hover {
-            box-shadow: 0 15px 40px rgba(255, 193, 7, 0.4);
+            box-shadow: 0 15px 40px rgba(244, 224, 77, 0.4);
         }
 
         .stat-info {
-            background: linear-gradient(135deg, #17a2b8, #138496);
+            background: #17a2b8;
+            color: white;
             box-shadow: 0 10px 30px rgba(23, 162, 184, 0.3);
         }
 
@@ -265,16 +334,29 @@ require_once 'admin_header.php';
         }
 
         .stat-success {
-            background: linear-gradient(135deg, #28a745, #1e7e34);
-            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+            background: var(--senegal-vert);
+            color: white;
+            box-shadow: 0 10px 30px rgba(45, 90, 61, 0.3);
         }
 
         .stat-success:hover {
-            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.4);
+            box-shadow: 0 15px 40px rgba(45, 90, 61, 0.4);
+        }
+        
+        /* Correction du texte dans les KPI */
+        .stat-number {
+            color: inherit !important;
+            font-weight: 700;
+        }
+        
+        .stat-label {
+            color: inherit !important;
+            font-weight: 600;
         }
 
         .stat-dark {
-            background: linear-gradient(135deg, #343a40, #23272b);
+            background: #343a40;
+            color: white;
             box-shadow: 0 10px 30px rgba(52, 58, 64, 0.3);
         }
 
@@ -543,7 +625,7 @@ require_once 'admin_header.php';
         }
 
         .demande-card .card-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            background: var(--senegal-vert);
             color: white;
             padding: 1rem 1.5rem;
             display: flex;
@@ -734,39 +816,37 @@ require_once 'admin_header.php';
             }
         }
     </style>
-<!-- Header détaillé pour la liste des demandes -->
-<div class="container mt-3">
-    <div class="row">
-        <div class="col-12">
-            <div class="admin-header-section" style="background: linear-gradient(135deg, var(--senegal-vert) 0%, var(--senegal-vert) 33%, var(--senegal-jaune) 33%, var(--senegal-jaune) 66%, var(--senegal-rouge) 66%, var(--senegal-rouge) 100%); color: white; padding: 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                <div class="row align-items-center">
-                    <div class="col-md-8">
-                        <h2 class="fw-bold mb-2" style="color: white !important;">GESTION DES DEMANDES D'ACTES</h2>
-                        <p class="mb-1" style="color: white !important;">Interface d'administration - Mairie de Khombole</p>
-                        <p class="mb-0 small" style="color: rgba(255,255,255,0.8);">Suivi et traitement des demandes d'état civil en temps réel</p>
-                    </div>
-                    <div class="col-md-4 text-end">
-                        <div class="admin-info" style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
-                            <p class="mb-1 small" style="color: white !important;">
-                                <i class="fas fa-user-shield me-1"></i>
-                                Administrateur connecté
-                            </p>
-                            <p class="mb-1" style="color: white !important; font-weight: 600;"><?= htmlspecialchars($_SESSION['admin_email']) ?></p>
-                            <p class="mb-0 small" style="color: rgba(255,255,255,0.8);">
-                                <i class="fas fa-clock me-1"></i>
-                                <?= date('d/m/Y H:i') ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Flèche de retour -->
-                <div class="text-center mt-3">
-                    <a href="menu.php" class="btn btn-light btn-lg" style="border-radius: 50px; padding: 0.75rem 2rem; font-weight: 600;">
-                        <i class="fas fa-arrow-left me-2"></i>Retour à l'Accueil
-                    </a>
-                </div>
+<!-- Header Section comme les autres pages -->
+<div class="header-section">
+    <div class="container">
+        <div class="logo-container">
+            <div class="logo-circle">
+                <img src="logo.jpg" alt="Logo Mairie de Khombole" class="logo-img">
             </div>
+            <div class="text-center">
+                <h1 class="mb-0 fw-bold display-4" style="color: white !important; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">MAIRIE DE KHOMBOLE</h1>
+                <p class="mb-0 fs-4" style="color: white !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">République du Sénégal</p>
+                <p class="mb-0 fs-6" style="color: white !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Administration - Gestion des Demandes</p>
+            </div>
+        </div>
+        
+        <!-- Flèche de retour et info admin -->
+        <div class="text-center mt-3">
+            <a href="menu.php" class="btn btn-light btn-lg me-3" style="border-radius: 50px; padding: 0.75rem 2rem; font-weight: 600;">
+                <i class="fas fa-arrow-left me-2"></i>Retour à l'Accueil
+            </a>
+            <a href="admin_logout.php" class="btn btn-outline-light btn-lg" style="border-radius: 50px; padding: 0.75rem 2rem; font-weight: 600;">
+                <i class="fas fa-sign-out-alt me-2"></i>Déconnexion
+            </a>
+        </div>
+        
+        <!-- Info admin en petit -->
+        <div class="text-center mt-2">
+            <small style="color: rgba(255,255,255,0.8);">
+                <i class="fas fa-user-shield me-1"></i>
+                Connecté : <?= htmlspecialchars($_SESSION['admin_email']) ?>
+                | <i class="fas fa-clock me-1"></i><?= date('d/m/Y H:i') ?>
+            </small>
         </div>
     </div>
 </div>
@@ -921,6 +1001,67 @@ require_once 'admin_header.php';
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             <?php endif; ?>
+
+
+            <!-- Filtres et recherche -->
+            <div class="filters-section">
+                <h5 class="fw-bold text-primary mb-3">
+                    <i class="fas fa-filter me-2"></i>
+                    Filtres et recherche
+                </h5>
+                
+                <form method="GET" class="row g-3">
+                    <div class="col-md-4">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" class="form-control" name="recherche" 
+                                   placeholder="Rechercher par nom, prénom ou numéro de registre..." 
+                                   value="<?= htmlspecialchars($recherche) ?>">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" name="statut">
+                            <option value="">Tous les statuts</option>
+                            <?php foreach ($statutsLabels as $statut => $label): ?>
+                                <option value="<?= $statut ?>" <?= $filtreStatut === $statut ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($label) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" name="type">
+                            <option value="">Tous les types</option>
+                            <?php foreach ($typesActes as $type => $label): ?>
+                                <option value="<?= $type ?>" <?= $filtreType === $type ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($label) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                            <div id="search-indicator" class="text-muted mb-2" style="display: none;">
+                                <i class="fas fa-spinner fa-spin me-2"></i>
+                                <small>Recherche...</small>
+                            </div>
+                            <div id="search-info" class="text-success mb-2">
+                                <i class="fas fa-magic me-2"></i>
+                                <small>Recherche automatique</small>
+                            </div>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" id="clear-filters" title="Effacer tous les filtres">
+                                <i class="fas fa-eraser me-1"></i>
+                                Effacer
+                            </button>
+                        </div>
+                        <!-- Bouton caché pour la soumission manuelle si nécessaire -->
+                        <button type="submit" class="btn btn-primary w-100" style="display: none;" id="manual-submit">
+                            <i class="fas fa-search me-1"></i>
+                            Filtrer
+                        </button>
+                    </div>
+                </form>
+            </div>
 
             <!-- Liste des demandes en cartes -->
             <?php if (!empty($demandes)): ?>
