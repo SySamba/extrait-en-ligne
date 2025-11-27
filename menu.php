@@ -352,7 +352,7 @@
     <div class="container">
         <div class="menu-container">
             <div class="text-center">
-                <h2 class="fw-bold text-primary mb-2">Services en Ligne</h2>
+                <h2 class="fw-bold mb-2" style="color: var(--senegal-vert) !important;">Services en Ligne</h2>
                 <p class="text-muted fs-5">Accédez facilement à nos services numériques</p>
             </div>
 
@@ -453,7 +453,7 @@
             <!-- Section Types d'Actes et Informations -->
             <div class="mt-5">
                 <div class="text-center mb-4">
-                    <h3 class="fw-bold text-primary" style="cursor: pointer;" onclick="toggleTypesActes()" id="types-actes-header">
+                    <h3 class="fw-bold" style="cursor: pointer; color: var(--senegal-vert) !important;" onclick="toggleTypesActes()" id="types-actes-header">
                         <i class="fas fa-file-alt me-2"></i>Types d'Actes et Informations
                         <i class="fas fa-chevron-down ms-2" id="types-actes-arrow"></i>
                     </h3>
@@ -489,13 +489,13 @@
                                 <!-- Extrait de naissance -->
                                 <div class="col-lg-6">
                                     <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-header bg-primary text-white">
+                                        <div class="card-header" style="background: var(--senegal-vert) !important; color: white !important;">
                                             <h6 class="mb-0">
                                                 <i class="fas fa-baby me-2"></i>Extrait de naissance ou copie littérale
                                             </h6>
                                         </div>
                                         <div class="card-body">
-                                            <h6 class="text-primary">Documents requis :</h6>
+                                            <h6 style="color: var(--senegal-vert) !important; font-weight: 600;">Documents requis :</h6>
                                             <ul class="list-unstyled">
                                                 <li><i class="fas fa-check text-success me-2"></i>Votre ancien extrait ou</li>
                                                 <li><i class="fas fa-check text-success me-2"></i>Votre pièce d'identité</li>
@@ -509,18 +509,18 @@
                                 <!-- Célébration de mariage -->
                                 <div class="col-lg-6">
                                     <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-header bg-success text-white">
+                                        <div class="card-header" style="background: var(--senegal-jaune) !important; color: white !important;">
                                             <h6 class="mb-0">
                                                 <i class="fas fa-heart me-2"></i>Célébration d'un mariage
                                             </h6>
                                         </div>
-                                        <div class="card-body">
-                                            <h6 class="text-success">Documents requis :</h6>
-                                            <ul class="list-unstyled">
-                                                <li><i class="fas fa-check text-success me-2"></i>Les extraits de naissance des conjoints</li>
-                                                <li><i class="fas fa-check text-success me-2"></i>Pièce d'identité (le cas échéant)</li>
-                                                <li><i class="fas fa-check text-success me-2"></i>4 témoins avec leurs cartes d'identité</li>
-                                                <li><i class="fas fa-check text-success me-2"></i>Cahier de quartier si le mariage n'a pas été célébré à Khombole</li>
+                                        <div class="card-body" style="background: var(--senegal-jaune); color: white !important;">
+                                            <h6 style="color: white !important; font-weight: 600;">Documents requis :</h6>
+                                            <ul class="list-unstyled" style="color: white !important;">
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Les extraits de naissance des conjoints</li>
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Pièce d'identité (le cas échéant)</li>
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>4 témoins avec leurs cartes d'identité</li>
+                                                <li style="color: white !important;"><i class="fas fa-check me-2" style="color: white !important;"></i>Cahier de quartier si le mariage n'a pas été célébré à Khombole</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -529,7 +529,7 @@
                                 <!-- Déclaration de naissance -->
                                 <div class="col-lg-6">
                                     <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-header bg-info text-white">
+                                        <div class="card-header" style="background: var(--senegal-rouge) !important; color: white !important;">
                                             <h6 class="mb-0">
                                                 <i class="fas fa-baby-carriage me-2"></i>Déclaration de naissance
                                             </h6>
@@ -539,7 +539,7 @@
                                                 <i class="fas fa-clock me-2"></i>
                                                 <strong>Délai :</strong> Dans les 12 mois suivant la naissance
                                             </div>
-                                            <h6 class="text-info">Documents requis :</h6>
+                                            <h6 style="color: var(--senegal-rouge) !important; font-weight: 600;">Documents requis :</h6>
                                             <ul class="list-unstyled">
                                                 <li><i class="fas fa-check text-success me-2"></i>Certificat médical de naissance</li>
                                                 <li><i class="fas fa-check text-success me-2"></i>Pièces d'identité des parents</li>
@@ -668,7 +668,7 @@
                 <div class="row g-4 mt-2">
                     <div class="col-lg-6">
                         <div class="card border-0 shadow-sm">
-                            <div class="card-header bg-primary text-white">
+                            <div class="card-header" style="background: var(--senegal-vert) !important; color: white !important;">
                                 <h6 class="mb-0">
                                     <i class="fas fa-clock me-2"></i>Horaires de dépôt et de retrait
                                 </h6>
@@ -676,14 +676,14 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-6">
-                                        <h6 class="text-primary fw-bold">Dépôts de documents :</h6>
+                                        <h6 class="fw-bold" style="color: var(--senegal-vert) !important;">Dépôts de documents :</h6>
                                         <ul class="list-unstyled">
                                             <li><i class="fas fa-sun text-warning me-2"></i>Matin : 08h00 – 13h00</li>
                                             <li><i class="fas fa-moon text-info me-2"></i>Après-midi : 15h00 – 16h00</li>
                                         </ul>
                                     </div>
                                     <div class="col-6">
-                                        <h6 class="text-primary fw-bold">Retraits de documents :</h6>
+                                        <h6 class="fw-bold" style="color: var(--senegal-vert) !important;">Retraits de documents :</h6>
                                         <ul class="list-unstyled">
                                             <li><i class="fas fa-sun text-warning me-2"></i>Matinée : 10h30 – 14h00</li>
                                             <li><i class="fas fa-moon text-info me-2"></i>Après-midi : 15h00 – 17h00</li>
@@ -737,7 +737,7 @@
                 <div class="col-md-6">
                     <div class="card border-0 bg-light">
                         <div class="card-body">
-                            <h6 class="fw-bold text-primary mb-3">
+                            <h6 class="fw-bold mb-3" style="color: var(--senegal-vert) !important;">
                                 <i class="fas fa-phone me-2"></i>
                                 Contact
                             </h6>
@@ -750,7 +750,7 @@
                 <div class="col-md-6">
                     <div class="card border-0 bg-light">
                         <div class="card-body">
-                            <h6 class="fw-bold text-primary mb-3">
+                            <h6 class="fw-bold mb-3" style="color: var(--senegal-vert) !important;">
                                 <i class="fas fa-credit-card me-2"></i>
                                 Paiement
                             </h6>
