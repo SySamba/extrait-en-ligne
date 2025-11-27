@@ -136,16 +136,9 @@ if (isset($_POST['numero_registre']) && !empty($_POST['numero_registre'])) {
         }
 
         .header-section {
-            /* Drapeau sénégalais en dégradé */
-            background: linear-gradient(135deg, 
-                var(--senegal-vert) 0%, 
-                var(--senegal-vert) 33%, 
-                var(--senegal-jaune) 33%, 
-                var(--senegal-jaune) 66%, 
-                var(--senegal-rouge) 66%, 
-                var(--senegal-rouge) 100%);
+            background: var(--senegal-vert);
             color: white;
-            padding: 2rem 0;
+            padding: 3rem 0;
             margin-bottom: 2rem;
             border-radius: 0 0 30px 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -165,7 +158,7 @@ if (isset($_POST['numero_registre']) && !empty($_POST['numero_registre'])) {
         .search-container {
             background: var(--blanc-principal);
             border: 3px solid transparent;
-            border-image: linear-gradient(135deg, var(--senegal-vert), var(--senegal-jaune), var(--senegal-rouge)) 1;
+            border: 3px solid var(--senegal-vert);
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             padding: 2.5rem;
@@ -185,7 +178,7 @@ if (isset($_POST['numero_registre']) && !empty($_POST['numero_registre'])) {
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            background: var(--senegal-vert);
             border: none;
             border-radius: 25px;
             padding: 0.75rem 2rem;

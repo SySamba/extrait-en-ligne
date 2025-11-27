@@ -139,34 +139,27 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         }
         
         .card-header.bg-primary {
-            background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-vert-fonce)) !important;
+            background: var(--senegal-vert) !important;
             color: var(--blanc-principal);
         }
         
         .card-header.bg-success {
-            background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-vert-fonce)) !important;
+            background: var(--senegal-vert) !important;
             color: var(--blanc-principal);
         }
         
         .card-header.bg-warning {
-            background: linear-gradient(135deg, var(--senegal-jaune), var(--senegal-jaune-fonce)) !important;
+            background: var(--senegal-jaune) !important;
             color: var(--texte-fonce);
         }
         
         .card-header.bg-danger {
-            background: linear-gradient(135deg, var(--senegal-rouge), var(--senegal-rouge-fonce)) !important;
+            background: var(--senegal-rouge) !important;
             color: var(--blanc-principal);
         }
 
         .public-navbar {
-            /* Drapeau sénégalais en dégradé */
-            background: linear-gradient(135deg, 
-                var(--senegal-vert) 0%, 
-                var(--senegal-vert) 33%, 
-                var(--senegal-jaune) 33%, 
-                var(--senegal-jaune) 66%, 
-                var(--senegal-rouge) 66%, 
-                var(--senegal-rouge) 100%);
+            background: var(--senegal-vert) !important;
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             padding: 0.5rem 0;
             border-bottom: 3px solid var(--blanc-principal);
@@ -242,7 +235,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         }
 
         .hero-section {
-            background: linear-gradient(135deg, rgba(11, 132, 62, 0.9), rgba(30, 58, 138, 0.9));
+            background: var(--senegal-vert);
             color: white;
             padding: 3rem 0;
             margin-bottom: 2rem;

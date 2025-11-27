@@ -738,7 +738,7 @@ require_once 'admin_header.php';
 <div class="container mt-3">
     <div class="row">
         <div class="col-12">
-            <div class="admin-header-section" style="background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-jaune), var(--senegal-rouge)); color: white; padding: 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <div class="admin-header-section" style="background: var(--senegal-vert); color: white; padding: 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                 <div class="row align-items-center">
                     <div class="col-md-8">
                         <h2 class="fw-bold mb-2" style="color: white !important;">GESTION DES DEMANDES D'ACTES</h2>

@@ -64,14 +64,7 @@
         }
 
         .header-section {
-            /* Drapeau sénégalais en dégradé adouci */
-            background: linear-gradient(135deg, 
-                var(--senegal-vert) 0%, 
-                var(--senegal-vert) 33%, 
-                var(--senegal-jaune) 33%, 
-                var(--senegal-jaune) 66%, 
-                var(--senegal-rouge) 66%, 
-                var(--senegal-rouge) 100%);
+            background: var(--senegal-vert);
             color: white;
             padding: 3rem 0;
             margin-bottom: 2rem;
@@ -219,12 +212,20 @@
         }
 
         .stats-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            background: var(--senegal-vert);
             color: white;
             border-radius: 20px;
             padding: 2rem;
             margin-top: 2rem;
             text-align: center;
+        }
+        
+        .stats-section h4 {
+            color: white !important;
+        }
+        
+        .stats-section p {
+            color: white !important;
         }
 
         .stats-grid {
