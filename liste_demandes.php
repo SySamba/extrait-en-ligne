@@ -181,12 +181,64 @@ $totalPages = ceil($totalDemandes / $parPage);
 // Définir le titre de la page
 $pageTitle = 'Liste des Demandes';
 
-// Inclure le header admin
-require_once 'admin_header.php';
+// Header simple sans navigation
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Demandes - Mairie de Khombole</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<?php
 ?>
     
 <!-- Styles spécifiques à la liste des demandes -->
 <style>
+        /* Thème Sénégal - Couleurs nationales avec dominance du blanc */
+        :root {
+            /* Couleurs Sénégal adoucies pour meilleure lisibilité */
+            --senegal-vert: #2d5a3d;
+            --senegal-jaune: #f4e04d;
+            --senegal-rouge: #c8434e;
+            --senegal-vert-fonce: #1a3d2e;
+            --senegal-jaune-fonce: #d4c043;
+            --senegal-rouge-fonce: #a8363f;
+            
+            /* Blanc dominant pour l'accessibilité */
+            --blanc-principal: #ffffff;
+            --blanc-casse: #fefefe;
+            --gris-tres-clair: #f8f9fa;
+            --gris-clair: #e9ecef;
+            --texte-fonce: #1a1a1a;
+            --texte-visible: #000000;
+            
+            /* Variables héritées */
+            --primary-color: var(--senegal-vert);
+            --secondary-color: var(--senegal-jaune);
+            --accent-color: var(--senegal-rouge);
+            --text-dark: var(--texte-visible);
+            --bg-light: var(--blanc-principal);
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--blanc-principal);
+            color: var(--texte-visible);
+            margin: 0;
+            padding: 20px;
+        }
 
         .main-container {
             background: var(--blanc-principal);
@@ -343,15 +395,32 @@ require_once 'admin_header.php';
             box-shadow: 0 15px 40px rgba(45, 90, 61, 0.4);
         }
         
-        /* Correction du texte dans les KPI */
+        /* Correction du texte dans les KPI - Assurer la visibilité */
         .stat-number {
             color: inherit !important;
             font-weight: 700;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
         .stat-label {
             color: inherit !important;
             font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .stat-percentage {
+            color: inherit !important;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        /* Assurer que le texte blanc est visible sur les fonds colorés */
+        .stat-danger .stat-number,
+        .stat-danger .stat-label,
+        .stat-danger .stat-percentage {
+            color: white !important;
         }
 
         .stat-dark {
@@ -636,12 +705,24 @@ require_once 'admin_header.php';
         .demande-numero {
             font-weight: 600;
             font-size: 1rem;
+            color: white !important;
         }
 
         .demande-statut .status-badge {
             background: rgba(255, 255, 255, 0.2) !important;
             color: white !important;
             border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Assurer que tout le texte dans les cartes soit visible */
+        .demande-card .card-body {
+            color: var(--texte-visible) !important;
+        }
+        
+        .demande-card .card-body h6,
+        .demande-card .card-body p,
+        .demande-card .card-body span {
+            color: var(--texte-visible) !important;
         }
 
         .demande-card .card-body {
@@ -816,114 +897,102 @@ require_once 'admin_header.php';
             }
         }
     </style>
-<!-- Header Section comme les autres pages -->
-<div class="header-section">
-    <div class="container">
-        <div class="logo-container">
-            <div class="logo-circle">
-                <img src="logo.jpg" alt="Logo Mairie de Khombole" class="logo-img">
+
+<!-- Header simple avec boutons -->
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded">
+                <div>
+                    <h2 class="mb-0 text-primary"><i class="fas fa-list me-2"></i>Liste des Demandes</h2>
+                    <small class="text-muted">Administration - Mairie de Khombole</small>
+                </div>
+                <div>
+                    <a href="menu.php" class="btn btn-outline-primary me-2">
+                        <i class="fas fa-arrow-left me-1"></i>Retour à l'Accueil
+                    </a>
+                    <a href="admin_logout.php" class="btn btn-outline-danger">
+                        <i class="fas fa-sign-out-alt me-1"></i>Déconnexion
+                    </a>
+                </div>
             </div>
-            <div class="text-center">
-                <h1 class="mb-0 fw-bold display-4" style="color: white !important; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">MAIRIE DE KHOMBOLE</h1>
-                <p class="mb-0 fs-4" style="color: white !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">République du Sénégal</p>
-                <p class="mb-0 fs-6" style="color: white !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Administration - Gestion des Demandes</p>
-            </div>
-        </div>
-        
-        <!-- Flèche de retour et info admin -->
-        <div class="text-center mt-3">
-            <a href="menu.php" class="btn btn-light btn-lg me-3" style="border-radius: 50px; padding: 0.75rem 2rem; font-weight: 600;">
-                <i class="fas fa-arrow-left me-2"></i>Retour à l'Accueil
-            </a>
-            <a href="admin_logout.php" class="btn btn-outline-light btn-lg" style="border-radius: 50px; padding: 0.75rem 2rem; font-weight: 600;">
-                <i class="fas fa-sign-out-alt me-2"></i>Déconnexion
-            </a>
-        </div>
-        
-        <!-- Info admin en petit -->
-        <div class="text-center mt-2">
-            <small style="color: rgba(255,255,255,0.8);">
-                <i class="fas fa-user-shield me-1"></i>
-                Connecté : <?= htmlspecialchars($_SESSION['admin_email']) ?>
-                | <i class="fas fa-clock me-1"></i><?= date('d/m/Y H:i') ?>
-            </small>
         </div>
     </div>
 </div>
 
-    <div class="container">
-        <div class="main-container">
-            <!-- KPI - Indicateurs de Performance -->
-            <div class="stats-cards">
-                <!-- Total des demandes -->
-                <div class="stat-card stat-total">
-                    <div class="stat-number"><?= $totalDemandes ?></div>
-                    <div class="stat-label">
-                        <i class="fas fa-file-alt"></i>
-                        Total des demandes
-                    </div>
-                </div>
-                
-                <!-- En attente -->
-                <div class="stat-card stat-danger">
-                    <div class="stat-number"><?= $statsParStatut['en_attente'] ?></div>
-                    <div class="stat-label">
-                        <i class="fas fa-clock"></i>
-                        En attente
-                    </div>
-                    <div class="stat-percentage">
-                        <?= $totalDemandes > 0 ? round(($statsParStatut['en_attente'] / $totalDemandes) * 100, 1) : 0 ?>%
-                    </div>
-                </div>
-                
-                <!-- En traitement -->
-                <div class="stat-card stat-warning">
-                    <div class="stat-number"><?= $statsParStatut['en_traitement'] ?></div>
-                    <div class="stat-label">
-                        <i class="fas fa-cogs"></i>
-                        En traitement
-                    </div>
-                    <div class="stat-percentage">
-                        <?= $totalDemandes > 0 ? round(($statsParStatut['en_traitement'] / $totalDemandes) * 100, 1) : 0 ?>%
-                    </div>
-                </div>
-                
-                <!-- Prêt -->
-                <div class="stat-card stat-info">
-                    <div class="stat-number"><?= $statsParStatut['pret'] ?></div>
-                    <div class="stat-label">
-                        <i class="fas fa-check-circle"></i>
-                        Prêt
-                    </div>
-                    <div class="stat-percentage">
-                        <?= $totalDemandes > 0 ? round(($statsParStatut['pret'] / $totalDemandes) * 100, 1) : 0 ?>%
-                    </div>
-                </div>
-                
-                <!-- Délivré -->
-                <div class="stat-card stat-success">
-                    <div class="stat-number"><?= $statsParStatut['delivre'] ?></div>
-                    <div class="stat-label">
-                        <i class="fas fa-check-double"></i>
-                        Délivré
-                    </div>
-                    <div class="stat-percentage">
-                        <?= $totalDemandes > 0 ? round(($statsParStatut['delivre'] / $totalDemandes) * 100, 1) : 0 ?>%
-                    </div>
-                </div>
-                
-                <!-- Rejeté -->
-                <div class="stat-card stat-dark">
-                    <div class="stat-number"><?= $statsParStatut['rejete'] ?></div>
-                    <div class="stat-label">
-                        <i class="fas fa-times-circle"></i>
-                        Rejeté
-                    </div>
-                    <div class="stat-percentage">
-                        <?= $totalDemandes > 0 ? round(($statsParStatut['rejete'] / $totalDemandes) * 100, 1) : 0 ?>%
-                    </div>
+<div class="container">
+    <div class="main-container">
+        <!-- KPI - Indicateurs de Performance (en premier) -->
+        <div class="stats-cards">
+            <!-- Total des demandes -->
+            <div class="stat-card stat-total">
+                <div class="stat-number"><?= $totalDemandes ?></div>
+                <div class="stat-label">
+                    <i class="fas fa-file-alt"></i>
+                    Demandes Total
                 </div>
             </div>
+            
+            <!-- En attente -->
+            <div class="stat-card stat-info">
+                <div class="stat-number"><?= $statsParStatut['en_attente'] ?></div>
+                <div class="stat-label">
+                    <i class="fas fa-clock"></i>
+                    En attente
+                </div>
+                <div class="stat-percentage">
+                    <?= $totalDemandes > 0 ? round(($statsParStatut['en_attente'] / $totalDemandes) * 100, 1) : 0 ?>%
+                </div>
+            </div>
+            
+            <!-- En traitement -->
+            <div class="stat-card stat-warning">
+                <div class="stat-number"><?= $statsParStatut['en_traitement'] ?></div>
+                <div class="stat-label">
+                    <i class="fas fa-cogs"></i>
+                    En traitement
+                </div>
+                <div class="stat-percentage">
+                    <?= $totalDemandes > 0 ? round(($statsParStatut['en_traitement'] / $totalDemandes) * 100, 1) : 0 ?>%
+                </div>
+            </div>
+            
+            <!-- Prêtes -->
+            <div class="stat-card stat-success">
+                <div class="stat-number"><?= $statsParStatut['pret'] ?></div>
+                <div class="stat-label">
+                    <i class="fas fa-check-circle"></i>
+                    Prêt
+                </div>
+                <div class="stat-percentage">
+                    <?= $totalDemandes > 0 ? round(($statsParStatut['pret'] / $totalDemandes) * 100, 1) : 0 ?>%
+                </div>
+            </div>
+            
+            <!-- Délivrées -->
+            <div class="stat-card stat-success">
+                <div class="stat-number"><?= $statsParStatut['delivre'] ?></div>
+                <div class="stat-label">
+                    <i class="fas fa-check-double"></i>
+                    Délivré
+                </div>
+                <div class="stat-percentage">
+                    <?= $totalDemandes > 0 ? round(($statsParStatut['delivre'] / $totalDemandes) * 100, 1) : 0 ?>%
+                </div>
+            </div>
+            
+            <!-- Rejetées -->
+            <div class="stat-card stat-danger">
+                <div class="stat-number"><?= $statsParStatut['rejete'] ?></div>
+                <div class="stat-label">
+                    <i class="fas fa-times-circle"></i>
+                    Rejeté
+                </div>
+                <div class="stat-percentage">
+                    <?= $totalDemandes > 0 ? round(($statsParStatut['rejete'] / $totalDemandes) * 100, 1) : 0 ?>%
+                </div>
+            </div>
+        </div>
 
             <!-- Filtres et recherche -->
             <div class="filters-section">
