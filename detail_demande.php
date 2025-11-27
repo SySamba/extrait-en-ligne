@@ -177,7 +177,14 @@ $qualites = [
         }
 
         .header-section {
-            background: var(--senegal-vert);
+            /* Drapeau sénégalais en dégradé avec couleurs adoucies */
+            background: linear-gradient(135deg, 
+                var(--senegal-vert) 0%, 
+                var(--senegal-vert) 33%, 
+                var(--senegal-jaune) 33%, 
+                var(--senegal-jaune) 66%, 
+                var(--senegal-rouge) 66%, 
+                var(--senegal-rouge) 100%);
             color: white;
             padding: 3rem 0;
             margin-bottom: 2rem;

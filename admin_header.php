@@ -211,7 +211,14 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         }
 
         .admin-navbar {
-            background-color: var(--senegal-vert) !important;
+            /* Drapeau sénégalais en dégradé avec couleurs adoucies */
+            background: linear-gradient(135deg, 
+                var(--senegal-vert) 0%, 
+                var(--senegal-vert) 33%, 
+                var(--senegal-jaune) 33%, 
+                var(--senegal-jaune) 66%, 
+                var(--senegal-rouge) 66%, 
+                var(--senegal-rouge) 100%) !important;
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             padding: 0.5rem 0;
             border-bottom: 3px solid var(--blanc-principal);
