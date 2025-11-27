@@ -734,12 +734,40 @@ require_once 'admin_header.php';
             }
         }
     </style>
-<!-- Flèche de retour à l'accueil -->
+<!-- Header détaillé pour la liste des demandes -->
 <div class="container mt-3">
-    <div class="text-center mb-4">
-        <a href="menu.php" class="btn btn-primary btn-lg" style="border-radius: 50px; padding: 0.75rem 2rem;">
-            <i class="fas fa-arrow-left me-2"></i>Retour à l'Accueil
-        </a>
+    <div class="row">
+        <div class="col-12">
+            <div class="admin-header-section" style="background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-jaune), var(--senegal-rouge)); color: white; padding: 2rem; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h2 class="fw-bold mb-2" style="color: white !important;">GESTION DES DEMANDES D'ACTES</h2>
+                        <p class="mb-1" style="color: white !important;">Interface d'administration - Mairie de Khombole</p>
+                        <p class="mb-0 small" style="color: rgba(255,255,255,0.8);">Suivi et traitement des demandes d'état civil en temps réel</p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <div class="admin-info" style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px;">
+                            <p class="mb-1 small" style="color: white !important;">
+                                <i class="fas fa-user-shield me-1"></i>
+                                Administrateur connecté
+                            </p>
+                            <p class="mb-1" style="color: white !important; font-weight: 600;"><?= htmlspecialchars($_SESSION['admin_email']) ?></p>
+                            <p class="mb-0 small" style="color: rgba(255,255,255,0.8);">
+                                <i class="fas fa-clock me-1"></i>
+                                <?= date('d/m/Y H:i') ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Flèche de retour -->
+                <div class="text-center mt-3">
+                    <a href="menu.php" class="btn btn-light btn-lg" style="border-radius: 50px; padding: 0.75rem 2rem; font-weight: 600;">
+                        <i class="fas fa-arrow-left me-2"></i>Retour à l'Accueil
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

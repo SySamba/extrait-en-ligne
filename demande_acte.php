@@ -199,7 +199,7 @@
         }
 
         .section-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            background: var(--senegal-vert);
             color: white;
             padding: 1rem 1.5rem;
             border-radius: 10px;
@@ -801,9 +801,9 @@
 
             <div class="form-container">
                 <!-- Section 3: Consentements (suite) -->
-                <div class="section-header">
-                    <i class="fas fa-shield-alt"></i>
-                    <h4 class="mb-0">Consentements et validation</h4>
+                <div class="section-header" style="background: var(--senegal-jaune); color: #000000 !important;">
+                    <i class="fas fa-shield-alt" style="color: #000000;"></i>
+                    <h4 class="mb-0" style="color: #000000 !important;">Consentements et validation</h4>
                 </div>
 
                 <div class="checkbox-container">

@@ -235,20 +235,24 @@
         }
 
         .stat-item {
-            background: rgba(255,255,255,0.1);
+            background: var(--blanc-principal);
+            border: 2px solid var(--senegal-vert);
             border-radius: 15px;
             padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .stat-number {
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
+            color: var(--senegal-vert) !important;
         }
 
         .stat-label {
             font-size: 0.9rem;
-            opacity: 0.9;
+            color: #000000 !important;
+            font-weight: 600;
         }
 
         /* Styles pour la section repliable */
@@ -309,9 +313,9 @@
                     <img src="logo.jpg" alt="Logo Mairie de Khombole" class="logo-img">
                 </div>
                 <div class="text-center">
-                    <h1 class="mb-0 fw-bold display-4">MAIRIE DE KHOMBOLE</h1>
-                    <p class="mb-0 fs-4">République du Sénégal</p>
-                    <p class="mb-0 fs-6 opacity-75">Services Numériques d'État Civil</p>
+                    <h1 class="mb-0 fw-bold display-4" style="color: #000000 !important; text-shadow: 2px 2px 4px rgba(255,255,255,0.8);">MAIRIE DE KHOMBOLE</h1>
+                    <p class="mb-0 fs-4" style="color: #000000 !important; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);">République du Sénégal</p>
+                    <p class="mb-0 fs-6" style="color: #000000 !important; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);">Services Numériques d'État Civil</p>
                 </div>
             </div>
         </div>
@@ -361,8 +365,8 @@
 
             <!-- Section statistiques -->
             <div class="stats-section">
-                <h4 class="fw-bold mb-0">Statistiques du Service</h4>
-                <p class="opacity-75 mb-0">Données en temps réel</p>
+                <h4 class="fw-bold mb-0" style="color: #000000 !important;">Statistiques du Service</h4>
+                <p class="mb-0" style="color: #000000 !important;">Données en temps réel</p>
                 
                 <div class="stats-grid">
                     <div class="stat-item">
@@ -521,13 +525,13 @@
                                 <!-- Déclaration de décès -->
                                 <div class="col-lg-6">
                                     <div class="card h-100 border-0 shadow-sm">
-                                        <div class="card-header bg-dark text-white">
-                                            <h6 class="mb-0">
+                                        <div class="card-header" style="background-color: var(--senegal-vert); color: white;">
+                                            <h6 class="mb-0" style="color: white !important;">
                                                 <i class="fas fa-cross me-2"></i>Déclaration de décès
                                             </h6>
                                         </div>
                                         <div class="card-body">
-                                            <h6 class="text-dark">Procédure :</h6>
+                                            <h6 style="color: #000000 !important;">Procédure :</h6>
                                             <ul class="list-unstyled">
                                                 <li><i class="fas fa-check text-success me-2"></i>Présentez-vous à la mairie</li>
                                                 <li><i class="fas fa-check text-success me-2"></i>Apportez le certificat médical de décès</li>
