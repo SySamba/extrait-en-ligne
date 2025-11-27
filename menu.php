@@ -13,28 +13,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Thème Sénégal - Couleurs nationales avec dominance du blanc */
+        /* Thème Sénégal - Couleurs douces avec dominance du blanc */
         :root {
-            /* Couleurs officielles du Sénégal */
-            --senegal-vert: #00853f;
-            --senegal-jaune: #fdef42;
-            --senegal-rouge: #e31e24;
-            --senegal-vert-fonce: #006b33;
-            --senegal-jaune-fonce: #e6d000;
-            --senegal-rouge-fonce: #c41e3a;
+            /* Couleurs Sénégal adoucies pour meilleure lisibilité */
+            --senegal-vert: #2d5a3d;
+            --senegal-jaune: #f4e04d;
+            --senegal-rouge: #c8434e;
+            --senegal-vert-fonce: #1a3d2e;
+            --senegal-jaune-fonce: #d4c043;
+            --senegal-rouge-fonce: #a8363f;
             
             /* Blanc dominant pour l'accessibilité */
             --blanc-principal: #ffffff;
             --blanc-casse: #fefefe;
             --gris-tres-clair: #f8f9fa;
             --gris-clair: #e9ecef;
-            --texte-fonce: #212529;
+            --texte-fonce: #1a1a1a;
+            --texte-visible: #000000;
             
             /* Variables héritées */
             --primary-color: var(--senegal-vert);
             --secondary-color: var(--senegal-jaune);
             --accent-color: var(--senegal-rouge);
-            --text-dark: var(--texte-fonce);
+            --text-dark: var(--texte-visible);
         }
 
         * {
@@ -45,11 +46,25 @@
             background: var(--blanc-principal);
             min-height: 100vh;
             padding: 20px 0;
-            color: var(--texte-fonce);
+            color: var(--texte-visible);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--texte-visible) !important;
+            font-weight: 600;
+        }
+        
+        p, span, div {
+            color: var(--texte-visible);
+        }
+        
+        .text-white {
+            color: #ffffff !important;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .header-section {
-            /* Drapeau sénégalais en dégradé */
+            /* Drapeau sénégalais en dégradé adouci */
             background: linear-gradient(135deg, 
                 var(--senegal-vert) 0%, 
                 var(--senegal-vert) 33%, 
@@ -58,11 +73,22 @@
                 var(--senegal-rouge) 66%, 
                 var(--senegal-rouge) 100%);
             color: white;
-            padding: 4rem 0;
-            margin-bottom: 3rem;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
             border-radius: 0 0 30px 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
+        }
+        
+        .header-section h1 {
+            color: white !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 700;
+        }
+        
+        .header-section p {
+            color: white !important;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
         .header-section::after {

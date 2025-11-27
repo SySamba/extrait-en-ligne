@@ -177,132 +177,16 @@ try {
 
 // Calcul pagination
 $totalPages = ceil($totalDemandes / $parPage);
+
+// Définir le titre de la page
+$pageTitle = 'Liste des Demandes';
+
+// Inclure le header admin
+require_once 'admin_header.php';
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Demandes - Mairie de Khombole</title>
     
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Thème Sénégal - Couleurs nationales avec dominance du blanc */
-        :root {
-            /* Couleurs officielles du Sénégal */
-            --senegal-vert: #00853f;
-            --senegal-jaune: #fdef42;
-            --senegal-rouge: #e31e24;
-            --senegal-vert-fonce: #006b33;
-            --senegal-jaune-fonce: #e6d000;
-            --senegal-rouge-fonce: #c41e3a;
-            
-            /* Blanc dominant pour l'accessibilité */
-            --blanc-principal: #ffffff;
-            --blanc-casse: #fefefe;
-            --gris-tres-clair: #f8f9fa;
-            --gris-clair: #e9ecef;
-            --texte-fonce: #212529;
-            
-            /* Variables héritées */
-            --primary-color: var(--senegal-vert);
-            --secondary-color: var(--senegal-jaune);
-            --accent-color: var(--senegal-rouge);
-            --text-dark: #2c3e50;
-            --bg-light: #f8f9fa;
-        }
-
-        * {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background: var(--blanc-principal);
-            min-height: 100vh;
-            padding: 20px 0;
-            color: var(--texte-fonce);
-        }
-
-        .header-section {
-            /* Drapeau sénégalais en dégradé */
-            background: linear-gradient(135deg, 
-                var(--senegal-vert) 0%, 
-                var(--senegal-vert) 33%, 
-                var(--senegal-jaune) 33%, 
-                var(--senegal-jaune) 66%, 
-                var(--senegal-rouge) 66%, 
-                var(--senegal-rouge) 100%);
-            color: white;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
-            border-radius: 0 0 30px 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        
-        .header-section::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 10px;
-            background: var(--blanc-principal);
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 2rem;
-            flex-shrink: 0;
-        }
-        
-        .logo-circle {
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            border: 4px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .logo-circle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-        }
-        
-        .logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        @media (max-width: 768px) {
-            .logo-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .logo-circle {
-                width: 80px;
-                height: 80px;
-            }
-        }
+<!-- Styles spécifiques à la liste des demandes -->
+<style>
 
         .main-container {
             background: var(--blanc-principal);
@@ -850,41 +734,14 @@ $totalPages = ceil($totalDemandes / $parPage);
             }
         }
     </style>
-</head>
-<body>
-    <!-- Header Section comme menu.php -->
-    <div class="header-section">
-        <div class="container">
-            <div class="logo-container">
-                <div class="logo-circle">
-                    <img src="logo.jpg" alt="Logo Mairie de Khombole" class="logo-img">
-                </div>
-                <div class="text-center">
-                    <h1 class="mb-0 fw-bold display-4">MAIRIE DE KHOMBOLE</h1>
-                    <p class="mb-0 fs-4">République du Sénégal</p>
-                    <p class="mb-0 fs-6 opacity-75">Administration - Gestion des Demandes</p>
-                </div>
-            </div>
-            
-            <!-- Flèche de retour à l'accueil -->
-            <div class="text-center mt-3">
-                <a href="menu.php" class="btn btn-light btn-lg" style="border-radius: 50px; padding: 0.75rem 2rem;">
-                    <i class="fas fa-arrow-left me-2"></i>Retour à l'Accueil
-                </a>
-            </div>
-            
-            <!-- Info admin en petit -->
-            <div class="text-center mt-2">
-                <small class="text-white-50">
-                    <i class="fas fa-user-shield me-1"></i>
-                    Connecté : <?= htmlspecialchars($_SESSION['admin_email']) ?>
-                    | <a href="admin_logout.php" class="text-white-50 text-decoration-none">
-                        <i class="fas fa-sign-out-alt me-1"></i>Déconnexion
-                    </a>
-                </small>
-            </div>
-        </div>
+<!-- Flèche de retour à l'accueil -->
+<div class="container mt-3">
+    <div class="text-center mb-4">
+        <a href="menu.php" class="btn btn-primary btn-lg" style="border-radius: 50px; padding: 0.75rem 2rem;">
+            <i class="fas fa-arrow-left me-2"></i>Retour à l'Accueil
+        </a>
     </div>
+</div>
 
     <div class="container">
         <div class="main-container">
