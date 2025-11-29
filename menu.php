@@ -300,6 +300,79 @@
             transition: transform 0.3s ease;
         }
 
+        /* Styles personnalisés pour les onglets avec couleurs du Sénégal */
+        .nav-pills .nav-link {
+            background: transparent;
+            border: 2px solid var(--senegal-vert);
+            color: var(--senegal-vert) !important;
+            font-weight: 600;
+            border-radius: 25px;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+            padding: 12px 20px;
+        }
+
+        .nav-pills .nav-link:hover {
+            background: var(--senegal-vert);
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45, 90, 61, 0.3);
+        }
+
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, var(--senegal-vert), var(--senegal-jaune));
+            color: white !important;
+            border-color: var(--senegal-vert);
+            box-shadow: 0 8px 20px rgba(45, 90, 61, 0.4);
+        }
+
+        .nav-pills .nav-link.active:hover {
+            background: linear-gradient(135deg, var(--senegal-vert-fonce), var(--senegal-jaune-fonce));
+        }
+
+        /* Couleurs spécifiques pour chaque onglet */
+        #actes-civils-tab {
+            border-color: var(--senegal-vert) !important;
+            color: var(--senegal-vert) !important;
+        }
+
+        #actes-civils-tab.active {
+            background: var(--senegal-vert) !important;
+            color: white !important;
+        }
+
+        #certificats-tab {
+            border-color: var(--senegal-jaune) !important;
+            color: var(--senegal-jaune-fonce) !important;
+        }
+
+        #certificats-tab:hover {
+            background: var(--senegal-jaune) !important;
+            color: black !important;
+        }
+
+        #certificats-tab.active {
+            background: var(--senegal-jaune) !important;
+            color: black !important;
+            border-color: var(--senegal-jaune) !important;
+        }
+
+        #procedures-tab {
+            border-color: var(--senegal-rouge) !important;
+            color: var(--senegal-rouge) !important;
+        }
+
+        #procedures-tab:hover {
+            background: var(--senegal-rouge) !important;
+            color: white !important;
+        }
+
+        #procedures-tab.active {
+            background: var(--senegal-rouge) !important;
+            color: white !important;
+            border-color: var(--senegal-rouge) !important;
+        }
+
         @media (max-width: 768px) {
             .menu-container {
                 padding: 2rem 1.5rem;
@@ -328,6 +401,13 @@
             
             .menu-card {
                 padding: 2rem 1.5rem;
+            }
+
+            /* Responsive pour les onglets */
+            .nav-pills .nav-link {
+                margin: 2px;
+                padding: 8px 12px;
+                font-size: 0.9rem;
             }
         }
     </style>
