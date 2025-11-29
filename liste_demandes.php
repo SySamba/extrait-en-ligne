@@ -153,6 +153,10 @@ $statutsColors = [
 
 // Calcul des statistiques par statut
 $statsParStatut = [];
+$delaiMoyen = '24h'; // Valeur par défaut
+$demandesAujourdhui = 0;
+$demandesTotalSemaine = 0;
+
 try {
     $sqlStats = "SELECT statut, COUNT(*) as nombre FROM demandes_actes GROUP BY statut";
     $stmtStats = $pdo->prepare($sqlStats);
@@ -168,6 +172,37 @@ try {
     foreach ($resultStats as $stat) {
         $statsParStatut[$stat['statut']] = $stat['nombre'];
     }
+    
+    // Calcul du délai moyen (en heures) pour les demandes traitées
+    $sqlDelai = "SELECT AVG(TIMESTAMPDIFF(HOUR, date_soumission, date_traitement)) as delai_moyen 
+                 FROM demandes_actes 
+                 WHERE statut IN ('delivre', 'pret') AND date_traitement IS NOT NULL";
+    $stmtDelai = $pdo->prepare($sqlDelai);
+    $stmtDelai->execute();
+    $resultDelai = $stmtDelai->fetch();
+    
+    if ($resultDelai && $resultDelai['delai_moyen'] !== null) {
+        $heures = round($resultDelai['delai_moyen']);
+        if ($heures < 24) {
+            $delaiMoyen = $heures . 'h';
+        } else {
+            $jours = round($heures / 24, 1);
+            $delaiMoyen = $jours . 'j';
+        }
+    }
+    
+    // Demandes d'aujourd'hui
+    $sqlAujourdhui = "SELECT COUNT(*) as total FROM demandes_actes WHERE DATE(date_soumission) = CURDATE()";
+    $stmtAujourdhui = $pdo->prepare($sqlAujourdhui);
+    $stmtAujourdhui->execute();
+    $demandesAujourdhui = $stmtAujourdhui->fetch()['total'] ?? 0;
+    
+    // Demandes de cette semaine
+    $sqlSemaine = "SELECT COUNT(*) as total FROM demandes_actes WHERE YEARWEEK(date_soumission, 1) = YEARWEEK(CURDATE(), 1)";
+    $stmtSemaine = $pdo->prepare($sqlSemaine);
+    $stmtSemaine->execute();
+    $demandesTotalSemaine = $stmtSemaine->fetch()['total'] ?? 0;
+    
 } catch (Exception $e) {
     // En cas d'erreur, initialiser à 0
     foreach (array_keys($statutsLabels) as $statut) {
@@ -325,7 +360,7 @@ $pageTitle = 'Liste des Demandes';
 
         .stats-cards {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(9, 1fr);
             gap: 1rem;
             margin-bottom: 2rem;
         }
@@ -829,17 +864,31 @@ $pageTitle = 'Liste des Demandes';
         }
 
         /* Responsive pour les cartes */
+        @media (max-width: 1400px) {
+            .stats-cards {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 0.75rem;
+            }
+        }
+
         @media (max-width: 1200px) {
             .stats-cards {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(4, 1fr);
                 gap: 0.75rem;
             }
         }
 
         @media (max-width: 768px) {
             .stats-cards {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
                 gap: 0.75rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stats-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
             }
             
             .stat-card {
@@ -993,6 +1042,42 @@ $pageTitle = 'Liste des Demandes';
                 </div>
                 <div class="stat-percentage">
                     <?= $totalDemandes > 0 ? round(($statsParStatut['rejete'] / $totalDemandes) * 100, 1) : 0 ?>%
+                </div>
+            </div>
+            
+            <!-- Délai Moyen -->
+            <div class="stat-card stat-info">
+                <div class="stat-number"><?= $delaiMoyen ?></div>
+                <div class="stat-label">
+                    <i class="fas fa-stopwatch"></i>
+                    Délai Moyen
+                </div>
+                <div class="stat-percentage">
+                    Traitement
+                </div>
+            </div>
+            
+            <!-- Demandes Aujourd'hui -->
+            <div class="stat-card stat-warning">
+                <div class="stat-number"><?= $demandesAujourdhui ?></div>
+                <div class="stat-label">
+                    <i class="fas fa-calendar-day"></i>
+                    Aujourd'hui
+                </div>
+                <div class="stat-percentage">
+                    Nouvelles
+                </div>
+            </div>
+            
+            <!-- Demandes Cette Semaine -->
+            <div class="stat-card stat-total">
+                <div class="stat-number"><?= $demandesTotalSemaine ?></div>
+                <div class="stat-label">
+                    <i class="fas fa-calendar-week"></i>
+                    Cette Semaine
+                </div>
+                <div class="stat-percentage">
+                    Total
                 </div>
             </div>
         </div>

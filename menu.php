@@ -238,50 +238,6 @@
             line-height: 1.6;
         }
 
-        .stats-section {
-            background: var(--senegal-vert);
-            color: white;
-            border-radius: 20px;
-            padding: 2rem;
-            margin-top: 2rem;
-            text-align: center;
-        }
-        
-        .stats-section h4 {
-            color: white !important;
-        }
-        
-        .stats-section p {
-            color: white !important;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .stat-item {
-            background: var(--blanc-principal);
-            border: 2px solid var(--senegal-vert);
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: var(--senegal-vert) !important;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #000000 !important;
-            font-weight: 600;
-        }
 
         /* Styles pour la section repliable */
         #types-actes-header {
@@ -469,65 +425,6 @@
                         Accès réservé aux administrateurs pour la gestion des demandes.
                     </p>
                 </a>
-            </div>
-
-            <!-- Section statistiques -->
-            <div class="stats-section">
-                <h4 class="fw-bold mb-0" style="color: white !important; font-weight: 700 !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Statistiques du Service</h4>
-                <p class="mb-0" style="color: white !important; font-weight: 600 !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">Données en temps réel</p>
-                
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">
-                            <?php
-                            // Connexion rapide pour les stats
-                            try {
-                                $pdo = new PDO("mysql:host=localhost;dbname=u588247422_mairebd;charset=utf8mb4", "u588247422_userbd", "Khombole2021", [
-                                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                                ]);
-                                $stmt = $pdo->query("SELECT COUNT(*) as total FROM demandes_actes");
-                                echo $stmt->fetch()['total'] ?? '0';
-                            } catch (Exception $e) {
-                                echo '0';
-                            }
-                            ?>
-                        </div>
-                        <div class="stat-label">Demandes Total</div>
-                    </div>
-                    
-                    <div class="stat-item">
-                        <div class="stat-number">
-                            <?php
-                            try {
-                                $stmt = $pdo->query("SELECT COUNT(*) as total FROM demandes_actes WHERE statut = 'en_attente'");
-                                echo $stmt->fetch()['total'] ?? '0';
-                            } catch (Exception $e) {
-                                echo '0';
-                            }
-                            ?>
-                        </div>
-                        <div class="stat-label">En Attente</div>
-                    </div>
-                    
-                    <div class="stat-item">
-                        <div class="stat-number">
-                            <?php
-                            try {
-                                $stmt = $pdo->query("SELECT COUNT(*) as total FROM demandes_actes WHERE statut = 'delivre'");
-                                echo $stmt->fetch()['total'] ?? '0';
-                            } catch (Exception $e) {
-                                echo '0';
-                            }
-                            ?>
-                        </div>
-                        <div class="stat-label">Délivrés</div>
-                    </div>
-                    
-                    <div class="stat-item">
-                        <div class="stat-number">24h</div>
-                        <div class="stat-label">Délai Moyen</div>
-                    </div>
-                </div>
             </div>
 
             <!-- Section Types d'Actes et Informations -->
